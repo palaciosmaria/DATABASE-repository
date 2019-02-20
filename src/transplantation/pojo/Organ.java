@@ -34,7 +34,7 @@ public class Organ implements Serializable {
 		this.typeorgan = typeorgan;
 	}
 
-//
+// Hashcode 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -43,7 +43,7 @@ public class Organ implements Serializable {
 		return result;
 	}
 
-
+//equals for primary keys
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -60,10 +60,46 @@ public class Organ implements Serializable {
 			return false;
 		return true;
 	}
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	public String getTypeorgan() {
+		return typeorgan;
+	}
+
+
+	public void setTypeorgan(String typeorgan) {
+		this.typeorgan = typeorgan;
+	}
+
+
+	public Integer getLifespan() {
+		return lifespan;
+	}
+
+
+	public void setLifespan(Integer lifespan) {
+		this.lifespan = lifespan;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Organ [id=" + id + ", typeorgan=" + typeorgan + ", lifespan=" + lifespan + "]";
+	}
 	
 
 	
-	
+	//missing relations
 
 	
 }
