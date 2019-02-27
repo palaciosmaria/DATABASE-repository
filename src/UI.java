@@ -16,9 +16,34 @@ public class UI {
 		
 		manager.connect();
 		manager.createTables();
+
+	
+//Menu		
+	int option;		
+		
+	do {	
+	System.out.println("------MENU------");
+
+	System.out.println("1. Insert the information");
+	System.out.println("2. Delete");
+	System.out.println("3. Search");
+	
+	try {
+	System.out.println("Insert the option: ");
+	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	String stringoption=reader.readLine();
+	option=Integer.parseInt(stringoption);
+	}catch(Exception e) {
+		e.printStackTrace();
+		
+	}
+	}while(option>1 || option <3);	
+	
+	switch(option) {
+	case 1:
 		
 		System.out.println("Introduce the doctor's info:");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		reader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.print("ID: ");
 		String idstring = reader.readLine();
 		int id= Integer.parseInt(idstring);
@@ -28,6 +53,32 @@ public class UI {
 		String speciality = reader.readLine();
 		Doctor d= new Doctor (id,name, speciality);
 		manager.insertDoc(d);
+		
+		
+		
+	case 2:
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
 		
 		
 	}
