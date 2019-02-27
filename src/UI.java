@@ -20,7 +20,7 @@ public class UI {
 
 	
 //Menu		
-	int option;		
+	int option = 0;		
 		
 	do {	
 	System.out.println("------MENU------");
@@ -44,7 +44,7 @@ public class UI {
 	case 1:
 		
 		System.out.println("Introduce the doctor's info:");
-		reader = new BufferedReader(new InputStreamReader(System.in));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.print("ID: ");
 		String idstring = reader.readLine();
 		int id= Integer.parseInt(idstring);
