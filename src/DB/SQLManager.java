@@ -5,7 +5,9 @@ package DB;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.Statement;
 
 import transplantation.pojo.Doctor;
@@ -114,15 +116,16 @@ public class SQLManager {
 		public void insertDoc( Doctor d){
 			try{
 				
-				
-				//get the doctor
-				
-				
-				
-				
-				
-				
-				
+				String sql = "INSERT INTO doctor (name, speciality) "
+						+ "VALUES (?,?);";//each question mark will be replaced with a string
+				PreparedStatement prep = c.prepareStatement(sql);
+				prep.setString(1, d.getName());
+				prep.setString(2, d.getSpeciality());
+				prep.executeUpdate();//without parameters because you already pass the parameters before
+				prep.close();
+				System.out.println("Doctor info processed");
+				System.out.println("Record inserted.");
+			
 			}catch (Exception e){
 				e.printStackTrace();
 			}
