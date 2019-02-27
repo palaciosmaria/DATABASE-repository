@@ -2,9 +2,13 @@ package DB;
 
 
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+
+import transplantation.pojo.Doctor;
 
 public class SQLManager {
 	Connection c;
@@ -23,7 +27,7 @@ public class SQLManager {
 		}
 	}
 		
-		public void createtables(){
+		public void createTables(){
 			
 			try {
 		
@@ -97,7 +101,7 @@ public class SQLManager {
 				relationship.executeUpdate(sqlrelationship);
 				relationship.close();
 				
-				c.close();
+				
 				System.out.println("Database connection closed.");
 				
 			}catch (Exception e) {
@@ -106,9 +110,28 @@ public class SQLManager {
 	
 	
 			}
+		
+		public void insertDoc( Doctor d){
+			try{
+				
+				
+				//get the doctor
+				
+				
+				
+				
+				
+				
+				
+			}catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+
 }
 			
 			
-}
+
 		 
 
