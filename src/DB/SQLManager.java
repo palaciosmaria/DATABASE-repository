@@ -8,8 +8,10 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
+import sample.db.pojos.Department;
 import transplantation.pojo.Doctor;
 
 public class SQLManager {
@@ -130,6 +132,24 @@ public class SQLManager {
 				e.printStackTrace();
 			}
 		}
+		
+		public void selectDoc( Doctor d){
+			
+			Statement stmt = c.createStatement();
+			String sql = "SELECT * FROM doctor";
+			ResultSet rs = stmt.executeQuery(sql);//we only ask question to the database
+			while (rs.next()) {//this methods returns true if there are any switchs
+				int id = rs.getInt("id");//here we can put 1 because id is the 1 column
+				String name = rs.getString("name");
+				String speciality = rs.getString("speciality");
+				Doctor newd= new Doctor(id, name, speciality);
+				System.out.println(newd);
+			}
+			rs.close();
+			stmt.close();//after using a statement we close it
+			System.out.println("Search finished.");
+		}
+		
 		
 
 }
