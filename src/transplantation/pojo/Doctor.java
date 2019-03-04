@@ -26,9 +26,9 @@ public class Doctor implements Serializable{
 	}
 
 
-	public Doctor(Integer id, String speciality) {
+	public Doctor(String name, String speciality) {
 		super();
-		this.id = id;
+		this.name = name;
 		this.speciality = speciality;
 	}
 

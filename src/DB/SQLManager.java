@@ -9,11 +9,15 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 import transplantation.pojo.Doctor;
 
 public class SQLManager {
-	Connection c;
+	static Connection c;
 	public void connect() {
 		
 		try {
@@ -64,9 +68,9 @@ public class SQLManager {
 				String sqlreceiver = "CREATE TABLE receiver "
 								   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
 								   + " name     TEXT     NOT NULL, "
-								   + " date of birth  DATE	 NOT NULL,"
-								   + " blood type  TEXT NOT NULL,"
-								   + " organ needed TEXT NOT NULL,"
+								   + " dateofbirth  DATE	 NOT NULL,"
+								   + " bloodtype  TEXT NOT NULL,"
+								   + " organneeded TEXT NOT NULL,"
 								   + " priority INTEGER NOT NULL"
 								   + " id_hospital INTEGER NOT NULL,"
 								   + " FOREIGN KEY (id_hospital) REFERENCES hospital (id)"
@@ -148,10 +152,43 @@ public class SQLManager {
 			System.out.println("Search finished.");
 			}
 			catch(Exception e)
-			{e.printStackTrace();}			}
+			{e.printStackTrace();}	
+			
+		
+		}
 		
 		
-
+		
+		public List<Doctor> getAllDoctors() throws SQLException {
+					Statement stmt = c.createStatement();
+					String sql = "SELECT * FROM doctor";
+					ResultSet rs = stmt.executeQuery(sql);
+					List<Doctor> list1= new ArrayList<Doctor>();
+					while (rs.next()) {
+						int id = rs.getInt("id");
+						String name = rs.getString("name");
+						String speciality = rs.getString("speciality");
+						Doctor d = new Doctor(id, name, speciality);
+						list1.add(d);
+					}
+					rs.close();
+					stmt.close();
+					return list1;
+				}
+		
+		
+		public void updateDoc(Doctor d) throws SQLException{
+			
+			String sql = "UPDATE doctor SET sepciality=? WHERE id=?";
+			PreparedStatement prep = c.prepareStatement(sql);
+			prep.setString(1, d.getSpeciality());
+			prep.setInt(2, d.getId());
+			prep.executeUpdate();
+			
+				
+		}
+		
+		
 }
 			
 			
