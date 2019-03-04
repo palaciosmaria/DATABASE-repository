@@ -10,8 +10,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
-import sample.db.pojos.Department;
 import transplantation.pojo.Doctor;
 
 public class SQLManager {
