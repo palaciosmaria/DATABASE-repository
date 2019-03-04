@@ -10,8 +10,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
-import sample.db.pojos.Department;
 import transplantation.pojo.Doctor;
 
 public class SQLManager {
@@ -134,7 +132,7 @@ public class SQLManager {
 		}
 		
 		public void selectDoc( Doctor d){
-			
+			try {
 			Statement stmt = c.createStatement();
 			String sql = "SELECT * FROM doctor";
 			ResultSet rs = stmt.executeQuery(sql);//we only ask question to the database
@@ -148,7 +146,9 @@ public class SQLManager {
 			rs.close();
 			stmt.close();//after using a statement we close it
 			System.out.println("Search finished.");
-		}
+			}
+			catch(Exception e)
+			{e.printStackTrace();}			}
 		
 		
 
