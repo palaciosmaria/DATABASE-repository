@@ -42,7 +42,7 @@ public class SQLManager {
 					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
 					   + " name     TEXT     NOT NULL, "
 					   + " date of birth  DATE	 NOT NULL,"
-					   + " blood type  TEXT NOT NULL,"
+					   + " blood type  TEXT ,"
 					   + " location TEXT NOT NULL)";
 				donor.executeUpdate(sqldonor);
 				donor.close();
@@ -68,11 +68,19 @@ public class SQLManager {
 				String sqlreceiver = "CREATE TABLE receiver "
 								   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
 								   + " name     TEXT     NOT NULL, "
+<<<<<<< HEAD
 								   + " dateofbirth  DATE	 NOT NULL,"
 								   + " bloodtype  TEXT NOT NULL,"
 								   + " organneeded TEXT NOT NULL,"
+=======
+								   + " date of birth  DATE	 NOT NULL,"
+								   + " blood type  TEXT ,"
+								   + " organ needed TEXT NOT NULL,"
+>>>>>>> branch 'master' of https://github.com/palaciosmaria/DATABASE-repository.git
 								   + " priority INTEGER NOT NULL"
 								   + " id_hospital INTEGER NOT NULL,"
+								   + " received[yes/no] BOOLEAN NOT NULL,"
+								   //cuando hagamos el pojo declaramos boolean
 								   + " FOREIGN KEY (id_hospital) REFERENCES hospital (id)"
 								   + " ON UPDATE RESTRICT ON DELETE CASCADE)";				
 						receiver.executeUpdate(sqlreceiver);
@@ -84,8 +92,8 @@ public class SQLManager {
 								+ " type of organ TEXT NOT NULL,"
 								+ " life span(minutes) INTEGER NOT NULL,"
 								+ " id_donor INTEGER NOT NULL,"
-								+ " id_doctor INTEGER NOT NULL, "
-								+ " id_receiver INTEGER NOT NULL,"
+								+ " id_doctor INTEGER , "
+								+ " id_receiver INTEGER ,"
 								+ " FOREIGN KEY (id_donor) REFERENCES donor (id)"
 								+ " ON UPDATE RESTRICT ON DELETE CASCADE,"
 								+ " FOREIGN KEY (id_doctor) REFERENCES doctor (id) "
