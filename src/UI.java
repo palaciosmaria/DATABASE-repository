@@ -55,7 +55,7 @@ public class UI {
 		String name = reader.readLine();
 		System.out.print("Speciality: ");
 		String speciality = reader.readLine();
-		Doctor d= new Doctor (,name, speciality);
+		Doctor d= new Doctor (name, speciality);
 		manager.insertDoc(d);
 		System.out.println("Doctor inserted correctly");
 		break;
