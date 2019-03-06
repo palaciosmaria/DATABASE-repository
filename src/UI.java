@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,14 +27,11 @@ public class UI {
 //Menu		
 
 
+	
 
+	int option = 0;		
 
-	int option=0;		
-
-
-		
-	do {	
-
+do {	
 	System.out.println("------MENU------");
 
 	System.out.println("1. Insert the information");
@@ -63,9 +61,64 @@ public class UI {
 		
 		
 		
+		//tst
+	
+	
+	
+	
+	
 		
 	case 3:
-		
+		try{
 			
+		reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Choose a doctor, type its ID: ");
+		List<Doctor> list1= manager.getAllDoctors();
+		System.out.println(list1);
+		id = Integer.parseInt(reader.readLine());
 		
+		//call a method in manager that returns a doctor by id
+		//print the chosen doctor
+		
+		System.out.print("Type the new speciality of the doctor: ");
+		String newSpeciality = reader.readLine();
+		//change the speciality of the chosen doctor
+		//calls the updateDoc method
+		System.out.println("Update finished.");
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		
+	
+	}
+	case 3:
+
+		
+	
+		
+		
+	}
+	
+	
+	public static void menuInsertDoctor() throws IOException {
+		
+		System.out.println("Introduce the doctor's info:");
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.print("ID: ");
+		String idstring = reader.readLine();
+		int id= Integer.parseInt(idstring);
+		System.out.print("Name: ");
+		String name = reader.readLine();
+		System.out.print("Speciality: ");
+		String speciality = reader.readLine();
+		Doctor d= new Doctor (id,name, speciality);
+		manager.insertDoc(d);
+		
+	}
+	
+	
+	
+	
+	
+}
 }}}

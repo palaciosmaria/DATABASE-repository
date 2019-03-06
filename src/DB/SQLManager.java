@@ -68,15 +68,9 @@ public class SQLManager {
 				String sqlreceiver = "CREATE TABLE receiver "
 								   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
 								   + " name     TEXT     NOT NULL, "
-<<<<<<< HEAD
-								   + " dateofbirth  DATE	 NOT NULL,"
-								   + " bloodtype  TEXT NOT NULL,"
-								   + " organneeded TEXT NOT NULL,"
-=======
 								   + " date of birth  DATE	 NOT NULL,"
 								   + " blood type  TEXT ,"
 								   + " organ needed TEXT NOT NULL,"
->>>>>>> branch 'master' of https://github.com/palaciosmaria/DATABASE-repository.git
 								   + " priority INTEGER NOT NULL"
 								   + " id_hospital INTEGER NOT NULL,"
 								   + " received[yes/no] BOOLEAN NOT NULL,"
@@ -160,46 +154,39 @@ public class SQLManager {
 			System.out.println("Search finished.");
 			}
 			catch(Exception e)
-			{e.printStackTrace();}	
+			{e.printStackTrace();}			}
+		
+		
+
+
 			
-		
-		}
-		
-		
-		
-		public List<Doctor> getAllDoctors() throws SQLException {
-					Statement stmt = c.createStatement();
-					String sql = "SELECT * FROM doctor";
-					ResultSet rs = stmt.executeQuery(sql);
-					List<Doctor> list1= new ArrayList<Doctor>();
-					while (rs.next()) {
-						int id = rs.getInt("id");
-						String name = rs.getString("name");
-						String speciality = rs.getString("speciality");
-						Doctor d = new Doctor(id, name, speciality);
-						list1.add(d);
-					}
-					rs.close();
-					stmt.close();
-					return list1;
-				}
-		
-		
-		public void updateDoc(Doctor d) throws SQLException{
-			
-			String sql = "UPDATE doctor SET sepciality=? WHERE id=?";
-			PreparedStatement prep = c.prepareStatement(sql);
-			prep.setString(1, d.getSpeciality());
-			prep.setInt(2, d.getId());
-			prep.executeUpdate();
-			
-				
-		}
-		
-		
+public List<Doctor> getAllDoctors() throws SQLException {
+	Statement stmt = c.createStatement();
+	String sql = "SELECT * FROM doctor";
+	ResultSet rs = stmt.executeQuery(sql);
+	List<Doctor> list1= new ArrayList<Doctor>();
+	while (rs.next()) {
+		int id = rs.getInt("id");
+		String name = rs.getString("name");
+		String speciality = rs.getString("speciality");
+		Doctor d = new Doctor(id, name, speciality);
+		list1.add(d);
+	}
+	rs.close();
+	stmt.close();
+	return list1;
 }
-			
-			
+
+public void updateDoc(Doctor d) throws SQLException{
+	
+	String sql = "UPDATE doctor SET sepciality=? WHERE id=?";
+	PreparedStatement prep = c.prepareStatement(sql);
+	prep.setString(1, d.getSpeciality());
+	prep.setInt(2, d.getId());
+	prep.executeUpdate();
+	
+}	
+}
 
 		 
 
