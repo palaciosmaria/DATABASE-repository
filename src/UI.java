@@ -27,12 +27,12 @@ public class UI {
 
 	int option = 0;		
 	
-	//do {	
+	do {	
 	System.out.println("------MENU------");
 
 	System.out.println("1. Insert the information");
 	System.out.println("2. Delete");
-	System.out.println("3. Update");
+	System.out.println("3. Search");
 	
 	try {
 	System.out.println("Insert the option: ");
@@ -43,7 +43,7 @@ public class UI {
 		e.printStackTrace();
 		
 	}
-	//}while(option<=1 || option >=3);	
+	}while(option>1 || option<3);	
 	
 	switch(option) {
 	case 1:
