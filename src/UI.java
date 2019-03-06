@@ -1,7 +1,15 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+<<<<<<< HEAD
 import java.sql.SQLException;
+=======
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+>>>>>>> branch 'master' of https://github.com/palaciosmaria/DATABASE-repository
 import java.util.List;
 
 import DB.SQLManager;
@@ -16,20 +24,25 @@ public class UI {
 	public static void main(String args[]) throws IOException, SQLException {
 		
 		manager=new SQLManager();
-		
 		manager.connect();
 		manager.createTables();
 
-	
 //Menu		
 
+<<<<<<< HEAD
 	
 
 	int option=0;		
+=======
+	int option = 0;		
+>>>>>>> branch 'master' of https://github.com/palaciosmaria/DATABASE-repository
 	
+<<<<<<< HEAD
 
 
 		
+=======
+>>>>>>> branch 'master' of https://github.com/palaciosmaria/DATABASE-repository
 	do {	
 	System.out.println("------MENU------");
 
@@ -51,17 +64,8 @@ public class UI {
 	switch(option) {
 	case 1:
 		
-		System.out.println("Introduce the doctor's info:");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print("ID: ");
-		String idstring = reader.readLine();
-		int id= Integer.parseInt(idstring);
-		System.out.print("Name: ");
-		String name = reader.readLine();
-		System.out.print("Speciality: ");
-		String speciality = reader.readLine();
-		Doctor d= new Doctor (id,name, speciality);
-		manager.insertDoc(d);
+		
+		
 		
 		
 		
@@ -79,6 +83,7 @@ public class UI {
 	
 	
 		
+<<<<<<< HEAD
 		
 		
 		
@@ -105,8 +110,13 @@ public class UI {
 		
 	
 	}
+=======
+	case 3:
+>>>>>>> branch 'master' of https://github.com/palaciosmaria/DATABASE-repository
 		
+			
 		
+<<<<<<< HEAD
 		
 		
 	
@@ -136,3 +146,6 @@ public class UI {
 	
 	
 }
+=======
+}}}
+>>>>>>> branch 'master' of https://github.com/palaciosmaria/DATABASE-repository

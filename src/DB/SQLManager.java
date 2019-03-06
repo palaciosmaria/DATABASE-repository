@@ -17,7 +17,7 @@ import java.util.List;
 import transplantation.pojo.Doctor;
 
 public class SQLManager {
-	Connection c;
+	static Connection c;
 	public void connect() {
 		
 		try {
