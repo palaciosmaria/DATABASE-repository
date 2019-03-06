@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
+import java.util.List;
 
 import DB.SQLManager;
 import transplantation.pojo.Doctor;
@@ -11,7 +13,7 @@ public class UI {
 	
 	
 	
-	public static void main(String args[]) throws IOException {
+	public static void main(String args[]) throws IOException, SQLException {
 		
 		manager=new SQLManager();
 		
@@ -67,20 +69,42 @@ public class UI {
 		
 		
 		
+		//tst
+	
+	
+	
+	
+	
+	
+	
+	
 		
-	
-	
-	
-	
-	
-	
+		
+		
+		
+	case 3:
+		try{
+			
+		reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Choose a doctor, type its ID: ");
+		List<Doctor> list1= manager.getAllDoctors();
+		System.out.println(list1);
+		id = Integer.parseInt(reader.readLine());
+		
+		//call a method in manager that returns a doctor by id
+		//print the chosen doctor
+		
+		System.out.print("Type the new speciality of the doctor: ");
+		String newSpeciality = reader.readLine();
+		//change the speciality of the chosen doctor
+		//calls the updateDoc method
+		System.out.println("Update finished.");
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		
 	
 	}
-		
-		
-		
-		
-		
 		
 		
 		
