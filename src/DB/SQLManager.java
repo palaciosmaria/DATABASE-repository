@@ -68,15 +68,12 @@ public class SQLManager {
 				String sqlreceiver = "CREATE TABLE receiver "
 								   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
 								   + " name     TEXT     NOT NULL, "
-<<<<<<< HEAD
 								   + " dateofbirth  DATE	 NOT NULL,"
 								   + " bloodtype  TEXT NOT NULL,"
 								   + " organneeded TEXT NOT NULL,"
-=======
 								   + " date of birth  DATE	 NOT NULL,"
 								   + " blood type  TEXT ,"
 								   + " organ needed TEXT NOT NULL,"
->>>>>>> branch 'master' of https://github.com/palaciosmaria/DATABASE-repository.git
 								   + " priority INTEGER NOT NULL"
 								   + " id_hospital INTEGER NOT NULL,"
 								   + " received[yes/no] BOOLEAN NOT NULL,"

@@ -27,7 +27,7 @@ public class UI {
 
 	int option = 0;		
 	
-	//do {	
+	do {	
 	System.out.println("------MENU------");
 
 	System.out.println("1. Insert the information");
@@ -62,4 +62,4 @@ public class UI {
 		
 			
 		
-}}
+}}}
