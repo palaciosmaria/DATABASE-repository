@@ -14,13 +14,14 @@ public class Receiver implements Serializable  {
 	private String bloodtype;
 	private String organeeded;
 	private Integer priority;
+	private Boolean received;
 	
 	//constructors
 	public Receiver() {
 		super();
 	}
 
-	public Receiver(Integer id, String name, Date datebirth, String bloodtype, String organeeded, Integer priority) {
+	public Receiver(Integer id, String name, Date datebirth, String bloodtype, String organeeded, Integer priority, Boolean received) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -28,6 +29,7 @@ public class Receiver implements Serializable  {
 		this.bloodtype = bloodtype;
 		this.organeeded = organeeded;
 		this.priority = priority;
+		this.received= received;
 	}
 
 	public Receiver(Integer id, String bloodtype, String organeeded, Integer priority) {
@@ -36,6 +38,7 @@ public class Receiver implements Serializable  {
 		this.bloodtype = bloodtype;
 		this.organeeded = organeeded;
 		this.priority = priority;
+		
 	}
 	//Hashcode
 	
