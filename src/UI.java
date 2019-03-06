@@ -21,8 +21,13 @@ public class UI {
 	
 //Menu		
 
+<<<<<<< HEAD
+
+	int option=0;		
+=======
 	int option = 0;		
 	
+>>>>>>> branch 'master' of https://github.com/palaciosmaria/DATABASE-repository
 
 		
 	do {	
@@ -86,4 +91,26 @@ public class UI {
 		
 		
 	}
+	
+	
+	public static void menuInsertDoctor() throws IOException {
+		
+		System.out.println("Introduce the doctor's info:");
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.print("ID: ");
+		String idstring = reader.readLine();
+		int id= Integer.parseInt(idstring);
+		System.out.print("Name: ");
+		String name = reader.readLine();
+		System.out.print("Speciality: ");
+		String speciality = reader.readLine();
+		Doctor d= new Doctor (id,name, speciality);
+		manager.insertDoc(d);
+		
+	}
+	
+	
+	
+	
+	
 }
