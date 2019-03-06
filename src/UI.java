@@ -21,13 +21,11 @@ public class UI {
 	
 //Menu		
 
-<<<<<<< HEAD
+
 
 	int option=0;		
-=======
-	int option = 0;		
+
 	
->>>>>>> branch 'master' of https://github.com/palaciosmaria/DATABASE-repository
 
 		
 	do {	
