@@ -1,6 +1,12 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
 
 import DB.SQLManager;
 import transplantation.pojo.Doctor;
@@ -11,24 +17,23 @@ public class UI {
 	
 	
 	
-	public static void main(String args[]) throws IOException {
+	public static void main(String args[]) throws IOException, SQLException {
 		
 		manager=new SQLManager();
-		
 		manager.connect();
 		manager.createTables();
 
-	
 //Menu		
+
 
 
 
 	int option=0;		
 
-	
 
 		
 	do {	
+
 	System.out.println("------MENU------");
 
 	System.out.println("1. Insert the information");
@@ -49,17 +54,8 @@ public class UI {
 	switch(option) {
 	case 1:
 		
-		System.out.println("Introduce the doctor's info:");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print("ID: ");
-		String idstring = reader.readLine();
-		int id= Integer.parseInt(idstring);
-		System.out.print("Name: ");
-		String name = reader.readLine();
-		System.out.print("Speciality: ");
-		String speciality = reader.readLine();
-		Doctor d= new Doctor (id,name, speciality);
-		manager.insertDoc(d);
+		
+		
 		
 		
 		
@@ -68,47 +64,8 @@ public class UI {
 		
 		
 		
-	
-	
-	
-	
-	
-	
-	
-	}
+	case 3:
 		
+			
 		
-		
-		
-		
-		
-		
-		
-		
-	
-		
-		
-	}
-	
-	
-	public static void menuInsertDoctor() throws IOException {
-		
-		System.out.println("Introduce the doctor's info:");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print("ID: ");
-		String idstring = reader.readLine();
-		int id= Integer.parseInt(idstring);
-		System.out.print("Name: ");
-		String name = reader.readLine();
-		System.out.print("Speciality: ");
-		String speciality = reader.readLine();
-		Doctor d= new Doctor (id,name, speciality);
-		manager.insertDoc(d);
-		
-	}
-	
-	
-	
-	
-	
-}
+}}}
