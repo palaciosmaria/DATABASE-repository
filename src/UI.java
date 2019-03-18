@@ -13,6 +13,7 @@ import javax.persistence.Query;
 import DB.SQLManager;
 import sample.db.pojos.Employee;
 import transplantation.pojo.Doctor;
+import transplantation.pojo.Hospital;
 
 public class UI {
 	
@@ -35,7 +36,7 @@ public class UI {
 
 	System.out.println("1. Insert");
 	System.out.println("2. Delete");
-	System.out.println("3. Search");
+	System.out.println("3. Update");
 	
 	try {
 	System.out.println("Insert the option: ");
@@ -66,6 +67,24 @@ public class UI {
 		}catch(IOException e){
 			e.printStackTrace();
 		}
+		
+		try{
+			
+			System.out.println("Introduce the hospital's info:");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			System.out.print("Name: ");
+			String name = reader.readLine();
+			System.out.print("Location: ");
+			String location = reader.readLine();
+			Hospital h= new Hospital (name, location);
+			manager.insertHosp(h);
+			System.out.println("Hospital inserted correctly");
+			break;
+			
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+		
 	case 2:
 		
 		try{
@@ -84,9 +103,9 @@ public class UI {
 		try{
 			
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Choose a doctor, type its ID: ");
 		List<Doctor> list1= manager.getAllDoctors();
 		System.out.println(list1);
+		System.out.println("Choose a doctor, type its ID: ");
 		int id = Integer.parseInt(reader.readLine());
 		
 		//call a method in manager that returns a doctor by id

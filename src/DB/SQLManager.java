@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import transplantation.pojo.Doctor;
+import transplantation.pojo.Hospital;
 
 public class SQLManager {
 	static Connection c;
@@ -130,6 +131,25 @@ public class SQLManager {
 				prep.executeUpdate();//without parameters because you already pass the parameters before
 				prep.close();
 				System.out.println("Doctor info processed");
+				System.out.println("Record inserted.");
+			
+			}catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		
+		public void insertHosp( Hospital h){
+			try{
+				
+				String sql = "INSERT INTO hospital (name, location) "
+						+ "VALUES (?,?);";//each question mark will be replaced with a string
+				PreparedStatement prep = c.prepareStatement(sql);
+				prep.setString(1, h.getName());
+				prep.setString(2, h.getLocation());
+				prep.executeUpdate();//without parameters because you already pass the parameters before
+				prep.close();
+				System.out.println("Hospital info processed");
 				System.out.println("Record inserted.");
 			
 			}catch (Exception e){
