@@ -26,10 +26,10 @@ public class Hospital implements Serializable {
 		}
 
 
-		public Hospital(Integer id, String name) {
+		public Hospital(String name, String location) {
 			super();
-			this.id = id;
 			this.name = name;
+			this.location = location;
 		}
 
 	
