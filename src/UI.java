@@ -8,7 +8,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import javax.persistence.Query;
+
 import DB.SQLManager;
+import sample.db.pojos.Employee;
 import transplantation.pojo.Doctor;
 
 public class UI {
@@ -30,7 +33,7 @@ public class UI {
 	do {	
 	System.out.println("------MENU------");
 
-	System.out.println("1. Insert the information");
+	System.out.println("1. Insert");
 	System.out.println("2. Delete");
 	System.out.println("3. Search");
 	
@@ -65,6 +68,15 @@ public class UI {
 		}
 	case 2:
 		
+		try{
+			
+			
+			
+			
+		}catch (IOException e){
+			e.printStackTrace();
+			
+		}
 		
 		
 		
@@ -84,6 +96,8 @@ public class UI {
 		String newSpeciality = reader.readLine();
 		//change the speciality of the chosen doctor
 		//calls the updateDoc method
+		
+		
 		System.out.println("Update finished.");
 		}catch(IOException e){
 			e.printStackTrace();
@@ -93,3 +107,4 @@ public class UI {
 	}
 	}
 }
+
