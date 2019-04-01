@@ -189,7 +189,34 @@ public void updateDoc(Doctor d) throws SQLException{
 	prep.executeUpdate();
 	
 }	
+
+
+public List<Hospital> getAllHospitals() throws SQLException {
+	Statement stmt = c.createStatement();
+	String sql = "SELECT * FROM hospital";
+	ResultSet rs = stmt.executeQuery(sql);
+	List<Hospital> list1= new ArrayList<Hospital>();
+	while (rs.next()) {
+		int id = rs.getInt("id");
+		String name = rs.getString("name");
+		String location = rs.getString("location");
+		Hospital h = new Hospital(id, name, location);
+		list1.add(h);
+	}
+	rs.close();
+	stmt.close();
+	return list1;
 }
 
+public void updateHosp(Hospital h) throws SQLException{
+	
+	String sql = "UPDATE hospital SET name=? WHERE id=?";
+	PreparedStatement prep = c.prepareStatement(sql);
+	prep.setString(1, h.getName());
+	prep.setInt(2, h.getId());
+	prep.executeUpdate();
+	
+}	
+}
 		 
 

@@ -37,6 +37,7 @@ public class UI {
 	System.out.println("2. insert hospital");
 	System.out.println("3. Update");
 	System.out.println("4. Delete");
+	System.out.println("5. Update hospital");
 	
 	try {
 	System.out.println("Insert the option: ");
@@ -47,7 +48,7 @@ public class UI {
 		e.printStackTrace();
 		
 	}
-	}while(option<1 || option>3);	
+	}while(option<1 || option>5);	
 	
 	switch(option) {
 	case 1:
@@ -120,7 +121,30 @@ public class UI {
 		
 	case 4:
 		
-	
+	case 5:
+		try{
+			
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			List<Hospital> list1= manager.getAllHospitals();
+			System.out.println(list1);
+			System.out.println("Choose a Hospital, type its ID: ");
+			int id = Integer.parseInt(reader.readLine());
+			
+			//call a method in manager that returns a hospital by id
+			//print the chosen hospital
+			
+			System.out.print("Type the new name of the hospital: ");
+			String newName = reader.readLine();
+			//change the name of the chosen hospital
+			//calls the updateHosp method
+			Hospital h= new Hospital(id,newName);
+			manager.updateHosp(h);
+			
+			
+			System.out.println("Update finished.");
+			}catch(IOException e){
+				e.printStackTrace();
+			}
 	}
 	}
 }
