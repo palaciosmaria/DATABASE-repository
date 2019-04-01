@@ -34,7 +34,7 @@ public class UI {
 	System.out.println("------MENU------");
 
 	System.out.println("1. Insert doc");
-	System.out.println("2. insert hospital");
+	System.out.println("2. Insert hospital");
 	System.out.println("3. Update");
 	System.out.println("4. Delete");
 	System.out.println("5. Update hospital");
