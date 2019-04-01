@@ -197,7 +197,8 @@ public void deleteDoc(Doctor d) throws SQLException{
 	prep.setInt(1, d.getId());
 	prep.executeUpdate();
 }
-}
+
+
 public List<Hospital> getAllHospitals() throws SQLException {
 	Statement stmt = c.createStatement();
 	String sql = "SELECT * FROM hospital";
