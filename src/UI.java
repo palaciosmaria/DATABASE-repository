@@ -36,6 +36,7 @@ public class UI {
 	System.out.println("1. Insert doc");
 	System.out.println("2. insert hospital");
 	System.out.println("3. Update");
+	System.out.println("4. Delete");
 	
 	try {
 	System.out.println("Insert the option: ");
@@ -116,6 +117,8 @@ public class UI {
 		}catch(IOException e){
 			e.printStackTrace();
 		}
+		
+	case 4:
 		
 	
 	}
