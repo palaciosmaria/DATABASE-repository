@@ -40,6 +40,12 @@ public class Doctor implements Serializable{
 	}
 
 
+	public Doctor(Integer id, String speciality) {
+		super();
+		this.id = id;
+		this.speciality = speciality;
+	}
+	
 	public Doctor(String name, String speciality) {
 		super();
 		this.name = name;

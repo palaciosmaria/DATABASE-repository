@@ -11,7 +11,6 @@ import java.util.List;
 import javax.persistence.Query;
 
 import DB.SQLManager;
-import sample.db.pojos.Employee;
 import transplantation.pojo.Doctor;
 import transplantation.pojo.Hospital;
 
@@ -34,8 +33,8 @@ public class UI {
 	do {	
 	System.out.println("------MENU------");
 
-	System.out.println("1. Insert");
-	System.out.println("2. Delete");
+	System.out.println("1. Insert doc");
+	System.out.println("2. insert hospital");
 	System.out.println("3. Update");
 	
 	try {
@@ -47,12 +46,13 @@ public class UI {
 		e.printStackTrace();
 		
 	}
-	}while(option>1 || option<3);	
+	}while(option<1 || option>3);	
 	
 	switch(option) {
 	case 1:
 		try{
-		
+			
+		manager.getAllDoctors();
 		System.out.println("Introduce the doctor's info:");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.print("Name: ");
@@ -68,34 +68,27 @@ public class UI {
 			e.printStackTrace();
 		}
 		
-		try{
-			
-			System.out.println("Introduce the hospital's info:");
-			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			System.out.print("Name: ");
-			String name = reader.readLine();
-			System.out.print("Location: ");
-			String location = reader.readLine();
-			Hospital h= new Hospital (name, location);
-			manager.insertHosp(h);
-			System.out.println("Hospital inserted correctly");
-			break;
-			
-			}catch(IOException e){
-				e.printStackTrace();
-			}
+		
 		
 	case 2:
 		
 		try{
-			
-			
-			
-			
-		}catch (IOException e){
+		
+		System.out.println("Introduce the hospital's info:");
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.print("Name: ");
+		String name = reader.readLine();
+		System.out.print("Location: ");
+		String location = reader.readLine();
+		Hospital h= new Hospital (name, location);
+		manager.insertHosp(h);
+		System.out.println("Hospital inserted correctly");
+		break;
+		
+		}catch(IOException e){
 			e.printStackTrace();
-			
 		}
+		
 		
 		
 		
@@ -115,6 +108,8 @@ public class UI {
 		String newSpeciality = reader.readLine();
 		//change the speciality of the chosen doctor
 		//calls the updateDoc method
+		Doctor d= new Doctor(id,newSpeciality);
+		manager.updateDoc(d);
 		
 		
 		System.out.println("Update finished.");

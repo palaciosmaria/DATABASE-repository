@@ -157,24 +157,7 @@ public class SQLManager {
 			}
 		}
 		
-		public void selectDoc( Doctor d){
-			try {
-			Statement stmt = c.createStatement();
-			String sql = "SELECT * FROM doctor";
-			ResultSet rs = stmt.executeQuery(sql);//we only ask question to the database
-			while (rs.next()) {//this methods returns true if there are any switchs
-				int id = rs.getInt("id");//here we can put 1 because id is the 1 column
-				String name = rs.getString("name");
-				String speciality = rs.getString("speciality");
-				Doctor newd= new Doctor(id, name, speciality);
-				System.out.println(newd);
-			}
-			rs.close();
-			stmt.close();//after using a statement we close it
-			System.out.println("Search finished.");
-			}
-			catch(Exception e)
-			{e.printStackTrace();}			}
+		
 		
 		
 
@@ -199,7 +182,7 @@ public List<Doctor> getAllDoctors() throws SQLException {
 
 public void updateDoc(Doctor d) throws SQLException{
 	
-	String sql = "UPDATE doctor SET sepciality=? WHERE id=?";
+	String sql = "UPDATE doctor SET speciality=? WHERE id=?";
 	PreparedStatement prep = c.prepareStatement(sql);
 	prep.setString(1, d.getSpeciality());
 	prep.setInt(2, d.getId());

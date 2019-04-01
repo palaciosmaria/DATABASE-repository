@@ -58,7 +58,7 @@ public class Request implements Serializable  {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Receiver other = (Receiver) obj;
+		Request other = (Request) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
