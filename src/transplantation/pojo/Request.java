@@ -2,7 +2,7 @@ package transplantation.pojo;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class Receiver implements Serializable  {
+public class Request implements Serializable  {
 
 	
 	private static final long serialVersionUID = -5410714361732009493L;
@@ -17,11 +17,11 @@ public class Receiver implements Serializable  {
 	private Boolean received;
 	
 	//constructors
-	public Receiver() {
+	public Request() {
 		super();
 	}
 
-	public Receiver(Integer id, String name, Date datebirth, String bloodtype, String organeeded, Integer priority, Boolean received) {
+	public Request(Integer id, String name, Date datebirth, String bloodtype, String organeeded, Integer priority, Boolean received) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -32,7 +32,7 @@ public class Receiver implements Serializable  {
 		this.received= received;
 	}
 
-	public Receiver(Integer id, String bloodtype, String organeeded, Integer priority) {
+	public Request(Integer id, String bloodtype, String organeeded, Integer priority) {
 		super();
 		this.id = id;
 		this.bloodtype = bloodtype;
@@ -117,7 +117,7 @@ public class Receiver implements Serializable  {
 
 	@Override
 	public String toString() {
-		return "Receiver [id=" + id + ", name=" + name + ", datebirth=" + datebirth + ", bloodtype=" + bloodtype
+		return "Request [id=" + id + ", name=" + name + ", datebirth=" + datebirth + ", bloodtype=" + bloodtype
 				+ ", organeeded=" + organeeded + ", priority=" + priority + "]";
 	}
 	
