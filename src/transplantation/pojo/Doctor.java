@@ -51,6 +51,12 @@ public class Doctor implements Serializable{
 		this.name = name;
 		this.speciality = speciality;
 	}
+	
+	public Doctor(Integer id) {
+		super();
+		this.id = id;
+		
+	}
 
 	//Hashcode
 	@Override

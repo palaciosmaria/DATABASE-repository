@@ -47,7 +47,7 @@ public class UI {
 		e.printStackTrace();
 		
 	}
-	}while(option<1 || option>3);	
+	}while(option<1 || option>5);	
 	
 	switch(option) {
 	case 1:
@@ -119,8 +119,20 @@ public class UI {
 		}
 		
 	case 4:
+		try{
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Choose a doctor to delete, type its ID: ");
+		List<Doctor> list1= manager.getAllDoctors();
+		System.out.println(list1);
+		int id = Integer.parseInt(reader.readLine());
+		//call delete method
+		Doctor d= new Doctor(id);
+		manager.deleteDoc(d);
+		System.out.println("Deletion finished.");
 		
-	
+	}catch(IOException e){
+		e.printStackTrace();
+	}
 	}
 	}
 }

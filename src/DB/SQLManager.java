@@ -189,6 +189,14 @@ public void updateDoc(Doctor d) throws SQLException{
 	prep.executeUpdate();
 	
 }	
+
+public void deleteDoc(Doctor d) throws SQLException{
+	
+	String sql = "DELETE FROM doctor WHERE id=?";
+	PreparedStatement prep = c.prepareStatement(sql);
+	prep.setInt(1, d.getId());
+	prep.executeUpdate();
+}
 }
 
 		 
