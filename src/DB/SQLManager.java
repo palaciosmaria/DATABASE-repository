@@ -178,7 +178,6 @@ public class SQLManager {
 		
 		
 
-
 			
 public List<Doctor> getAllDoctors() throws SQLException {
 	Statement stmt = c.createStatement();

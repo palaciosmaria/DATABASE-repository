@@ -11,7 +11,6 @@ import java.util.List;
 import javax.persistence.Query;
 
 import DB.SQLManager;
-import sample.db.pojos.Employee;
 import transplantation.pojo.Doctor;
 import transplantation.pojo.Hospital;
 
@@ -35,7 +34,7 @@ public class UI {
 	System.out.println("------MENU------");
 
 	System.out.println("1. Insert");
-	System.out.println("2. Delete");
+	System.out.println("2. Show");
 	System.out.println("3. Update");
 	
 	try {
@@ -47,7 +46,7 @@ public class UI {
 		e.printStackTrace();
 		
 	}
-	}while(option>1 || option<3);	
+	}while(option<1 || option>3);	
 	
 	switch(option) {
 	case 1:
@@ -86,16 +85,15 @@ public class UI {
 			}
 		
 	case 2:
-		
-		try{
+		try {
+			System.out.println("List of all the Doctors:");
+			manager.getAllDoctors();
+			break;
 			
-			
-			
-			
-		}catch (IOException e){
-			e.printStackTrace();
-			
+		}catch(Exception ex) {
+			ex.printStackTrace();
 		}
+
 		
 		
 		
