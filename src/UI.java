@@ -35,7 +35,7 @@ public class UI {
 	System.out.println("0. Create the tables");
 	System.out.println("1. Insert doc");
 	System.out.println("2. Insert hospital");
-	System.out.println("3. Update");
+	System.out.println("3. Update doctor");
 	System.out.println("4. Delete");
 	System.out.println("5. Update hospital");
 	
