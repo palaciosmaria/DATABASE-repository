@@ -38,6 +38,8 @@ public class UI {
 	System.out.println("3. Update");
 	System.out.println("4. Delete");
 	System.out.println("5. Update hospital");
+	System.out.println("6. Show all Doctors");
+	System.out.println("7. Show all Hospitals");
 	
 	try {
 	System.out.println("Insert the option: ");
@@ -48,7 +50,7 @@ public class UI {
 		e.printStackTrace();
 		
 	}
-	}while(option<0 || option>5);	
+	}while(option<0 || option>7);	
 	
 	switch(option) {
 	
@@ -165,6 +167,31 @@ public class UI {
 			}catch(IOException e){
 				e.printStackTrace();
 			}
+		
+	case 6: 
+		try {
+		System.out.println("List of all the Doctors");
+		List<Doctor> list1= manager.getAllDoctors();
+		for (Doctor doctor : list1) {
+			System.out.println(doctor);
+		}
+		break;
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	
+	case 7: 
+		try {
+		System.out.println("List of all the Hospitals");
+		List<Hospital> list1= manager.getAllHospitals();
+		for (Hospital hospital : list1) {
+			System.out.println(hospital);
+		}
+		break;
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	
 	}
 	}
 }
