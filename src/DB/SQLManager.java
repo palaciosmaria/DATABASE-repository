@@ -72,7 +72,7 @@ public class SQLManager {
 								   + " date of birth  DATE	 NOT NULL,"
 								   + " blood type  TEXT ,"
 								   + " organ needed TEXT NOT NULL,"
-								   + " priority INTEGER NOT NULL"
+								   + " priority INTEGER NOT NULL,"
 								   + " id_hospital INTEGER NOT NULL,"
 								   + " received[yes/no] BOOLEAN NOT NULL,"
 								   //cuando hagamos el pojo declaramos boolean
@@ -85,7 +85,7 @@ public class SQLManager {
 				String sqlorgan = "CREATE TABLE organ"
 								+ "(id INTEGER PRIMARY KEY AUTOINCREMENT,"
 								+ " type of organ TEXT NOT NULL,"
-								+ " life span(minutes) INTEGER NOT NULL,"
+								+ " life span in minutes INTEGER NOT NULL,"
 								+ " id_donor INTEGER NOT NULL,"
 								+ " id_doctor INTEGER , "
 								+ " id_receiver INTEGER ,"

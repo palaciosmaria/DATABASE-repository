@@ -24,7 +24,7 @@ public class UI {
 		
 		manager=new SQLManager();
 		manager.connect();
-		manager.createTables();
+		
 
 //Menu		
 
@@ -32,7 +32,7 @@ public class UI {
 	
 	do {	
 	System.out.println("------MENU------");
-
+	System.out.println("0. Create the tables");
 	System.out.println("1. Insert doc");
 	System.out.println("2. Insert hospital");
 	System.out.println("3. Update");
@@ -48,9 +48,12 @@ public class UI {
 		e.printStackTrace();
 		
 	}
-	}while(option<1 || option>5);	
+	}while(option<0 || option>5);	
 	
 	switch(option) {
+	
+	case 0: 
+		manager.createTables();
 	case 1:
 		try{
 			
@@ -115,6 +118,7 @@ public class UI {
 		
 		
 		System.out.println("Update finished.");
+		break;
 		}catch(IOException e){
 			e.printStackTrace();
 		}
@@ -124,13 +128,15 @@ public class UI {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Choose a doctor to delete, type its ID: ");
 		List<Doctor> list1= manager.getAllDoctors();
-		System.out.println(list1);
+		for (Doctor doctor : list1) {
+			System.out.println(doctor);
+		}
 		int id = Integer.parseInt(reader.readLine());
 		//call delete method
 		Doctor d= new Doctor(id);
 		manager.deleteDoc(d);
 		System.out.println("Deletion finished.");
-		
+		break;
 	}catch(IOException e){
 		e.printStackTrace();
 	}
@@ -155,6 +161,7 @@ public class UI {
 			
 			
 			System.out.println("Update finished.");
+			break;
 			}catch(IOException e){
 				e.printStackTrace();
 			}
