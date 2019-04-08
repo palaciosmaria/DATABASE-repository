@@ -70,12 +70,9 @@ public class UI {
 		manager.insertDoc(d);
 		System.out.println("Doctor inserted correctly");
 		break;
-		
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-		
-		
 		
 	case 2:
 		
@@ -96,9 +93,6 @@ public class UI {
 			e.printStackTrace();
 		}
 		
-		
-		
-		
 	case 3:
 		try{
 			
@@ -117,7 +111,6 @@ public class UI {
 		//calls the updateDoc method
 		Doctor d= new Doctor(id,newSpeciality);
 		manager.updateDoc(d);
-		
 		
 		System.out.println("Update finished.");
 		break;
@@ -150,18 +143,14 @@ public class UI {
 			System.out.println(list1);
 			System.out.println("Choose a Hospital, type its ID: ");
 			int id = Integer.parseInt(reader.readLine());
-			
 			//call a method in manager that returns a hospital by id
 			//print the chosen hospital
-			
 			System.out.print("Type the new name of the hospital: ");
 			String newName = reader.readLine();
 			//change the name of the chosen hospital
 			//calls the updateHosp method
 			Hospital h= new Hospital(id,newName);
 			manager.updateHosp(h);
-			
-			
 			System.out.println("Update finished.");
 			break;
 			}catch(IOException e){

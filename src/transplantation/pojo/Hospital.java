@@ -1,5 +1,6 @@
 package transplantation.pojo;
 import java.io.Serializable;
+import java.util.*;
 
 public class Hospital implements Serializable {
 
@@ -10,7 +11,8 @@ public class Hospital implements Serializable {
 		private Integer id;
 		private String name;
 		private String location;
-		
+		private List<Doctor> doctors;
+		private List<Request>requests;
 		
 		//contructors
 		public Hospital() {
@@ -99,7 +101,28 @@ public class Hospital implements Serializable {
 
 		@Override
 		public String toString() {
-			return "Hospital [id=" + id + ", name=" + name + ", location=" + location + "]";
+			return "Hospital [id=" + id + ", name=" + name + ", location=" + location + ", doctors=" + doctors
+					+ ", requests=" + requests + "]";
+		}
+
+
+		public List<Doctor> getDoctors() {
+			return doctors;
+		}
+
+
+		public void setDoctors(List<Doctor> doctors) {
+			this.doctors = doctors;
+		}
+
+
+		public List<Request> getRequests() {
+			return requests;
+		}
+
+
+		public void setRequests(List<Request> requests) {
+			this.requests = requests;
 		}
 	
 		//missing relations
