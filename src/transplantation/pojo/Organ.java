@@ -1,13 +1,22 @@
 package transplantation.pojo;
 import java.io.Serializable;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name= "organ")
+
 public class Organ implements Serializable {
 	
 	private static final long serialVersionUID = -6561993325465307742L;
 	
+	@Id
+	@GeneratedValue(generator="organs")
+	@TableGenerator(name="organs",table="sqlite_sequence",pkColumnName="name",valueColumnName="seq")
 	
 	
-//Attributes
+
 	
 	
 	private Integer id;
