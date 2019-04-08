@@ -9,15 +9,31 @@ public class Organ implements Serializable {
 	
 //Attributes
 	
+	
 	private Integer id;
 	private String typeorgan;
 	private Integer lifespan;
+	private Donor donor;
+	private Request request;
+	private Doctor doctor;
+	
 	
 	
 //Constructors	
 	public Organ() {
 		super();
 	}
+
+
+	public Organ(Integer id, String typeorgan, Integer lifespan, Donor donor, Request request, Doctor doctor) {
+	super();
+	this.id = id;
+	this.typeorgan = typeorgan;
+	this.lifespan = lifespan;
+	this.donor = donor;
+	this.request = request;
+	this.doctor = doctor;
+}
 
 
 	public Organ(Integer id, String typeorgan, Integer lifespan) {
@@ -91,15 +107,47 @@ public class Organ implements Serializable {
 		this.lifespan = lifespan;
 	}
 
+	public Donor getDonor() {
+		return donor;
+	}
+
+
+	public void setDonor(Donor donor) {
+		this.donor = donor;
+	}
+
+
+	public Request getRequest() {
+		return request;
+	}
+
+
+	public void setRequest(Request request) {
+		this.request = request;
+	}
+
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
 
 	@Override
 	public String toString() {
-		return "Organ [id=" + id + ", typeorgan=" + typeorgan + ", lifespan=" + lifespan + "]";
+		return "Organ [id=" + id + ", typeorgan=" + typeorgan + ", lifespan=" + lifespan + ", donor=" + donor
+				+ ", request=" + request + ", doctor=" + doctor + "]";
 	}
-	
+
+
 
 	
-	//missing relations
+	
+
 
 	
 }
