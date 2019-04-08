@@ -2,11 +2,20 @@ package transplantation.pojo;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
+import javax.persistence.*;
+
+@Entity
+@Table(name="donors")
 
 public class Donor implements Serializable{
 	
 	
 	private static final long serialVersionUID = 2233462938810735837L;
+	
+	@Id
+	@GeneratedValue(generator = "donors")
+	@TableGenerator(name = "donors", table = "sqlite_sequence",
+		pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "donors")
 	
 	//Atributes
 	private Integer id;
