@@ -15,13 +15,16 @@ public class Request implements Serializable  {
 	private String organeeded;
 	private Integer priority;
 	private Boolean received;
+	private Hospital hospital;
+	private Organ organ;
+	
 	
 	//constructors
 	public Request() {
 		super();
 	}
 
-	public Request(Integer id, String name, Date datebirth, String bloodtype, String organeeded, Integer priority, Boolean received) {
+	public Request(Integer id, String name, Date datebirth, String bloodtype, String organeeded, Integer priority, Boolean received, Hospital hospital, Organ organ) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -30,18 +33,23 @@ public class Request implements Serializable  {
 		this.organeeded = organeeded;
 		this.priority = priority;
 		this.received= received;
+		this.organ = organ;
+		this.hospital = hospital;
 	}
 
-	public Request(Integer id, String bloodtype, String organeeded, Integer priority) {
+	public Request(Integer id, String bloodtype, String organeeded, Integer priority, Hospital hospital) {
 		super();
 		this.id = id;
 		this.bloodtype = bloodtype;
 		this.organeeded = organeeded;
 		this.priority = priority;
+		this.hospital = hospital;
 		
 	}
 	//Hashcode
 	
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -66,6 +74,8 @@ public class Request implements Serializable  {
 			return false;
 		return true;
 	}
+	
+	
 
 	public Integer getId() {
 		return id;
@@ -115,13 +125,38 @@ public class Request implements Serializable  {
 		this.priority = priority;
 	}
 
+	public Boolean getReceived() {
+		return received;
+	}
+
+	public void setReceived(Boolean received) {
+		this.received = received;
+	}
+
+	public Hospital getHospital() {
+		return hospital;
+	}
+
+	public void setHospital(Hospital hospital) {
+		this.hospital = hospital;
+	}
+
+	public Organ getOrgan() {
+		return organ;
+	}
+
+	public void setOrgan(Organ organ) {
+		this.organ = organ;
+	}
+
 	@Override
 	public String toString() {
 		return "Request [id=" + id + ", name=" + name + ", datebirth=" + datebirth + ", bloodtype=" + bloodtype
-				+ ", organeeded=" + organeeded + ", priority=" + priority + "]";
+				+ ", organeeded=" + organeeded + ", priority=" + priority + ", received=" + received + ", hospital="
+				+ hospital + ", organ=" + organ + "]";
 	}
 	
-	//missing relations
+	
 	
 	
 	
