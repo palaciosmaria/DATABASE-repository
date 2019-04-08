@@ -1,5 +1,6 @@
 package transplantation.pojo;
 import java.io.Serializable;
+import java.util.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +25,8 @@ public class Doctor implements Serializable{
 	private Integer id;
 	private String name;
 	private String speciality;
+	private List<Organ> organs;
+	private List<Hospital>hospitals;
 	
 	
 	//constructors
@@ -118,8 +121,33 @@ public class Doctor implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Doctor [id=" + id + ", name=" + name + ", speciality=" + speciality + "]";
+		return "Doctor [id=" + id + ", name=" + name + ", speciality=" + speciality + ", organs=" + organs
+				+ ", hospitals=" + hospitals + "]";
 	}
+
+
+	public List<Hospital> getHospitals() {
+		return hospitals;
+	}
+
+
+	public void setHospitals(List<Hospital> hospitals) {
+		this.hospitals = hospitals;
+	}
+
+
+	public List<Organ> getOrgans() {
+		return organs;
+	}
+
+
+	public void setOrgans(List<Organ> organs) {
+		this.organs = organs;
+	}
+
+
+	
+	
 	
 	//missing relations
 
