@@ -1,6 +1,7 @@
 package transplantation.pojo;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 public class Donor implements Serializable{
 	
@@ -13,11 +14,24 @@ public class Donor implements Serializable{
 	private Date datebirth;
 	private String bloodtype;
 	private String location;
-		
+	private List<Organ> organs;	
+	
 	//constructors
 	public Donor() {
 		super();
 	}
+
+	
+	public Donor(Integer id, String name, Date datebirth, String bloodtype, String location, List<Organ> organs) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.datebirth = datebirth;
+		this.bloodtype = bloodtype;
+		this.location = location;
+		this.organs = organs;
+	}
+
 
 	public Donor(Integer id, String name, Date datebirth, String bloodtype, String location) {
 		super();
@@ -101,11 +115,26 @@ public class Donor implements Serializable{
 	public void setLocation(String location) {
 		this.location = location;
 	}
+	
+
+	public List<Organ> getOrgans() {
+		return organs;
+	}
+
+
+	public void setOrgans(List<Organ> organs) {
+		this.organs = organs;
+	}
+
 
 	@Override
 	public String toString() {
 		return "Donor [id=" + id + ", name=" + name + ", datebirth=" + datebirth + ", bloodtype=" + bloodtype
-				+ ", location=" + location + "]";
+				+ ", location=" + location + ", organs=" + organs + "]";
+	}
+
+
+
 	}
 	
 	
@@ -118,4 +147,4 @@ public class Donor implements Serializable{
 	
 	
 
-}
+
