@@ -11,10 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
-import transplantation.pojo.Doctor;
-import transplantation.pojo.Hospital;
+import transplantation.pojo.*;
 
 public class SQLManager {
 	static Connection c;
@@ -160,8 +160,7 @@ public class SQLManager {
 		
 		
 
-
-			
+//this makes you a list with all the doctors
 public List<Doctor> getAllDoctors() throws SQLException {
 	Statement stmt = c.createStatement();
 	String sql = "SELECT * FROM doctor";
@@ -197,6 +196,7 @@ public void deleteDoc(Doctor d) throws SQLException{
 	prep.executeUpdate();
 }
 
+//this makes you a list with all the hospitals
 
 public List<Hospital> getAllHospitals() throws SQLException {
 	Statement stmt = c.createStatement();
@@ -209,6 +209,27 @@ public List<Hospital> getAllHospitals() throws SQLException {
 		String location = rs.getString("location");
 		Hospital h = new Hospital(id, name, location);
 		list1.add(h);
+	}
+	rs.close();
+	stmt.close();
+	return list1;
+}
+
+public List<Request> getAllRequests() throws SQLException{
+	Statement stmt = c.createStatement();
+	String sql = "SELECT * FROM request";
+	ResultSet rs = stmt.executeQuery(sql);
+	List<Request> list1= new ArrayList<Request>();
+	while (rs.next()) {
+		int id = rs.getInt("id");
+		String name = rs.getString("name");
+		Date dateOfbirth = rs.getDate("date of birth");
+		String bloodType = rs.getString("blood type");
+		String organNeeded = rs.getString("organ needed");
+		int priority = rs.getInt("priority");
+		boolean received=rs.getBoolean("received[yes/no]");
+		Request r = new Request(id, name, dateOfbirth,bloodType,organNeeded,priority,received);
+		list1.add(r);
 	}
 	rs.close();
 	stmt.close();

@@ -27,6 +27,18 @@ public class Request implements Serializable  {
 		super();
 	}
 
+	public Request(Integer id, String name, Date datebirth, String bloodtype, String organeeded, Integer priority,
+			Boolean received) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.datebirth = datebirth;
+		this.bloodtype = bloodtype;
+		this.organeeded = organeeded;
+		this.priority = priority;
+		this.received = received;
+	}
+
 	public Request(Integer id, String name, Date datebirth, String bloodtype, String organeeded, Integer priority, Boolean received, Hospital hospital, Organ organ) {
 		super();
 		this.id = id;
