@@ -13,7 +13,8 @@ public class Organ implements Serializable {
 	
 	@Id
 	@GeneratedValue(generator="organs")
-	@TableGenerator(name="organs",table="sqlite_sequence",pkColumnName="name",valueColumnName="seq")
+	@TableGenerator(name="organs",table="sqlite_sequence",pkColumnName="name",
+	valueColumnName="seq", pkColumnValue="organs")
 	
 	
 
@@ -22,6 +23,8 @@ public class Organ implements Serializable {
 	private Integer id;
 	private String typeorgan;
 	private Integer lifespan;
+	@ManyToOne (fetch = FetchType.LAZY)
+	@JoinColumn (name="id_donor")
 	private Donor donor;
 	private Request request;
 	private Doctor doctor;

@@ -23,6 +23,7 @@ public class Donor implements Serializable{
 	private Date datebirth;
 	private String bloodtype;
 	private String location;
+	
 	private List<Organ> organs;	
 	
 	//constructors
