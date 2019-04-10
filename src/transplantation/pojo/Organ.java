@@ -48,9 +48,9 @@ public class Organ implements Serializable {
 }
 
 
-	public Organ(Integer id, String typeorgan, Integer lifespan) {
+	public Organ(String typeorgan, Integer lifespan) {
 		super();
-		this.id = id;
+		
 		this.typeorgan = typeorgan;
 		this.lifespan = lifespan;
 	}

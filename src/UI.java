@@ -13,6 +13,7 @@ import javax.persistence.Query;
 import DB.SQLManager;
 import transplantation.pojo.Doctor;
 import transplantation.pojo.Hospital;
+import transplantation.pojo.Organ;
 
 public class UI {
 	
@@ -40,6 +41,7 @@ public class UI {
 	System.out.println("5. Update hospital");
 	System.out.println("6. Show all Doctors");
 	System.out.println("7. Show all Hospitals");
+	System.out.println("8. Insert organs");
 	
 	try {
 	System.out.println("Insert the option: ");
@@ -56,10 +58,11 @@ public class UI {
 	
 	case 0: 
 		manager.createTables();
+		break;
 	case 1:
 		try{
 			
-		manager.getAllDoctors();
+		//manager.getAllDoctors();
 		System.out.println("Introduce the doctor's info:");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.print("Name: ");
@@ -180,6 +183,25 @@ public class UI {
 	}catch(Exception e){
 		e.printStackTrace();
 	}
+	
+	case 8:
+		try{
+			
+			System.out.println("Introduce the organs's info:");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			System.out.print("Type of organ: ");
+			String typeOforgan = reader.readLine();
+			System.out.print("Life span (in minutes): ");
+			String stringlifeSpan = reader.readLine();
+			Integer lifeSpan= Integer.parseInt(stringlifeSpan);
+			Organ o= new Organ (typeOforgan, lifeSpan);
+			
+			System.out.println("Organ inserted correctly");
+			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	
 	}
 	}
