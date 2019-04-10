@@ -53,11 +53,11 @@ public class Doctor implements Serializable{
 	}
 
 
-	public Doctor(Integer id, String speciality, List<Hospital> hospitals ) {
+	public Doctor(Integer id, String speciality) {
 		super();
 		this.id = id;
 		this.speciality = speciality;
-		this.hospitals = hospitals;
+		
 		
 	}
 	
