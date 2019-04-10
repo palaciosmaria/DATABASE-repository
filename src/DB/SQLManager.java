@@ -11,9 +11,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 import transplantation.pojo.Doctor;
+import transplantation.pojo.Donor;
 import transplantation.pojo.Hospital;
 
 public class SQLManager {
@@ -158,7 +160,24 @@ public class SQLManager {
 		
 		
 		
-		
+		public List<Donor> getAllDonors() throws SQLException{
+			Statement stmt = c.createStatement();	
+			String sql = "SELECT * FROM Donor";
+			ResultSet rs = stmt.executeQuery(sql);
+			List<Donor> listDonor=new ArrayList<Donor>();
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				Date dateofbirth = rs.getDate("date of birth");
+				String bloodType=rs.getString("blood type");
+				String location=rs.getString("location");
+				Donor d = new Donor(id, name, dateofbirth, bloodType, location);
+				listDonor.add(d);
+			}
+			rs.close();
+			stmt.close();
+			return listDonor;
+		}
 
 
 			

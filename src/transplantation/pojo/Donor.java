@@ -49,15 +49,17 @@ public class Donor implements Serializable{
 	}
 
 
-	public Donor(Integer id, String name, Date datebirth, String bloodtype, String location) {
+	public Donor(Integer id, String name, Date dateofbirth, String bloodtype, String location) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.datebirth = datebirth;
+		this.datebirth = dateofbirth;
 		this.bloodtype = bloodtype;
 		this.location = location;
-		this.organs = new ArrayList<Organ>(); 
 	}
+
+
+
 
 	public Donor(Integer id, String bloodtype, String location) {
 		super();
