@@ -13,6 +13,7 @@ import javax.persistence.Query;
 import DB.SQLManager;
 import transplantation.pojo.Doctor;
 import transplantation.pojo.Hospital;
+import transplantation.pojo.Organ;
 
 public class UI {
 	
@@ -41,6 +42,7 @@ public class UI {
 	System.out.println("6. Show all Doctors");
 	System.out.println("7. Show all Hospitals");
 	System.out.println("8. Search doctor by name");
+	System.out.println("9. Insert organs");
 	
 	try {
 	System.out.println("Insert the option: ");
@@ -57,10 +59,11 @@ public class UI {
 	
 	case 0: 
 		manager.createTables();
+		break;
 	case 1:
 		try{
 			
-		manager.getAllDoctors();
+		//manager.getAllDoctors();
 		System.out.println("Introduce the doctor's info:");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.print("Name: ");
@@ -195,6 +198,37 @@ public class UI {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+	case 9:
+		try{
+			
+			System.out.println("Introduce the organs's info:");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			System.out.print("Type of organ: ");
+			String typeOforgan = reader.readLine();
+			System.out.print("Life span (in minutes): ");
+			String stringlifeSpan = reader.readLine();
+			Integer lifeSpan= Integer.parseInt(stringlifeSpan);
+			System.out.println(manager.getAllDonors());
+			System.out.println("Introduce the donor's id:");
+			String stringdonorid = reader.readLine();
+			Integer donorId= Integer.parseInt(stringdonorid);
+			System.out.println(manager.getAllDoctors());
+			System.out.println("Introduce the doctor's id:");
+			String stringdoctorid = reader.readLine();
+			Integer doctorId= Integer.parseInt(stringdoctorid);
+			System.out.println(manager.getAllRequests());
+			System.out.println("Introduce the request's id:");
+			String stringrequestid = reader.readLine();
+			Integer requestId= Integer.parseInt(stringrequestid);
+			Organ o= new Organ(typeOforgan,lifeSpan,donorId,doctorId,requestId);
+			
+			System.out.println("Organ inserted correctly");
+			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	
 	}
 	}
 }

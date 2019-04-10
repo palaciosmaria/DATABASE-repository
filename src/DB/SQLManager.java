@@ -19,7 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import transplantation.pojo.Doctor;
+import transplantation.pojo.Donor;
 import transplantation.pojo.Hospital;
+import transplantation.pojo.Organ;
+import transplantation.pojo.Request;
 
 public class SQLManager {
 	static Connection c;
@@ -161,10 +164,26 @@ public class SQLManager {
 		
 		
 		
-		
+		public List<Donor> getAllDonors() throws SQLException{
+			Statement stmt = c.createStatement();	
+			String sql = "SELECT * FROM Donor";
+			ResultSet rs = stmt.executeQuery(sql);
+			List<Donor> listDonor=new ArrayList<Donor>();
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				Date dateofbirth = rs.getDate("date of birth");
+				String bloodType=rs.getString("blood type");
+				String location=rs.getString("location");
+				Donor d = new Donor(id, name, dateofbirth, bloodType, location);
+				listDonor.add(d);
+			}
+			rs.close();
+			stmt.close();
+			return listDonor;
+		}
 
-
-			
+//this makes you a list with all the doctors
 public List<Doctor> getAllDoctors() throws SQLException {
 	Statement stmt = c.createStatement();
 	String sql = "SELECT * FROM doctor";
@@ -200,6 +219,7 @@ public void deleteDoc(Doctor d) throws SQLException{
 	prep.executeUpdate();
 }
 
+//this makes you a list with all the hospitals
 
 public List<Hospital> getAllHospitals() throws SQLException {
 	Statement stmt = c.createStatement();
@@ -218,6 +238,27 @@ public List<Hospital> getAllHospitals() throws SQLException {
 	return list1;
 }
 
+public List<Request> getAllRequests() throws SQLException{
+	Statement stmt = c.createStatement();
+	String sql = "SELECT * FROM request";
+	ResultSet rs = stmt.executeQuery(sql);
+	List<Request> list1= new ArrayList<Request>();
+	while (rs.next()) {
+		int id = rs.getInt("id");
+		String name = rs.getString("name");
+		Date dateOfbirth = rs.getDate("date of birth");
+		String bloodType = rs.getString("blood type");
+		String organNeeded = rs.getString("organ needed");
+		int priority = rs.getInt("priority");
+		boolean received=rs.getBoolean("received[yes/no]");
+		Request r = new Request(id, name, dateOfbirth,bloodType,organNeeded,priority,received);
+		list1.add(r);
+	}
+	rs.close();
+	stmt.close();
+	return list1;
+}
+
 public void updateHosp(Hospital h) throws SQLException{
 	
 	String sql = "UPDATE hospital SET name=? WHERE id=?";
@@ -226,6 +267,27 @@ public void updateHosp(Hospital h) throws SQLException{
 	prep.setInt(2, h.getId());
 	prep.executeUpdate();
 	
+}
+public void insertOrgan( Organ o){
+	try{
+		
+		String sql = "INSERT INTO organ (typeOforgan,lifeSpan, idDonor,idDoctor,idRequest) "
+				+ "VALUES (?,?,?,?,?);";
+		PreparedStatement prep = c.prepareStatement(sql);
+		prep.setString(1, o.getTypeorgan());
+		prep.setInt(2, o.getLifespan());
+		prep.setInt(3, o.getDonor().getId());
+		prep.setInt(4, o.getDoctor().getId());
+		prep.setInt(5, o.getRequest().getId());
+		prep.executeUpdate();//without parameters because you already pass the parameters before
+		prep.close();
+		System.out.println("Organ info processed");
+		System.out.println("Record inserted.");
+	
+	}catch (Exception e){
+		e.printStackTrace();
+	}
+
 }
 
 
