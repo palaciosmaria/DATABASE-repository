@@ -47,11 +47,7 @@ public class Doctor implements Serializable{
 		this.id = id;
 		this.name = name;
 		this.speciality = speciality;
-		this.organs = new ArrayList<Organ>();
-		this.hospitals = new ArrayList<Hospital>();
-		
 	}
-
 
 	public Doctor(Integer id, String speciality) {
 		super();
@@ -133,8 +129,7 @@ public class Doctor implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Doctor [id=" + id + ", name=" + name + ", speciality=" + speciality + ", organs=" + organs
-				+ ", hospitals=" + hospitals + "]";
+		return "Doctor [id=" + id + ", name=" + name + ", speciality=" + speciality + "]";
 	}
 
 

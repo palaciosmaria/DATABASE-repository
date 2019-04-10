@@ -3,8 +3,13 @@ package DB;
 
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -115,9 +120,7 @@ public class SQLManager {
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
-	
-	
-			}
+		}
 		
 		public void insertDoc( Doctor d){
 			try{
@@ -223,7 +226,29 @@ public void updateHosp(Hospital h) throws SQLException{
 	prep.setInt(2, h.getId());
 	prep.executeUpdate();
 	
-}	
+}
+
+
+public List<Doctor> searchDoctorByName (String dname) throws SQLException{
+	
+	String sql = "SELECT * FROM doctor WHERE name LIKE ?";
+	PreparedStatement prep = c.prepareStatement(sql);
+	prep.setString(1, "%" + dname + "%");
+	ResultSet rs = prep.executeQuery();
+	Doctor d=null;
+	List<Doctor>list1=new ArrayList<Doctor>();
+	while (rs.next()) {
+		int id = rs.getInt("id");
+		String name = rs.getString("name");
+		String speciality = rs.getString("speciality");
+		d = new Doctor (id, name, speciality);
+		list1.add(d);
+	}
+	
+	rs.close();
+	prep.close();
+	return list1;
+	}
 }
 		 
 

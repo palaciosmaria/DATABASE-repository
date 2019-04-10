@@ -40,6 +40,7 @@ public class UI {
 	System.out.println("5. Update hospital");
 	System.out.println("6. Show all Doctors");
 	System.out.println("7. Show all Hospitals");
+	System.out.println("8. Search doctor by name");
 	
 	try {
 	System.out.println("Insert the option: ");
@@ -50,7 +51,7 @@ public class UI {
 		e.printStackTrace();
 		
 	}
-	}while(option<0 || option>7);	
+	}while(option<0 || option>10);	
 	
 	switch(option) {
 	
@@ -180,7 +181,20 @@ public class UI {
 	}catch(Exception e){
 		e.printStackTrace();
 	}
-	
+	case 8:
+		try{
+		BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
+		System.out.print("Name of the doctor to be shown: ");
+		String dname = r.readLine();
+		List<Doctor> list1= manager.searchDoctorByName (dname);
+		for (Doctor doctor : list1) {
+			System.out.println(doctor);
+			
+		}
+		break;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	}
 }
