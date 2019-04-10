@@ -5,8 +5,11 @@ import java.util.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+
+
 
 
 @Entity	
@@ -25,6 +28,7 @@ public class Doctor implements Serializable{
 	private Integer id;
 	private String name;
 	private String speciality;
+	
 	private List<Organ> organs;
 	private List<Hospital>hospitals;
 	
@@ -32,6 +36,9 @@ public class Doctor implements Serializable{
 	//constructors
 	public Doctor() {
 		super();
+		this.organs = new ArrayList<Organ>();
+		this.hospitals = new ArrayList<Hospital>();
+		
 	}
 
 
@@ -40,13 +47,18 @@ public class Doctor implements Serializable{
 		this.id = id;
 		this.name = name;
 		this.speciality = speciality;
+		this.organs = new ArrayList<Organ>();
+		this.hospitals = new ArrayList<Hospital>();
+		
 	}
 
 
-	public Doctor(Integer id, String speciality) {
+	public Doctor(Integer id, String speciality, List<Hospital> hospitals ) {
 		super();
 		this.id = id;
 		this.speciality = speciality;
+		this.hospitals = hospitals;
+		
 	}
 	
 	public Doctor(String name, String speciality) {

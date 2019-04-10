@@ -17,6 +17,9 @@ public class Hospital implements Serializable {
 		//contructors
 		public Hospital() {
 			super();
+			this.doctors = new ArrayList<Doctor>();
+			this.requests = new ArrayList<Request>();
+			
 		}
 
 
@@ -25,6 +28,8 @@ public class Hospital implements Serializable {
 			this.id = id;
 			this.name = name;
 			this.location = location;
+			this.doctors = new ArrayList<Doctor>();
+			this.requests = new ArrayList<Request>();
 		}
 
 
