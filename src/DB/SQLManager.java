@@ -5,7 +5,6 @@ package DB;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -65,8 +64,8 @@ public class SQLManager {
 						hospital.executeUpdate(sqlhospital);
 						hospital.close();
 						
-				Statement receiver = c.createStatement();	
-				String sqlreceiver = "CREATE TABLE receiver "
+				Statement request = c.createStatement();	
+				String sqlrequest = "CREATE TABLE request "
 								   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
 								   + " name     TEXT     NOT NULL, "
 								   + " date of birth  DATE	 NOT NULL,"
@@ -78,8 +77,8 @@ public class SQLManager {
 								   //cuando hagamos el pojo declaramos boolean
 								   + " FOREIGN KEY (id_hospital) REFERENCES hospital (id)"
 								   + " ON UPDATE RESTRICT ON DELETE CASCADE)";				
-						receiver.executeUpdate(sqlreceiver);
-						receiver.close();
+						request.executeUpdate(sqlrequest);
+						request.close();
 				
 				Statement organ = c.createStatement();
 				String sqlorgan = "CREATE TABLE organ"
@@ -88,12 +87,12 @@ public class SQLManager {
 								+ " life span in minutes INTEGER NOT NULL,"
 								+ " id_donor INTEGER NOT NULL,"
 								+ " id_doctor INTEGER , "
-								+ " id_receiver INTEGER ,"
+								+ " id_req INTEGER ,"
 								+ " FOREIGN KEY (id_donor) REFERENCES donor (id)"
 								+ " ON UPDATE RESTRICT ON DELETE CASCADE,"
 								+ " FOREIGN KEY (id_doctor) REFERENCES doctor (id) "
 								+ " ON UPDATE RESTRICT ON DELETE CASCADE,"
-								+ " FOREIGN KEY (id_receiver) REFERENCES receiver (id) "
+								+ " FOREIGN KEY (id_request) REFERENCES request (id) "
 								+  " ON UPDATE RESTRICT ON DELETE CASCADE)";
 				organ.executeUpdate(sqlorgan);
 				organ.close();

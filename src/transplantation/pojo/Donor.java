@@ -1,8 +1,11 @@
 package transplantation.pojo;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+
+
 
 @Entity
 @Table(name="donors")
@@ -23,12 +26,15 @@ public class Donor implements Serializable{
 	private Date datebirth;
 	private String bloodtype;
 	private String location;
-	
+
+	@OneToMany(mappedBy= "donor")
+
 	private List<Organ> organs;	
 	
-	//constructors
+	//constructor
 	public Donor() {
 		super();
+		this.organs= new ArrayList<Organ>();
 	}
 
 	
@@ -50,6 +56,7 @@ public class Donor implements Serializable{
 		this.datebirth = datebirth;
 		this.bloodtype = bloodtype;
 		this.location = location;
+		this.organs = new ArrayList<Organ>(); 
 	}
 
 	public Donor(Integer id, String bloodtype, String location) {
@@ -57,6 +64,7 @@ public class Donor implements Serializable{
 		this.id = id;
 		this.bloodtype = bloodtype;
 		this.location = location;
+		this.organs = new ArrayList<Organ>(); 
 	}
 
 	//Hashcode
@@ -142,13 +150,26 @@ public class Donor implements Serializable{
 		return "Donor [id=" + id + ", name=" + name + ", datebirth=" + datebirth + ", bloodtype=" + bloodtype
 				+ ", location=" + location + ", organs=" + organs + "]";
 	}
-
-
+	
+	
+	// Additional method to add to a list
+	public void addOrgan(Organ organ) {
+		if (!organs.contains(organ)) {
+			this.organs.add(organ);
+		}
+	}
+	
+	// Additional method to remove from a list
+	public void removeOrgan(Organ organ) {
+		if (organs.contains(organ)) {
+			this.organs.remove(organ);
+		}
+	}
 
 	}
 	
 	
-	//missing relations
+	
 	
 	
 
