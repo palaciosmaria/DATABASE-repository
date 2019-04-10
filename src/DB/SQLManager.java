@@ -264,6 +264,27 @@ public void updateHosp(Hospital h) throws SQLException{
 	prep.executeUpdate();
 	
 }	
+
+public void insertOrgan( Organ o){
+	try{
+		
+		String sql = "INSERT INTO organ (typeOforgan,lifeSpan, idDonor,idDoctor,idRequest) "
+				+ "VALUES (?,?,?,?,?);";
+		PreparedStatement prep = c.prepareStatement(sql);
+		prep.setString(1, o.getTypeorgan());
+		prep.setInt(2, o.getLifespan());
+		prep.setInt(3, o.getDonor().getId());
+		prep.setInt(4, o.getDoctor().getId());
+		prep.setInt(5, o.getRequest().getId());
+		prep.executeUpdate();//without parameters because you already pass the parameters before
+		prep.close();
+		System.out.println("Organ info processed");
+		System.out.println("Record inserted.");
+	
+	}catch (Exception e){
+		e.printStackTrace();
+	}
+}
 }
 		 
 

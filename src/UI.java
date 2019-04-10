@@ -194,7 +194,19 @@ public class UI {
 			System.out.print("Life span (in minutes): ");
 			String stringlifeSpan = reader.readLine();
 			Integer lifeSpan= Integer.parseInt(stringlifeSpan);
-			Organ o= new Organ (typeOforgan, lifeSpan);
+			System.out.println(manager.getAllDonors());
+			System.out.println("Introduce the donor's id:");
+			String stringdonorid = reader.readLine();
+			Integer donorId= Integer.parseInt(stringdonorid);
+			System.out.println(manager.getAllDoctors());
+			System.out.println("Introduce the doctor's id:");
+			String stringdoctorid = reader.readLine();
+			Integer doctorId= Integer.parseInt(stringdoctorid);
+			System.out.println(manager.getAllRequests());
+			System.out.println("Introduce the request's id:");
+			String stringrequestid = reader.readLine();
+			Integer requestId= Integer.parseInt(stringrequestid);
+			Organ o= new Organ(typeOforgan,lifeSpan,donorId,doctorId,requestId);
 			
 			System.out.println("Organ inserted correctly");
 			

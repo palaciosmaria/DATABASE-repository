@@ -62,7 +62,12 @@ public class Organ implements Serializable {
 		this.typeorgan = typeorgan;
 	}
 
-// Hashcode 
+public Organ(String typeOforgan, Integer lifeSpan2, Integer donorId, Integer doctorId, Integer requestId) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	// Hashcode 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
