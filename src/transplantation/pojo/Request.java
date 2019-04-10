@@ -2,6 +2,8 @@ package transplantation.pojo;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.*;
+
 public class Request implements Serializable  {
 
 	
@@ -16,6 +18,7 @@ public class Request implements Serializable  {
 	private Integer priority;
 	private Boolean received;
 	private Hospital hospital;
+	
 	private Organ organ;
 	
 	
