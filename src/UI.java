@@ -154,6 +154,7 @@ public class UI {
 			//change the name of the chosen hospital
 			//calls the updateHosp method
 			Hospital h= new Hospital(id,newName);
+			System.out.println(h);
 			manager.updateHosp(h);
 			System.out.println("Update finished.");
 			break;
