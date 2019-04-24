@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -46,7 +44,8 @@ public class UI {
 	System.out.println("6. Show all Doctors");
 	System.out.println("7. Show all Hospitals");
 	System.out.println("8. Search doctor by name");
-	System.out.println("9. Insert organs");
+	System.out.println("9. Insert organ");
+	System.out.println("11.Insert request");
 	System.out.println("10.Insert Donor");
 	
 	try {
