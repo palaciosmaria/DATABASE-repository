@@ -38,10 +38,10 @@ public class Hospital implements Serializable {
 			this.name = name;
 			this.location = location;
 		}
-		public Hospital(Integer id, String location) {
+		public Hospital(Integer id, String name) {
 			super();
 			this.id = id;
-			this.location = location;
+			this.name = name;
 		}
 
 
