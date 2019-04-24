@@ -42,7 +42,8 @@ public class UI {
 	System.out.println("6. Show all Doctors");
 	System.out.println("7. Show all Hospitals");
 	System.out.println("8. Search doctor by name");
-	System.out.println("9. Insert organs");
+	System.out.println("9. Insert organ");
+	System.out.println("11.Insert request");
 	
 	try {
 	System.out.println("Insert the option: ");
