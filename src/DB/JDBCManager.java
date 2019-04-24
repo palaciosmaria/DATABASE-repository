@@ -24,7 +24,7 @@ import transplantation.pojo.Hospital;
 import transplantation.pojo.Organ;
 import transplantation.pojo.Request;
 
-public class SQLManager {
+public class JDBCManager {
 	static Connection c;
 	public void connect() {
 		
@@ -312,5 +312,7 @@ public List<Doctor> searchDoctorByName (String dname) throws SQLException{
 	return list1;
 	}
 }
-		 
+		
+
+
 

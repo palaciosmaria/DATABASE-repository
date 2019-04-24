@@ -6,26 +6,30 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Query;
 
-import DB.SQLManager;
+import DB.JDBCManager;
+import DB.JPAManager;
 import transplantation.pojo.Doctor;
 import transplantation.pojo.Hospital;
 import transplantation.pojo.Organ;
 
 public class UI {
 	
-	private static SQLManager manager;
-	
+	private static JDBCManager manager;
+	private static JPAManager jpamanager;
 	
 	
 	public static void main(String args[]) throws IOException, SQLException {
 		
-		manager=new SQLManager();
+		manager=new JDBCManager();
 		manager.connect();
-		
+		jpamanager= new JPAManager();
+		jpamanager.connect();
 
 //Menu		
 
@@ -43,6 +47,7 @@ public class UI {
 	System.out.println("7. Show all Hospitals");
 	System.out.println("8. Search doctor by name");
 	System.out.println("9. Insert organs");
+	System.out.println("10.Insert Donor");
 	
 	try {
 	System.out.println("Insert the option: ");
@@ -229,6 +234,28 @@ public class UI {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+	case 10:
+		try {
+		System.out.println("Introduce the donor's info:");
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.print("Name: ");
+		String name = reader.readLine();
+		System.out.print("Date of Birth: ");
+		String stringdob = reader.readLine();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		
+		System.out.print("Blood Type: ");
+		String bt = reader.readLine();
+		System.out.print("Location: ");	
+		String location = reader.readLine();
+		
+		
+		System.out.println("Doctor inserted correctly");
+		break;
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		
 	
 	}
 	}
