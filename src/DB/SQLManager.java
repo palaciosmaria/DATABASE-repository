@@ -91,8 +91,8 @@ public class SQLManager {
 				Statement organ = c.createStatement();
 				String sqlorgan = "CREATE TABLE organ"
 								+ "(id INTEGER PRIMARY KEY AUTOINCREMENT,"
-								+ " type of organ TEXT NOT NULL,"
-								+ " life span in minutes INTEGER NOT NULL,"
+								+ " type_of_organ TEXT NOT NULL,"
+								+ " life_span_in_minutes INTEGER NOT NULL,"
 								+ " id_donor INTEGER NOT NULL,"
 								+ " id_doctor INTEGER , "
 								+ " id_req INTEGER ,"
@@ -100,7 +100,7 @@ public class SQLManager {
 								+ " ON UPDATE RESTRICT ON DELETE CASCADE,"
 								+ " FOREIGN KEY (id_doctor) REFERENCES doctor (id) "
 								+ " ON UPDATE RESTRICT ON DELETE CASCADE,"
-								+ " FOREIGN KEY (id_request) REFERENCES request (id) "
+								+ " FOREIGN KEY (id_req) REFERENCES request (id) "
 								+  " ON UPDATE RESTRICT ON DELETE CASCADE)";
 				organ.executeUpdate(sqlorgan);
 				organ.close();
@@ -113,7 +113,7 @@ public class SQLManager {
 										+ " ON UPDATE RESTRICT ON DELETE CASCADE,"
 										+ " FOREIGN KEY (id_hospital) REFERENCES hospital (id) "
 										+ " ON UPDATE RESTRICT ON DELETE CASCADE,"
-										+ "PRIMARY KEY (id_doctor, id_hospital)";
+										+ "PRIMARY KEY (id_doctor, id_hospital))";
 				relationship.executeUpdate(sqlrelationship);
 				relationship.close();
 				
