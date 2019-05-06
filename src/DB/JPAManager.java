@@ -8,7 +8,7 @@ import transplantation.pojo.*;
 
 public class JPAManager {
 	
-	private static final String PERSISTENCE_PROVIDER = "transplantation.db";
+	private static final String PERSISTENCE_PROVIDER = "hospital-provider";
 	private static EntityManagerFactory factory;
 	private EntityManager em;
 	
