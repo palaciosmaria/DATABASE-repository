@@ -25,9 +25,9 @@ public class Organ implements Serializable {
 	private Integer lifespan;
 	@ManyToOne (fetch = FetchType.LAZY)
 	@JoinColumn (name="id_donor")
-	private Donor donor;
-	private Request request;
-	private Doctor doctor;
+	private Donor id_donor;
+	private Request id_req;
+	private Doctor id_doctor;
 	
 	
 	
@@ -42,9 +42,9 @@ public class Organ implements Serializable {
 	this.id = id;
 	this.typeorgan = typeorgan;
 	this.lifespan = lifespan;
-	this.donor = donor;
-	this.request = request;
-	this.doctor = doctor;
+	this.id_donor = donor;
+	this.id_req = request;
+	this.id_doctor = doctor;
 }
 
 
@@ -125,39 +125,39 @@ public Organ(String typeOforgan, Integer lifeSpan2, Integer donorId, Integer doc
 	}
 
 	public Donor getDonor() {
-		return donor;
+		return id_donor;
 	}
 
 
 	public void setDonor(Donor donor) {
-		this.donor = donor;
+		this.id_donor = donor;
 	}
 
 
 	public Request getRequest() {
-		return request;
+		return id_req;
 	}
 
 
 	public void setRequest(Request request) {
-		this.request = request;
+		this.id_req = request;
 	}
 
 
 	public Doctor getDoctor() {
-		return doctor;
+		return id_doctor;
 	}
 
 
 	public void setDoctor(Doctor doctor) {
-		this.doctor = doctor;
+		this.id_doctor = doctor;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Organ [id=" + id + ", typeorgan=" + typeorgan + ", lifespan=" + lifespan + ", donor=" + donor
-				+ ", request=" + request + ", doctor=" + doctor + "]";
+		return "Organ [id=" + id + ", typeorgan=" + typeorgan + ", lifespan=" + lifespan + ", donor=" + id_donor
+				+ ", request=" + id_req + ", doctor=" + id_doctor + "]";
 	}
 
 

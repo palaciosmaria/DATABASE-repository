@@ -14,7 +14,7 @@ public class JPAManager {
 	
 	public void connect() {
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_PROVIDER);
-		EntityManager em = factory.createEntityManager();
+		em = factory.createEntityManager();
 		em.getTransaction().begin();
 		em.createNativeQuery("PRAGMA foreign_keys=ON").executeUpdate();
 		em.getTransaction().commit();
@@ -24,6 +24,7 @@ public class JPAManager {
 		em.getTransaction().begin();
 		em.persist(dn);
 		em.getTransaction().commit();
+		
 
 	}
 }
