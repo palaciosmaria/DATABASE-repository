@@ -15,6 +15,7 @@ import javax.persistence.Query;
 
 import DB.JDBCManager;
 import DB.JPAManager;
+import DB.ManagerInterface;
 import transplantation.pojo.Doctor;
 import transplantation.pojo.Donor;
 import transplantation.pojo.Hospital;
@@ -49,9 +50,8 @@ public class UI {
 	System.out.println("7. Show all Hospitals");
 	System.out.println("8. Search doctor by name");
 	System.out.println("9. Insert organ");
-	System.out.println("11.Insert request");
 	System.out.println("10.Insert Donor");
-	
+	System.out.println("11.Insert request");
 	try {
 	System.out.println("Insert the option: ");
 	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
