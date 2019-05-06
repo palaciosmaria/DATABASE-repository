@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -242,7 +243,7 @@ public class UI {
 		System.out.print("Date of Birth: ");
 		String stringdob = reader.readLine();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		
+		//HAY Q ACABAR LO DE LA DATE ESTÁ EN EL CHEATSHEET
 		System.out.print("Blood Type: ");
 		String bt = reader.readLine();
 		System.out.print("Location: ");	
