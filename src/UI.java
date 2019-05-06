@@ -7,13 +7,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Query;
 
 import DB.JDBCManager;
 import DB.JPAManager;
+import DB.ManagerInterface;
 import transplantation.pojo.Doctor;
+import transplantation.pojo.Donor;
 import transplantation.pojo.Hospital;
 import transplantation.pojo.Organ;
 
@@ -46,9 +51,8 @@ public class UI {
 	System.out.println("7. Show all Hospitals");
 	System.out.println("8. Search doctor by name");
 	System.out.println("9. Insert organ");
-	System.out.println("11.Insert request");
 	System.out.println("10.Insert Donor");
-	
+	System.out.println("11.Insert request");
 	try {
 	System.out.println("Insert the option: ");
 	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -244,11 +248,15 @@ public class UI {
 		String stringdob = reader.readLine();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		//HAY Q ACABAR LO DE LA DATE ESTÁ EN EL CHEATSHEET
+		LocalDate ldate = LocalDate.parse(stringdob, formatter);
+		Date date = Date.valueOf(ldate);
 		System.out.print("Blood Type: ");
 		String bt = reader.readLine();
 		System.out.print("Location: ");	
 		String location = reader.readLine();
 		
+		Donor dn = new Donor(name, date , bt, location );
+		jpamanager.insertDonor(dn);
 		
 		System.out.println("Doctor inserted correctly");
 		break;
