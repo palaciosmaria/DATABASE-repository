@@ -49,8 +49,8 @@ public class JDBCManager {
 			String sqldonor = "CREATE TABLE donor "
 					   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
 					   + " name     TEXT     NOT NULL, "
-					   + " date of birth  DATE	 NOT NULL,"
-					   + " blood type  TEXT ,"
+					   + " datebirth  DATE	 NOT NULL,"
+					   + " bloodtype  TEXT ,"
 					   + " location TEXT NOT NULL)";
 				donor.executeUpdate(sqldonor);
 				donor.close();
@@ -76,9 +76,9 @@ public class JDBCManager {
 				String sqlrequest = "CREATE TABLE request "
 								   + "(id       INTEGER  PRIMARY KEY AUTOINCREMENT,"
 								   + " name     TEXT     NOT NULL, "
-								   + " date of birth  DATE	 NOT NULL,"
-								   + " blood type  TEXT ,"
-								   + " organ needed TEXT NOT NULL,"
+								   + " datebirth  DATE	 NOT NULL,"
+								   + " bloodtype  TEXT ,"
+								   + " organeeded TEXT NOT NULL,"
 								   + " priority INTEGER NOT NULL,"
 								   + " id_hospital INTEGER NOT NULL,"
 								   + " received[yes/no] BOOLEAN NOT NULL,"
@@ -91,8 +91,8 @@ public class JDBCManager {
 				Statement organ = c.createStatement();
 				String sqlorgan = "CREATE TABLE organ"
 								+ "(id INTEGER PRIMARY KEY AUTOINCREMENT,"
-								+ " type_of_organ TEXT NOT NULL,"
-								+ " life_span_in_minutes INTEGER NOT NULL,"
+								+ " typeorgan TEXT NOT NULL,"
+								+ " lifespan INTEGER NOT NULL,"
 								+ " id_donor INTEGER NOT NULL,"
 								+ " id_doctor INTEGER , "
 								+ " id_req INTEGER ,"
@@ -117,8 +117,14 @@ public class JDBCManager {
 				relationship.executeUpdate(sqlrelationship);
 				relationship.close();
 				
+				Statement stmtSeq = c.createStatement();
+				String sqlSeq = "INSERT INTO sqlite_sequence (name, seq) VALUES ('donor', 1)";
+				stmtSeq.executeUpdate(sqlSeq);
+				stmtSeq.close();
+				
 				
 				System.out.println("Database connection closed.");
+			
 				
 			}catch (Exception e) {
 				e.printStackTrace();

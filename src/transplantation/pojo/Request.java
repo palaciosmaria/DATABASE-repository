@@ -17,7 +17,7 @@ public class Request implements Serializable  {
 	private String organeeded;
 	private Integer priority;
 	private Boolean received;
-	private Hospital hospital;
+	private Hospital id_hospital;
 	
 	private Organ organ;
 	
@@ -49,7 +49,7 @@ public class Request implements Serializable  {
 		this.priority = priority;
 		this.received= received;
 		this.organ = organ;
-		this.hospital = hospital;
+		this.id_hospital = hospital;
 	}
 
 	public Request(Integer id, String bloodtype, String organeeded, Integer priority, Hospital hospital) {
@@ -58,7 +58,7 @@ public class Request implements Serializable  {
 		this.bloodtype = bloodtype;
 		this.organeeded = organeeded;
 		this.priority = priority;
-		this.hospital = hospital;
+		this.id_hospital = hospital;
 		
 	}
 	//Hashcode
@@ -149,11 +149,11 @@ public class Request implements Serializable  {
 	}
 
 	public Hospital getHospital() {
-		return hospital;
+		return id_hospital;
 	}
 
 	public void setHospital(Hospital hospital) {
-		this.hospital = hospital;
+		this.id_hospital = hospital;
 	}
 
 	public Organ getOrgan() {
@@ -168,7 +168,7 @@ public class Request implements Serializable  {
 	public String toString() {
 		return "Request [id=" + id + ", name=" + name + ", datebirth=" + datebirth + ", bloodtype=" + bloodtype
 				+ ", organeeded=" + organeeded + ", priority=" + priority + ", received=" + received + ", hospital="
-				+ hospital + ", organ=" + organ + "]";
+				+ id_hospital + ", organ=" + organ + "]";
 	}
 	
 	

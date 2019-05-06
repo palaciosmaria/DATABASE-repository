@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="donors")
+@Table(name="donor")
 
 public class Donor implements Serializable{
 	
@@ -16,9 +16,9 @@ public class Donor implements Serializable{
 	private static final long serialVersionUID = 2233462938810735837L;
 	
 	@Id
-	@GeneratedValue(generator = "donors")
-	@TableGenerator(name = "donors", table = "sqlite_sequence",
-		pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "donors")
+	@GeneratedValue(generator = "donor")
+	@TableGenerator(name = "donor", table = "sqlite_sequence",
+		pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "donor")
 	
 	//Atributes
 	private Integer id;
