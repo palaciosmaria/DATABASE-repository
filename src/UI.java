@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -13,6 +16,7 @@ import javax.persistence.Query;
 import DB.JDBCManager;
 import DB.JPAManager;
 import transplantation.pojo.Doctor;
+import transplantation.pojo.Donor;
 import transplantation.pojo.Hospital;
 import transplantation.pojo.Organ;
 
@@ -242,12 +246,15 @@ public class UI {
 		System.out.print("Date of Birth: ");
 		String stringdob = reader.readLine();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		
+		LocalDate ldate = LocalDate.parse(stringdob, formatter);
+		Date date = Date.valueOf(ldate);
 		System.out.print("Blood Type: ");
 		String bt = reader.readLine();
 		System.out.print("Location: ");	
 		String location = reader.readLine();
 		
+		Donor dn = new Donor(name, date , bt, location );
+		jpamanager.insertDonor(dn);
 		
 		System.out.println("Doctor inserted correctly");
 		break;
