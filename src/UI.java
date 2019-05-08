@@ -266,6 +266,22 @@ public class UI {
 		}catch(IOException e){
 			e.printStackTrace();
 		}
+		
+	case 11:
+		try{
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			System.out.print("Write the donor's name: ");
+			String name = reader.readLine();
+			System.out.println("Matching donors:");
+			List<Donor> dns = jpamanager.readDonor(name);
+			for (Donor donor : dns) {
+				System.out.println(donor);
+			}
+			
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		
 	case 12:
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -281,22 +297,8 @@ public class UI {
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-	
-	case 11:
-		try{
-			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			System.out.print("Write the donor's name: ");
-			String name = reader.readLine();
-			System.out.println("Matching donors:");
-			List<Donor> dns = jpamanager.readDonor(name);
-			for (Donor donor : dns) {
-				System.out.println(donor);
-			}
-			
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-	
+		
+	case 13:
 	}
 	}
 }
