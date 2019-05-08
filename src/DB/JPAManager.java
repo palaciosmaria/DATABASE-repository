@@ -27,4 +27,9 @@ public class JPAManager {
 		
 
 	}
+	public void updateDonor(Donor dn, String loc) {
+	em.getTransaction().begin();
+	dn.setLocation(loc);
+	em.getTransaction().commit();
+	}
 }

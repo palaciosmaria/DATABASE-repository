@@ -53,6 +53,7 @@ public class UI {
 	System.out.println("9. Insert organ");
 	System.out.println("10.Insert Donor");
 	System.out.println("11.Insert request");
+	System.out.println("12. Update Donor JPA");
 	try {
 	System.out.println("Insert the option: ");
 	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -62,7 +63,7 @@ public class UI {
 		e.printStackTrace();
 		
 	}
-	}while(option<0 || option>10);	
+	}while(option<0 || option>12);	
 	
 	switch(option) {
 	
@@ -264,6 +265,21 @@ public class UI {
 			e.printStackTrace();
 		}
 		
+	case 12:
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			System.out.println(manager.getAllDonors());
+			System.out.println("Choose a Donor to change it´s location. Write the id: ");
+			int donor_id=Integer.parseInt(reader.readLine());
+			System.out.println("Type the new location:");
+			String newLocation=reader.readLine();
+			//Search Donor
+			//jpamanager.updateDonor(dn, newLocation);
+			System.out.println("Location updated correctly.");
+			
+		}catch(IOException e){
+			e.printStackTrace();
+		}
 	
 	}
 	}
