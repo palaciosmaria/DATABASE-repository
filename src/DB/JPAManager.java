@@ -9,7 +9,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-
 import transplantation.pojo.*;
 
 public class JPAManager {
@@ -24,7 +23,6 @@ public class JPAManager {
 		em.getTransaction().begin();
 		em.createNativeQuery("PRAGMA foreign_keys=ON").executeUpdate();
 		em.getTransaction().commit();
-		
 	}
 	//insert es lo mismo que create
 	public void insertDonor(Donor dn) {
@@ -34,13 +32,12 @@ public class JPAManager {
 		
 
 	}
-<<<<<<< HEAD
 	public void updateDonor(Donor dn, String loc) {
 	em.getTransaction().begin();
 	dn.setLocation(loc);
 	em.getTransaction().commit();
-=======
-	//read es como si fuese search
+	}
+		//read es como si fuese search
 	public List<Donor> readDonor(String name){
 		
 		Query q1 = em.createNativeQuery("SELECT * FROM donor WHERE name LIKE ?", Donor.class);
@@ -50,6 +47,5 @@ public class JPAManager {
 		
 		return dns;
 		
->>>>>>> branch 'master' of https://github.com/palaciosmaria/DATABASE-repository
 	}
 }

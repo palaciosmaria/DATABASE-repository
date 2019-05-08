@@ -52,13 +52,9 @@ public class UI {
 	System.out.println("8. Search doctor by name");
 	System.out.println("9. Insert organ");
 	System.out.println("10.Insert Donor");
-<<<<<<< HEAD
-	System.out.println("11.Insert request");
-	System.out.println("12. Update Donor JPA");
-=======
 	//System.out.println("11.Insert request");
 	System.out.println("11. Read donor");
->>>>>>> branch 'master' of https://github.com/palaciosmaria/DATABASE-repository
+	System.out.println("12. Update donor");
 	try {
 	System.out.println("Insert the option: ");
 	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -68,11 +64,8 @@ public class UI {
 		e.printStackTrace();
 		
 	}
-<<<<<<< HEAD
-	}while(option<0 || option>12);	
-=======
+	
 	}while(option<0 || option>100);	
->>>>>>> branch 'master' of https://github.com/palaciosmaria/DATABASE-repository
 	
 	switch(option) {
 	
@@ -273,8 +266,6 @@ public class UI {
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
-		
 	case 12:
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -286,7 +277,10 @@ public class UI {
 			//Search Donor
 			//jpamanager.updateDonor(dn, newLocation);
 			System.out.println("Location updated correctly.");
-=======
+			
+		}catch(IOException e){
+			e.printStackTrace();
+		}
 	
 	case 11:
 		try{
@@ -298,7 +292,6 @@ public class UI {
 			for (Donor donor : dns) {
 				System.out.println(donor);
 			}
->>>>>>> branch 'master' of https://github.com/palaciosmaria/DATABASE-repository
 			
 		}catch(IOException e){
 			e.printStackTrace();
