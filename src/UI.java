@@ -17,6 +17,7 @@ import javax.persistence.Query;
 import DB.JDBCManager;
 import DB.JPAManager;
 import DB.ManagerInterface;
+
 import transplantation.pojo.Doctor;
 import transplantation.pojo.Donor;
 import transplantation.pojo.Hospital;
@@ -55,6 +56,8 @@ public class UI {
 	//System.out.println("11.Insert request");
 	System.out.println("11. Read donor");
 	System.out.println("12. Update donor");
+	System.out.println("13. Delete donor");
+	System.out.println("14. Delete hospital");
 	try {
 	System.out.println("Insert the option: ");
 	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -85,11 +88,11 @@ public class UI {
 		Doctor d= new Doctor (name, speciality);
 		manager.insertDoc(d);
 		System.out.println("Doctor inserted correctly");
-		break;
+		
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-		
+		break;
 	case 2:
 		
 		try{
@@ -103,12 +106,12 @@ public class UI {
 		Hospital h= new Hospital (name, location);
 		manager.insertHosp(h);
 		System.out.println("Hospital inserted correctly");
-		break;
+		
 		
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-		
+		break;
 	case 3:
 		try{
 			
@@ -129,11 +132,11 @@ public class UI {
 		manager.updateDoc(d);
 		
 		System.out.println("Update finished.");
-		break;
+		
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-		
+		break;
 	case 4:
 		try{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -147,10 +150,11 @@ public class UI {
 		Doctor d= new Doctor(id);
 		manager.deleteDoc(d);
 		System.out.println("Deletion finished.");
-		break;
+		
 	}catch(IOException e){
 		e.printStackTrace();
 	}
+		break;
 	case 5:
 		try{
 			
@@ -169,11 +173,11 @@ public class UI {
 			System.out.println(h);
 			manager.updateHosp(h);
 			System.out.println("Update finished.");
-			break;
+			
 			}catch(IOException e){
 				e.printStackTrace();
 			}
-		
+		break;
 	case 6: 
 		try {
 		System.out.println("List of all the Doctors");
@@ -181,11 +185,11 @@ public class UI {
 		for (Doctor doctor : list1) {
 			System.out.println(doctor);
 		}
-		break;
+		
 	}catch(Exception e){
 		e.printStackTrace();
 	}
-	
+		break;
 	case 7: 
 		try {
 		System.out.println("List of all the Hospitals");
@@ -193,10 +197,11 @@ public class UI {
 		for (Hospital hospital : list1) {
 			System.out.println(hospital);
 		}
-		break;
+		
 	}catch(Exception e){
 		e.printStackTrace();
 	}
+		break;
 	case 8:
 		try{
 		BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
@@ -207,10 +212,11 @@ public class UI {
 			System.out.println(doctor);
 			
 		}
-		break;
+		
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		break;
 	case 9:
 		try{
 			
@@ -225,10 +231,23 @@ public class UI {
 			System.out.println("Introduce the donor's id:");
 			String stringdonorid = reader.readLine();
 			Integer donorId= Integer.parseInt(stringdonorid);
-			System.out.println(manager.getAllDoctors());
-			System.out.println("Introduce the doctor's id:");
-			String stringdoctorid = reader.readLine();
-			Integer doctorId= Integer.parseInt(stringdoctorid);
+			Integer doctorId;
+			do{
+			System.out.println("Do you want to insert a doctor?");
+			String yesno = reader.readLine();
+			if(yesno.equals("no")|| yesno.equals("NO")){
+				doctorId= null;
+				break;}
+			if(yesno.equals("yes")|| yesno.equals("YES")){
+				System.out.println(manager.getAllDoctors());
+				System.out.println("Introduce the doctor's id:");
+				String stringdoctorid = reader.readLine();
+				doctorId= Integer.parseInt(stringdoctorid);
+				break;
+			}else{
+				System.out.println("Caracter introduced is not valid.");
+			}}while(true);
+			//do the same with request!!!!!!!!!
 			System.out.println(manager.getAllRequests());
 			System.out.println("Introduce the request's id:");
 			String stringrequestid = reader.readLine();
@@ -237,10 +256,11 @@ public class UI {
 			
 			System.out.println("Organ inserted correctly");
 			
-			
+				
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		break;
 	case 10:
 		try {
 		System.out.println("Introduce the donor's info:");
@@ -262,11 +282,11 @@ public class UI {
 		jpamanager.insertDonor(dn);
 		
 		System.out.println("Donor inserted correctly");
-		break;
+		
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-		
+		break;
 	case 11:
 		try{
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -281,7 +301,7 @@ public class UI {
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-		
+		break;
 	case 12:
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -294,12 +314,41 @@ public class UI {
 			jpamanager.updateDonor(dn, newLocation);
 			System.out.println(dn);
 			System.out.println("Location updated correctly.");
-			break;
+			
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-		
+		break;
 	case 13:
+		try{
+		System.out.println("Hospital's donors:");
+		jpamanager.getAllDonors();
+		System.out.print("Choose a donor to delete. Type it's ID:");
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		int dn_id = Integer.parseInt(reader.readLine());
+		jpamanager.deleteDonor(dn_id);
+		System.out.print("Donor deleted correctly.");
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		break;
+	case 14:
+		try{
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Choose a hospital to delete, type its ID: ");
+		List<Hospital> list= manager.getAllHospitals();
+		for (Hospital hospital : list) {
+			System.out.println(hospital);
+		}
+		int id = Integer.parseInt(reader.readLine());
+		//call delete method
+		Hospital h= new Hospital(id);
+		manager.deleteHospital(h);
+		System.out.println("Deletion finished.");
+		break;
+	}catch(IOException e){
+		e.printStackTrace();
+	}
 	}
 	}
 }

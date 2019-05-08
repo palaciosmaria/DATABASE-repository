@@ -224,6 +224,13 @@ public void deleteDoc(Doctor d) throws SQLException{
 	prep.setInt(1, d.getId());
 	prep.executeUpdate();
 }
+public void deleteHospital(Hospital h) throws SQLException{
+	
+	String sql = "DELETE FROM hospital WHERE id=?";
+	PreparedStatement prep = c.prepareStatement(sql);
+	prep.setInt(1, h.getId());
+	prep.executeUpdate();
+}
 
 //this makes you a list with all the hospitals
 

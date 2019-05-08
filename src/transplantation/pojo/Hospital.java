@@ -31,7 +31,11 @@ public class Hospital implements Serializable {
 			this.doctors = new ArrayList<Doctor>();
 			this.requests = new ArrayList<Request>();
 		}
-
+		public Hospital(Integer id) {
+			super();
+			this.id = id;
+			
+		}
 
 		public Hospital(String name, String location) {
 			super();
