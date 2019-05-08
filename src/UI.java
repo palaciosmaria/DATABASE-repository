@@ -52,7 +52,8 @@ public class UI {
 	System.out.println("8. Search doctor by name");
 	System.out.println("9. Insert organ");
 	System.out.println("10.Insert Donor");
-	System.out.println("11.Insert request");
+	//System.out.println("11.Insert request");
+	System.out.println("11. Read donor");
 	try {
 	System.out.println("Insert the option: ");
 	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -62,7 +63,7 @@ public class UI {
 		e.printStackTrace();
 		
 	}
-	}while(option<0 || option>10);	
+	}while(option<0 || option>100);	
 	
 	switch(option) {
 	
@@ -263,7 +264,21 @@ public class UI {
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-		
+	
+	case 11:
+		try{
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			System.out.print("Write the donor's name: ");
+			String name = reader.readLine();
+			System.out.println("Matching donors:");
+			List<Donor> dns = jpamanager.readDonor(name);
+			for (Donor donor : dns) {
+				System.out.println(donor);
+			}
+			
+		}catch(IOException e){
+			e.printStackTrace();
+		}
 	
 	}
 	}

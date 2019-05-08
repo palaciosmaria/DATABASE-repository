@@ -1,8 +1,14 @@
 package DB;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+
 
 import transplantation.pojo.*;
 
@@ -18,6 +24,7 @@ public class JPAManager {
 		em.getTransaction().begin();
 		em.createNativeQuery("PRAGMA foreign_keys=ON").executeUpdate();
 		em.getTransaction().commit();
+		
 	}
 	//insert es lo mismo que create
 	public void insertDonor(Donor dn) {
@@ -26,5 +33,16 @@ public class JPAManager {
 		em.getTransaction().commit();
 		
 
+	}
+	//read es como si fuese search
+	public List<Donor> readDonor(String name){
+		
+		Query q1 = em.createNativeQuery("SELECT * FROM donor WHERE name LIKE ?", Donor.class);
+		q1.setParameter(1, "%" + name + "%");
+		List<Donor> dns = (List<Donor>) q1.getResultList();
+		// Print the departments
+		
+		return dns;
+		
 	}
 }
