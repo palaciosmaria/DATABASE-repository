@@ -1,14 +1,11 @@
 package DB;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-
 import transplantation.pojo.*;
 
 public class JPAManager {
@@ -59,4 +56,23 @@ public class JPAManager {
 		return dn;
 		
 	}
+	public void getAllDonors() {
+		Query q1 = em.createNativeQuery("SELECT * FROM Donor", Donor.class);
+		List<Donor> list = (List<Donor>) q1.getResultList();
+		// Print the employees
+		for (Donor donor : list) {
+			System.out.println(donor);
+		}
+	}
+	public void deleteDonor(int id){
+		Query q2 = em.createNativeQuery("SELECT * FROM donor WHERE id = ?", Donor.class);
+		q2.setParameter(1, id);
+		Donor donor = (Donor) q2.getSingleResult();
+		em.getTransaction().begin();
+		em.remove(donor);
+		em.getTransaction().commit();
+
+	}
+	
+	
 }

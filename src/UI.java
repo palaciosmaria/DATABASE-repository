@@ -59,6 +59,8 @@ public class UI {
 	//System.out.println("11.Insert request");
 	System.out.println("11. Read donor");
 	System.out.println("12. Update donor");
+	System.out.println("13. Delete donor");
+	System.out.println("14. Delete hospital");
 	try {
 	System.out.println("Insert the option: ");
 	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -229,10 +231,23 @@ public class UI {
 			System.out.println("Introduce the donor's id:");
 			String stringdonorid = reader.readLine();
 			Integer donorId= Integer.parseInt(stringdonorid);
-			System.out.println(manager.getAllDoctors());
-			System.out.println("Introduce the doctor's id:");
-			String stringdoctorid = reader.readLine();
-			Integer doctorId= Integer.parseInt(stringdoctorid);
+			Integer doctorId;
+			do{
+			System.out.println("Do you want to insert a doctor?");
+			String yesno = reader.readLine();
+			if(yesno.equals("no")|| yesno.equals("NO")){
+				doctorId= null;
+				break;}
+			if(yesno.equals("yes")|| yesno.equals("YES")){
+				System.out.println(manager.getAllDoctors());
+				System.out.println("Introduce the doctor's id:");
+				String stringdoctorid = reader.readLine();
+				doctorId= Integer.parseInt(stringdoctorid);
+				break;
+			}else{
+				System.out.println("Caracter introduced is not valid.");
+			}}while(true);
+			//do the same with request!!!!!!!!!
 			System.out.println(manager.getAllRequests());
 			System.out.println("Introduce the request's id:");
 			String stringrequestid = reader.readLine();
@@ -304,6 +319,37 @@ public class UI {
 		}
 		
 	case 13:
+try{
+		System.out.println("Hospital's donors:");
+		jpamanager.getAllDonors();
+		System.out.print("Choose a donor to delete. Type it's ID:");
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		int dn_id = Integer.parseInt(reader.readLine());
+		jpamanager.deleteDonor(dn_id);
+		System.out.print("Donor deleted correctly.");
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		break;
+	case 14:
+		try{
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Choose a hospital to delete, type its ID: ");
+		List<Hospital> list= manager.getAllHospitals();
+		for (Hospital hospital : list) {
+			System.out.println(hospital);
+		}
+		int id = Integer.parseInt(reader.readLine());
+		//call delete method
+		Hospital h= new Hospital(id);
+		manager.deleteHospital(h);
+		System.out.println("Deletion finished.");
+		break;
+	}catch(IOException e){
+		e.printStackTrace();
+	}
+	}
+	}
 	}*/
 	}
 	
