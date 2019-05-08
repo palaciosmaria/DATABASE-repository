@@ -261,7 +261,7 @@ public class UI {
 		Donor dn = new Donor(name, date , bt, location );
 		jpamanager.insertDonor(dn);
 		
-		System.out.println("Doctor inserted correctly");
+		System.out.println("Donor inserted correctly");
 		break;
 		}catch(IOException e){
 			e.printStackTrace();
@@ -274,10 +274,11 @@ public class UI {
 			int donor_id=Integer.parseInt(reader.readLine());
 			System.out.println("Type the new location:");
 			String newLocation=reader.readLine();
-			//Search Donor
-			//jpamanager.updateDonor(dn, newLocation);
+			Donor dn=jpamanager.readDonorbyId(donor_id);
+			jpamanager.updateDonor(dn, newLocation);
+			System.out.println(dn);
 			System.out.println("Location updated correctly.");
-			
+			break;
 		}catch(IOException e){
 			e.printStackTrace();
 		}

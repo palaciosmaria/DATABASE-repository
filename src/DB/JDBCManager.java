@@ -178,8 +178,8 @@ public class JDBCManager {
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				String name = rs.getString("name");
-				Date dateofbirth = rs.getDate("date of birth");
-				String bloodType=rs.getString("blood type");
+				Date dateofbirth = rs.getDate("datebirth");
+				String bloodType=rs.getString("bloodtype");
 				String location=rs.getString("location");
 				Donor d = new Donor(id, name, dateofbirth, bloodType, location);
 				listDonor.add(d);
@@ -252,9 +252,9 @@ public List<Request> getAllRequests() throws SQLException{
 	while (rs.next()) {
 		int id = rs.getInt("id");
 		String name = rs.getString("name");
-		Date dateOfbirth = rs.getDate("date of birth");
-		String bloodType = rs.getString("blood type");
-		String organNeeded = rs.getString("organ needed");
+		Date dateOfbirth = rs.getDate("datebirth");
+		String bloodType = rs.getString("bloodtype");
+		String organNeeded = rs.getString("organneeded");
 		int priority = rs.getInt("priority");
 		boolean received=rs.getBoolean("received[yes/no]");
 		Request r = new Request(id, name, dateOfbirth,bloodType,organNeeded,priority,received);

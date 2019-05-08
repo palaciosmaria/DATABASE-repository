@@ -48,4 +48,15 @@ public class JPAManager {
 		return dns;
 		
 	}
+	
+	public Donor readDonorbyId(int id){
+		
+		Query q1 = em.createNativeQuery("SELECT * FROM donor WHERE id LIKE ?", Donor.class);
+		q1.setParameter(1, id);
+		Donor dn=(Donor) q1.getSingleResult();
+		
+		
+		return dn;
+		
+	}
 }
