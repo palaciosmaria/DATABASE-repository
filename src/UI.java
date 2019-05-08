@@ -24,19 +24,23 @@ import transplantation.pojo.Organ;
 
 public class UI {
 	
+	
+	
 	private static JDBCManager manager;
 	private static JPAManager jpamanager;
 	
 	
+
 	public static void main(String args[]) throws IOException, SQLException {
-		
+
 		manager=new JDBCManager();
 		manager.connect();
 		jpamanager= new JPAManager();
 		jpamanager.connect();
-
+		
+		principalMenu();
 //Menu		
-
+/*
 	int option = 0;		
 	
 	do {	
@@ -300,7 +304,311 @@ public class UI {
 		}
 		
 	case 13:
+	}*/
 	}
+	
+	
+	public static void principalMenu() {
+		
+	int option=0;
+	boolean exit=false;
+	
+	do {
+		System.out.println("-----DATA BASE------ ");
+		System.out.println("1. DataBase Administrator");
+		System.out.println("2. Hospital Manager");
+		System.out.println("3. Exit");
+		try {
+			System.out.println("Select identity: ");
+			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+			option=Integer.parseInt(reader.readLine());	
+		}catch(IOException ex) {
+			System.out.println("ERROR");
+		}
+		
+		switch(option) {
+		case 1:
+			administratorMenu();
+			break;
+		case 2:
+		
+			break;
+		
+		case 3:
+			exit=true;
+			break;
+		default:
+			System.out.println("Not a valid option");
+			break;
+		}
+	}while(exit==false);	
+		
+	}
+	
+	public static void administratorMenu() {
+		int option=0;
+		boolean exit=false;
+
+		
+		do {
+			System.out.println( "-----ADMINISTRATOR MENU------ " );
+			System.out.println("Operations: ");
+			System.out.println("1. Insert a hospital");
+			System.out.println("2. Update the name of a hospital");
+			System.out.println("3. Show all hospitals");
+			System.out.println("4. Delete a hospital-ABSENT"); //NO LO HEMOS HECHO
+			System.out.println("5. Search a hospital-ABSENT"); //NO LO HEMOS HECHO
+			System.out.println("6. Back to principal menu");
+			try {
+				System.out.println("Select option: ");
+				BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+				option=Integer.parseInt(reader.readLine());	
+			}catch(IOException ex) {
+				System.out.println("ERROR");
+			}
+			
+			switch(option) {
+			case 1:
+				insertHospitalMenu();
+				break;
+			case 2:
+				updateHospitalMenu();
+				break;
+			case 3:
+				showAllHospitals();
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				exit=true;
+				break;
+			default:
+				System.out.println("Not a valid option");
+				break;
+			}
+		}while(exit==false);	
+		
+	}
+	
+	public static void hospitalManagerMenu() {
+		int option=0;
+		boolean exit=false;
+		
+		do {
+			System.out.println("-----HOSPITAL MANAGER MENU------ ");
+			System.out.println("1. Boss");
+			System.out.println("2. Doctor");
+			System.out.println("3. Back to principal menu");
+			try {
+				System.out.println("Select identity: ");
+				BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+				option=Integer.parseInt(reader.readLine());	
+			}catch(IOException ex) {
+				System.out.println("ERROR");
+			}
+			
+			switch(option) {
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				exit=true;
+				break;
+			default:
+				System.out.println("Not a valid option");
+				break;
+			}
+		}while(exit==false);	
+	}
+	
+	public static void bossMenu () {
+		int option=0;
+		boolean exit=false;
+
+		
+		do {
+			System.out.println( "-----ADMINISTRATOR MENU------ " );
+			System.out.println("Operations: ");
+			System.out.println("1. Manage doctors information");
+			System.out.println("2. Manage patients information");
+			System.out.println("3. Manage donors information");
+			System.out.println("4. Manage organs information"); 
+			System.out.println("5. Back to principal menu");
+			
+			try {
+				System.out.println("Select option: ");
+				BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+				option=Integer.parseInt(reader.readLine());	
+			}catch(IOException ex) {
+				System.out.println("ERROR");
+			}
+			
+			switch(option) {
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				exit=true;
+				break;
+			default:
+				System.out.println("Not a valid option");
+				break;
+			}
+		}while(exit==false);
+	}
+	
+	public static void doctorMenu() {
+		
+		int option=0;
+		boolean exit=false;
+
+		
+		do {
+			System.out.println( "-----ADMINISTRATOR MENU------ " );
+			System.out.println("Operations: ");
+			System.out.println("1. Insert a doctor");
+			System.out.println("2. Update a doctor");
+			System.out.println("3. Search a doctor");
+			System.out.println("4. Show all doctors"); 
+			System.out.println("5. Delete a doctor");
+			System.out.println("5. Back to principal menu");
+			
+			try {
+				System.out.println("Select option: ");
+				BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+				option=Integer.parseInt(reader.readLine());	
+			}catch(IOException ex) {
+				System.out.println("ERROR");
+			}
+			
+			switch(option) {
+			case 1:
+				insertDoctorMenu();
+				break;
+			case 2:
+				updateDoctorMenu();
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				exit=true;
+				break;
+			default:
+				System.out.println("Not a valid option");
+				break;
+			}
+		}while(exit==false);
+		
+	}
+	
+	public static void insertDoctorMenu() {
+		try{
+			
+			//manager.getAllDoctors();
+			System.out.println("Introduce the doctor's info:");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			System.out.print("Name: ");
+			String name = reader.readLine();
+			System.out.print("Speciality: ");
+			String speciality = reader.readLine();
+			Doctor d= new Doctor (name, speciality);
+			manager.insertDoc(d);
+			System.out.println("Doctor inserted correctly");
+		}catch(IOException e){
+				e.printStackTrace();
+			}
+	}
+	public static void updateDoctorMenu() {
+		try{
+			
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			List<Doctor> list1= manager.getAllDoctors();
+			System.out.println(list1);
+			System.out.println("Choose a doctor, type its ID: ");
+			int id = Integer.parseInt(reader.readLine());
+			
+			//call a method in manager that returns a doctor by id
+			//print the chosen doctor
+			
+			System.out.print("Type the new speciality of the doctor: ");
+			String newSpeciality = reader.readLine();
+			//change the speciality of the chosen doctor
+			//calls the updateDoc method
+			Doctor d= new Doctor(id,newSpeciality);
+			manager.updateDoc(d);
+			System.out.println("Update finished.");
+			}catch(IOException e){
+				e.printStackTrace();
+			}catch(SQLException sql) {
+				System.out.println("Error con el manager");
+			}
+	}
+	
+	public static void insertHospitalMenu () {
+		try{
+			
+			System.out.println("Introduce the hospital's info:");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			System.out.print("Name: ");
+			String name = reader.readLine();
+			System.out.print("Location: ");
+			String location = reader.readLine();
+			Hospital h= new Hospital (name, location);
+			manager.insertHosp(h);
+			System.out.println("Hospital inserted correctly");
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+	}
+	public static void updateHospitalMenu() {
+			try{
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			List<Hospital> list1= manager.getAllHospitals();
+			System.out.println(list1);
+			System.out.println("Choose a Hospital, type its ID: ");
+			int id = Integer.parseInt(reader.readLine());
+			//call a method in manager that returns a hospital by id
+			//print the chosen hospital
+			System.out.print("Type the new name of the hospital: ");
+			String newName = reader.readLine();
+			//change the name of the chosen hospital
+			//calls the updateHosp method
+			Hospital h= new Hospital(id,newName);
+			System.out.println(h);
+			manager.updateHosp(h);
+			System.out.println("Update finished.");
+			}catch(IOException e){
+				e.printStackTrace();
+			}catch(SQLException sql) {
+				System.out.println("Error en manager");
+			}
+	}
+
+	public static void showAllHospitals() {
+		try {
+			System.out.println("List of all the Hospitals");
+			List<Hospital> list1= manager.getAllHospitals();
+			for (Hospital hospital : list1) {
+				System.out.println(hospital);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 }
+
 
