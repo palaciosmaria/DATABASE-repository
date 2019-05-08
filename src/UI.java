@@ -273,7 +273,7 @@ public class UI {
 			System.out.print("Write the donor's name: ");
 			String name = reader.readLine();
 			System.out.println("Matching donors:");
-			List<Donor> dns = jpamanager.readDonor(name);
+			List<Donor> dns = jpamanager.readDonorbyName(name);
 			for (Donor donor : dns) {
 				System.out.println(donor);
 			}

@@ -38,7 +38,7 @@ public class JPAManager {
 	em.getTransaction().commit();
 	}
 		//read es como si fuese search
-	public List<Donor> readDonor(String name){
+	public List<Donor> readDonorbyName(String name){
 		
 		Query q1 = em.createNativeQuery("SELECT * FROM donor WHERE name LIKE ?", Donor.class);
 		q1.setParameter(1, "%" + name + "%");
