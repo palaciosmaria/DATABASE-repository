@@ -238,7 +238,7 @@ public class UI {
 			/*try {
 				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 				jpamanager.showAllDonors();
-				System.out.println("Choose a Donor to change it´s location. Write the id: ");
+				System.out.println("Choose a Donor to change itÂ´s location. Write the id: ");
 				int donor_id=Integer.parseInt(reader.readLine());
 				System.out.println("Type the new location:");
 				String newLocation=reader.readLine();
@@ -354,7 +354,7 @@ public class UI {
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			jpamanager.showAllDonors();
-			System.out.println("Choose a Donor to change it´s location. Write the id: ");
+			System.out.println("Choose a Donor to change itÂ´s location. Write the id: ");
 			int donor_id=Integer.parseInt(reader.readLine());
 			System.out.println("Type the new location:");
 			String newLocation=reader.readLine();
@@ -498,8 +498,8 @@ try{
 			System.out.println("1. Insert a hospital");
 			System.out.println("2. Update the name of a hospital");
 			System.out.println("3. Show all hospitals");
-			System.out.println("4. Delete a hospital-ABSENT"); //NO LO HEMOS HECHO
-			System.out.println("5. Search a hospital-ABSENT"); //NO LO HEMOS HECHO
+			System.out.println("4. Delete a hospital"); 
+			System.out.println("5. Search a hospital"); 
 			System.out.println("6. Back to principal menu");
 			try {
 				System.out.println("Select option: ");
@@ -520,8 +520,10 @@ try{
 				showAllHospitals();
 				break;
 			case 4:
+				deleteHospital();
 				break;
 			case 5:
+				searchHospitalByLoc();
 				break;
 			case 6:
 				exit=true;
@@ -660,7 +662,7 @@ try{
 			System.out.println( "\n-----ORGAN INFO MENU------ " );
 			System.out.println("Operations: ");
 			System.out.println("1. Insert an organ");
-			System.out.println("2. Update an organ-ABSENT");
+			System.out.println("2. Update an organ");
 			System.out.println("3. Search an organ-ABSENT");
 			System.out.println("4. Show all organs-ABSENT"); 
 			System.out.println("5. Delete an organ-ABSENT");
@@ -676,9 +678,12 @@ try{
 			
 			switch(option) {
 			case 1:
-				insertOrganMenu();
+				System.out.println("Sin acabar");
+				insertOrganMenu();				
+				//SIN ACABAR!!!!!!!!!!!!!
 				break;
 			case 2:
+				updateOrgan();
 				break;
 			case 3:
 				break;
@@ -706,7 +711,7 @@ try{
 			System.out.println("1. Insert a donor");
 			System.out.println("2. Update a donor");
 			System.out.println("3. Search a donor by name");
-			System.out.println("4. Show all donors-ABSENT"); 
+			System.out.println("4. Show all donors"); 
 			System.out.println("5. Delete a donor");
 			System.out.println("6. Back to principal menu");
 			
@@ -729,6 +734,7 @@ try{
 				searchDonorsByName();
 				break;
 			case 4:
+				showAllDonors();
 				break;
 			case 5:
 				deleteDonorMenu();
@@ -895,6 +901,24 @@ try{
 		}
 	}
 	
+	public static void updateOrgan() {
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			System.out.println("Aqui");
+			jpamanager.showAllOrgans();
+			System.out.println("Choose a donor:");
+			int donor_id=Integer.parseInt(reader.readLine());
+			System.out.println("Type the new location:");
+			String newLocation=reader.readLine();
+			Donor dn=jpamanager.readDonorbyId(donor_id);
+			jpamanager.updateDonor(dn, newLocation);
+			System.out.println(dn);
+			System.out.println("Location updated correctly.");
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		
+	}
 	public static void insertDonorMenu() {
 		try {
 			System.out.println("Introduce the donor's info:");
@@ -904,7 +928,7 @@ try{
 			System.out.print("Date of Birth: ");
 			String stringdob = reader.readLine();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-			//HAY Q ACABAR LO DE LA DATE ESTÁ EN EL CHEATSHEET
+			//HAY Q ACABAR LO DE LA DATE ESTÃ� EN EL CHEATSHEET
 			LocalDate ldate = LocalDate.parse(stringdob, formatter);
 			Date date = Date.valueOf(ldate);
 			System.out.print("Blood Type: ");
@@ -936,11 +960,19 @@ try{
 			e.printStackTrace();
 		}
 	}
+	public static void showAllDonors() {
+		try {
+			System.out.println("List of all the Donors");
+			jpamanager.showAllDonors();
+			}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	public static void updateDonorMenu() {
 	try {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		jpamanager.showAllDonors();
-		System.out.println("Choose a Donor to change it´s location. Write the id: ");
+		System.out.println("Choose a Donor to change itÂ´s location. Write the id: ");
 		int donor_id=Integer.parseInt(reader.readLine());
 		System.out.println("Type the new location:");
 		String newLocation=reader.readLine();
@@ -1111,6 +1143,40 @@ try{
 			e.printStackTrace();
 		}
 	}
+	public static void deleteHospital() {
+	try{
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			System.out.println("Choose a hospital to delete, type its ID: ");
+			List<Hospital> list= manager.getAllHospitals();
+			for (Hospital hospital : list) {
+				System.out.println(hospital);
+			}
+			int id = Integer.parseInt(reader.readLine());
+			//call delete method
+			Hospital h= new Hospital(id);
+			manager.deleteHospital(h);
+			System.out.println("Deletion finished.");
+			
+		}catch(IOException e){
+			e.printStackTrace();
+			
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
+	public static void searchHospitalByLoc() {
+		try{
+			BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
+			System.out.print("Name of the location of the hospital to be shown: ");
+			String hloc = r.readLine();
+			List<Hospital> list= manager.searchHospitalByLoc (hloc);
+			for (Hospital hospital : list) {
+				System.out.println(hospital);
+			}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+	}
 	
 	public static void insertRequestMenu() {
 		try {
@@ -1161,7 +1227,7 @@ try{
 			for (Request request : list1) {
 				System.out.println(request);
 			}
-			System.out.println("Choose a request to change it´s priority. Write the id: ");
+			System.out.println("Choose a request to change itÂ´s priority. Write the id: ");
 			int request_id=Integer.parseInt(reader.readLine());
 			System.out.println("Type the new priority:");
 			Integer priority=Integer.parseInt(reader.readLine());
