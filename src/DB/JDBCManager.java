@@ -100,7 +100,7 @@ public class JDBCManager {
 								+ " ON UPDATE RESTRICT ON DELETE CASCADE,"
 								+ " FOREIGN KEY (id_doctor) REFERENCES doctor (id) "
 								+ " ON UPDATE RESTRICT ON DELETE CASCADE,"
-								+ " FOREIGN KEY (id_req) REFERENCES request (id) "
+								+ " FOREIGN KEY (id_request) REFERENCES request (id) "
 								+  " ON UPDATE RESTRICT ON DELETE CASCADE)";
 				organ.executeUpdate(sqlorgan);
 				organ.close();

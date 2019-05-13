@@ -28,7 +28,7 @@ public class Request implements Serializable  {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_hospital")
 	private Hospital id_hospital;
-	@OneToOne (fetch=FetchType.LAZY, mappedBy="id_req")
+	@OneToOne (fetch=FetchType.LAZY, mappedBy="id_request")
 	private Organ organ;
 	
 	

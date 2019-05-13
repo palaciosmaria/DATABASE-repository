@@ -26,15 +26,13 @@ public class Organ implements Serializable {
 	@ManyToOne (fetch = FetchType.LAZY)
 	@JoinColumn (name="id_donor")
 	private Donor id_donor;
-<<<<<<< HEAD
-	@Transient
-	private Request id_request;
-	@Transient
-=======
 	@OneToOne (fetch=FetchType.LAZY)
-	@JoinColumn (name="id_req")
-	private Request id_req;
->>>>>>> branch 'master' of https://github.com/palaciosmaria/DATABASE-repository.git
+	@JoinColumn (name="id_request")
+	private Request id_request;
+	
+
+	
+	@Transient
 	private Doctor id_doctor;
 	
 	
