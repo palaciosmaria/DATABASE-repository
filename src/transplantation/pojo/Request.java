@@ -22,7 +22,7 @@ public class Request implements Serializable  {
 	private String name;
 	private Date datebirth;
 	private String bloodtype;
-	private String organeeded;
+	private String organneeded;
 	private Integer priority;
 	private Boolean received;
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -39,47 +39,46 @@ public class Request implements Serializable  {
 	
 	
 
-	public Request(String name, Date datebirth, String bloodtype, String organeeded, Integer priority) {
+	public Request(String name, Date datebirth, String bloodtype, String organneeded, Integer priority) {
 		super();
 		this.name = name;
 		this.datebirth = datebirth;
 		this.bloodtype = bloodtype;
-		this.organeeded = organeeded;
+		this.organneeded = organneeded;
 		this.priority = priority;
 	}
 
 
 
-	public Request(Integer id, String name, Date datebirth, String bloodtype, String organeeded, Integer priority,
-			Boolean received) {
+	public Request(Integer id, String name, Date datebirth, String bloodtype, String organneeded, Integer priority) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.datebirth = datebirth;
 		this.bloodtype = bloodtype;
-		this.organeeded = organeeded;
+		this.organneeded = organneeded;
 		this.priority = priority;
-		this.received = received;
+		
 	}
 
-	public Request(Integer id, String name, Date datebirth, String bloodtype, String organeeded, Integer priority, Boolean received, Hospital hospital, Organ organ) {
+	public Request(Integer id, String name, Date datebirth, String bloodtype, String organneeded, Integer priority, Boolean received, Hospital hospital, Organ organ) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.datebirth = datebirth;
 		this.bloodtype = bloodtype;
-		this.organeeded = organeeded;
+		this.organneeded = organneeded;
 		this.priority = priority;
 		this.received= received;
 		this.organ = organ;
 		this.id_hospital = hospital;
 	}
 
-	public Request(Integer id, String bloodtype, String organeeded, Integer priority, Hospital hospital) {
+	public Request(Integer id, String bloodtype, String organneeded, Integer priority, Hospital hospital) {
 		super();
 		this.id = id;
 		this.bloodtype = bloodtype;
-		this.organeeded = organeeded;
+		this.organneeded = organneeded;
 		this.priority = priority;
 		this.id_hospital = hospital;
 		
@@ -145,12 +144,12 @@ public class Request implements Serializable  {
 		this.bloodtype = bloodtype;
 	}
 
-	public String getOrganeeded() {
-		return organeeded;
+	public String getorganneeded() {
+		return organneeded;
 	}
 
-	public void setOrganeeded(String organeeded) {
-		this.organeeded = organeeded;
+	public void setorganneeded(String organneeded) {
+		this.organneeded = organneeded;
 	}
 
 	public Integer getPriority() {
@@ -188,7 +187,7 @@ public class Request implements Serializable  {
 	@Override
 	public String toString() {
 		return "Request [id=" + id + ", name=" + name + ", datebirth=" + datebirth + ", bloodtype=" + bloodtype
-				+ ", organeeded=" + organeeded + ", priority=" + priority + ", received=" + received + ", hospital="
+				+ ", organneeded=" + organneeded + ", priority=" + priority + ", received=" + received + ", hospital="
 				+ id_hospital + ", organ=" + organ + "]";
 	}
 	

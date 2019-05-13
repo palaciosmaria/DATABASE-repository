@@ -346,9 +346,9 @@ public class UI {
 			System.out.println( "\n-----PATIENT INFO MENU------ " );
 			System.out.println("Operations: ");
 			System.out.println("1. Insert a patient");
-			System.out.println("2. Update a patient-ABSENT");
-			System.out.println("3. Search a patient-ABSENT");
-			System.out.println("4. Show all patient-ABSENT"); 
+			System.out.println("2. Update a patient");
+			System.out.println("3. Search a patient");
+			System.out.println("4. Show all patients"); 
 			System.out.println("5. Delete a patient-ABSENT");
 			System.out.println("6. Back to principal menu");
 			
@@ -365,10 +365,26 @@ public class UI {
 				insertRequestMenu();
 				break;
 			case 2:
+				updateRequestMenu();
 				break;
 			case 3:
+				System.out.println("By id (press 1) o by name(press 2)?");
+				try {
+					BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+					int o =Integer.parseInt(reader.readLine());
+					if (o==1) {
+						searchRequestById();
+					}else if(o==2) {
+						searchRequestsByName();
+					}else {
+						System.out.println("not a valid option");
+					}
+				}catch(IOException ex) {
+					System.out.println("ERROR");
+				}
 				break;
 			case 4:
+				showAllRequestsMenu();
 				break;
 			case 5:
 				break;
@@ -722,4 +738,71 @@ public class UI {
 			}
 		
 	}
+	
+	public static void showAllRequestsMenu() {
+		try {
+			System.out.println("List of all the requests");
+			List<Request> list1= manager.getAllRequests();
+			for (Request request : list1) {
+				System.out.println(request);
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public static void updateRequestMenu() {
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			List<Request> list1= manager.getAllRequests();
+			for (Request request : list1) {
+				System.out.println(request);
+			}
+			System.out.println("Choose a request to change it´s priority. Write the id: ");
+			int request_id=Integer.parseInt(reader.readLine());
+			System.out.println("Type the new priority:");
+			Integer priority=Integer.parseInt(reader.readLine());
+			Request r=jpamanager.readRequestById(request_id);
+			jpamanager.updateRequest(r, priority);
+			System.out.println(r);
+			System.out.println("Priority updated correctly.");
+		}catch(IOException e){
+			e.printStackTrace();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public static void searchRequestById() {
+		try{
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			System.out.print("Write the request's id: ");
+			Integer id = Integer.parseInt(reader.readLine());
+			System.out.println(jpamanager.readRequestById(id));
+			
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public static void searchRequestsByName() {
+		try{
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			System.out.print("Write the request's name: ");
+			String name = reader.readLine();
+			System.out.println("Matching requests:");
+			List<Request> r = jpamanager.readRequestByName(name);
+			for (Request request : r) {
+				System.out.println(request);
+			}
+			
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
 }

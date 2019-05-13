@@ -78,7 +78,7 @@ public class JDBCManager {
 								   + " name     TEXT     NOT NULL, "
 								   + " datebirth  DATE	 NOT NULL,"
 								   + " bloodtype  TEXT ,"
-								   + " organeeded TEXT NOT NULL,"
+								   + " organneeded TEXT NOT NULL,"
 								   + " priority INTEGER NOT NULL,"
 								   + " id_hospital INTEGER,"
 								   + " received[yes/no] BOOLEAN,"
@@ -283,8 +283,8 @@ public List<Request> getAllRequests() throws SQLException{
 		String bloodType = rs.getString("bloodtype");
 		String organNeeded = rs.getString("organneeded");
 		int priority = rs.getInt("priority");
-		boolean received=rs.getBoolean("received[yes/no]");
-		Request r = new Request(id, name, dateOfbirth,bloodType,organNeeded,priority,received);
+		//boolean received=rs.getBoolean("received[yes/no]");
+		Request r = new Request(id, name, dateOfbirth,bloodType,organNeeded,priority);
 		list1.add(r);
 	}
 	rs.close();

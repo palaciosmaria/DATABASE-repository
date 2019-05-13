@@ -29,6 +29,7 @@ public class Organ implements Serializable {
 	@OneToOne (fetch=FetchType.LAZY)
 	@JoinColumn (name="id_req")
 	private Request id_req;
+	@Transient
 	private Doctor id_doctor;
 	
 	
