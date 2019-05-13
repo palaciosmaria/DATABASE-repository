@@ -4,11 +4,19 @@ import java.sql.Date;
 
 import javax.persistence.*;
 
+
+@Entity
+@Table(name="request")
+
 public class Request implements Serializable  {
 
 	
 	private static final long serialVersionUID = -5410714361732009493L;
 	
+	@Id
+	@GeneratedValue(generator= "request")
+	@TableGenerator(name = "request", table = "sqlite_sequence",
+	pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "request")
 	//atributes
 	private Integer id;
 	private String name;
@@ -17,8 +25,10 @@ public class Request implements Serializable  {
 	private String organeeded;
 	private Integer priority;
 	private Boolean received;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_hospital")
 	private Hospital id_hospital;
-	
+	@OneToOne (fetch=FetchType.LAZY, mappedBy="id_req")
 	private Organ organ;
 	
 	
@@ -26,6 +36,19 @@ public class Request implements Serializable  {
 	public Request() {
 		super();
 	}
+	
+	
+
+	public Request(String name, Date datebirth, String bloodtype, String organeeded, Integer priority) {
+		super();
+		this.name = name;
+		this.datebirth = datebirth;
+		this.bloodtype = bloodtype;
+		this.organeeded = organeeded;
+		this.priority = priority;
+	}
+
+
 
 	public Request(Integer id, String name, Date datebirth, String bloodtype, String organeeded, Integer priority,
 			Boolean received) {
@@ -62,8 +85,6 @@ public class Request implements Serializable  {
 		
 	}
 	//Hashcode
-	
-	
 
 	@Override
 	public int hashCode() {

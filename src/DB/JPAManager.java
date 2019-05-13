@@ -26,14 +26,21 @@ public class JPAManager {
 		em.getTransaction().begin();
 		em.persist(dn);
 		em.getTransaction().commit();
-		
-
 	}
+		public void insertRequest(Request rq) {
+			em.getTransaction().begin();
+			em.persist(rq);
+			em.getTransaction().commit();
+		}
+
+	
 	public void updateDonor(Donor dn, String loc) {
 	em.getTransaction().begin();
 	dn.setLocation(loc);
 	em.getTransaction().commit();
 	}
+	
+	
 		//read es como si fuese search
 	public List<Donor> readDonorbyName(String name){
 		

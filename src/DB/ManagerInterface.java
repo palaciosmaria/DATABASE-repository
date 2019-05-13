@@ -22,6 +22,7 @@ public interface ManagerInterface {
 	public void updateDoc(Doctor d);
 	public void updateHosp (Hospital h);
 	
-	//JPA methods
 	
+	//JPA methods
+	public void insertRequest();
 }

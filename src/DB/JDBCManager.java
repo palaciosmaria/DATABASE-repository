@@ -80,8 +80,8 @@ public class JDBCManager {
 								   + " bloodtype  TEXT ,"
 								   + " organeeded TEXT NOT NULL,"
 								   + " priority INTEGER NOT NULL,"
-								   + " id_hospital INTEGER NOT NULL,"
-								   + " received[yes/no] BOOLEAN NOT NULL,"
+								   + " id_hospital INTEGER,"
+								   + " received[yes/no] BOOLEAN,"
 								   //cuando hagamos el pojo declaramos boolean
 								   + " FOREIGN KEY (id_hospital) REFERENCES hospital (id)"
 								   + " ON UPDATE RESTRICT ON DELETE CASCADE)";				
@@ -122,8 +122,28 @@ public class JDBCManager {
 				stmtSeq.executeUpdate(sqlSeq);
 				stmtSeq.close();
 				
+				Statement stmtSeq1 = c.createStatement();
+				String sqlSeq1 = "INSERT INTO sqlite_sequence (name, seq) VALUES ('request', 1)";
+				stmtSeq1.executeUpdate(sqlSeq1);
+				stmtSeq1.close();
 				
-				System.out.println("Database connection closed.");
+				Statement stmtSeq2 = c.createStatement();
+				String sqlSeq2 = "INSERT INTO sqlite_sequence (name, seq) VALUES ('organ', 1)";
+				stmtSeq2.executeUpdate(sqlSeq2);
+				stmtSeq2.close();
+				
+				Statement stmtSeq3 = c.createStatement();
+				String sqlSeq3 = "INSERT INTO sqlite_sequence (name, seq) VALUES ('hospital', 1)";
+				stmtSeq3.executeUpdate(sqlSeq3);
+				stmtSeq3.close();
+				
+				Statement stmtSeq4 = c.createStatement();
+				String sqlSeq4 = "INSERT INTO sqlite_sequence (name, seq) VALUES ('doctor', 1)";
+				stmtSeq4.executeUpdate(sqlSeq4);
+				stmtSeq4.close();
+				
+				
+				//System.out.println("Database connection closed.");
 			
 				
 			}catch (Exception e) {

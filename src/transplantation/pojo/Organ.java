@@ -26,6 +26,8 @@ public class Organ implements Serializable {
 	@ManyToOne (fetch = FetchType.LAZY)
 	@JoinColumn (name="id_donor")
 	private Donor id_donor;
+	@OneToOne (fetch=FetchType.LAZY)
+	@JoinColumn (name="id_req")
 	private Request id_req;
 	private Doctor id_doctor;
 	
