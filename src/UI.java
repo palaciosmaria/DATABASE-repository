@@ -864,7 +864,7 @@ try{
 			System.out.print("Life span (in minutes): ");
 			String stringlifeSpan = reader.readLine();
 			Integer lifeSpan= Integer.parseInt(stringlifeSpan);
-			System.out.println(manager.getAllDonors());
+			jpamanager.showAllDonors();
 			System.out.println("Introduce the donor's id:");
 			String stringdonorid = reader.readLine();
 			Integer donorId= Integer.parseInt(stringdonorid);
@@ -939,7 +939,7 @@ try{
 	public static void updateDonorMenu() {
 	try {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println(manager.getAllDonors());
+		jpamanager.showAllDonors();
 		System.out.println("Choose a Donor to change it´s location. Write the id: ");
 		int donor_id=Integer.parseInt(reader.readLine());
 		System.out.println("Type the new location:");
@@ -950,15 +950,13 @@ try{
 		System.out.println("Location updated correctly.");
 	}catch(IOException e){
 		e.printStackTrace();
-	}catch(SQLException e){
-		e.printStackTrace();
 	}
 	}
 	
 	public static void deleteDonorMenu() {
 	try{
 		System.out.println("Hospital's donors:");
-		jpamanager.getAllDonors();
+		jpamanager.showAllDonors();
 		System.out.print("Choose a donor to delete. Type it's ID:");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		int dn_id = Integer.parseInt(reader.readLine());
