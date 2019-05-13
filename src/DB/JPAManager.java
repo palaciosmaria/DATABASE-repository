@@ -1,6 +1,10 @@
 package DB;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -33,6 +37,14 @@ public class JPAManager {
 			em.getTransaction().commit();
 		}
 
+	
+	public void insertOrgan(Organ o) {
+		em.getTransaction().begin();
+		em.persist(o);
+		em.getTransaction().commit();
+		
+
+	}
 	
 	public void updateDonor(Donor dn, String loc) {
 	em.getTransaction().begin();
@@ -84,8 +96,8 @@ public List<Request> readRequestByName(String name){
 		return r;
 	}
 	
-	public void getAllDonors() {
-		Query q1 = em.createNativeQuery("SELECT * FROM Donor", Donor.class);
+	public void showAllDonors() {
+		Query q1 = em.createNativeQuery("SELECT * FROM donor", Donor.class);
 		List<Donor> list = (List<Donor>) q1.getResultList();
 		
 		for (Donor donor : list) {
@@ -94,6 +106,14 @@ public List<Request> readRequestByName(String name){
 	}
 	
 	
+	public void showAllOrgans() {
+		Query q1 = em.createNativeQuery("SELECT * FROM organ", Organ.class);
+		List<Organ> list = (List<Organ>) q1.getResultList();
+		
+		for (Organ organ : list) {
+			System.out.println(organ);
+		}
+	}
 	public void deleteDonor(int id){
 		Query q2 = em.createNativeQuery("SELECT * FROM donor WHERE id = ?", Donor.class);
 		q2.setParameter(1, id);

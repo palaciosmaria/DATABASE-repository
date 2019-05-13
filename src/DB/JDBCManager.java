@@ -95,12 +95,12 @@ public class JDBCManager {
 								+ " lifespan INTEGER NOT NULL,"
 								+ " id_donor INTEGER NOT NULL,"
 								+ " id_doctor INTEGER , "
-								+ " id_req INTEGER ,"
+								+ " id_request INTEGER ,"
 								+ " FOREIGN KEY (id_donor) REFERENCES donor (id)"
 								+ " ON UPDATE RESTRICT ON DELETE CASCADE,"
 								+ " FOREIGN KEY (id_doctor) REFERENCES doctor (id) "
 								+ " ON UPDATE RESTRICT ON DELETE CASCADE,"
-								+ " FOREIGN KEY (id_req) REFERENCES request (id) "
+								+ " FOREIGN KEY (id_request) REFERENCES request (id) "
 								+  " ON UPDATE RESTRICT ON DELETE CASCADE)";
 				organ.executeUpdate(sqlorgan);
 				organ.close();
@@ -189,25 +189,6 @@ public class JDBCManager {
 		}
 		
 		
-		
-		public List<Donor> getAllDonors() throws SQLException{
-			Statement stmt = c.createStatement();	
-			String sql = "SELECT * FROM Donor";
-			ResultSet rs = stmt.executeQuery(sql);
-			List<Donor> listDonor=new ArrayList<Donor>();
-			while (rs.next()) {
-				int id = rs.getInt("id");
-				String name = rs.getString("name");
-				Date dateofbirth = rs.getDate("datebirth");
-				String bloodType=rs.getString("bloodtype");
-				String location=rs.getString("location");
-				Donor d = new Donor(id, name, dateofbirth, bloodType, location);
-				listDonor.add(d);
-			}
-			rs.close();
-			stmt.close();
-			return listDonor;
-		}
 
 //this makes you a list with all the doctors
 public List<Doctor> getAllDoctors() throws SQLException {
@@ -344,8 +325,28 @@ public List<Doctor> searchDoctorByName (String dname) throws SQLException{
 	prep.close();
 	return list1;
 	}
-}
-		
 
+		
+public List<Hospital> searchHospitalByLoc (String hloc) throws SQLException{
+	
+	String sql = "SELECT * FROM hospital WHERE location LIKE ?";
+	PreparedStatement prep = c.prepareStatement(sql);
+	prep.setString(1, "%" + hloc + "%");
+	ResultSet rs = prep.executeQuery();
+	Hospital h=null;
+	List<Hospital>list=new ArrayList<Hospital>();
+	while (rs.next()) {
+		int id = rs.getInt("id");
+		String name = rs.getString("name");
+		String location = rs.getString("location");
+		h = new Hospital (id, name, location);
+		list.add(h);
+	}
+	
+	rs.close();
+	prep.close();
+	return list;
+	}
+}
 
 

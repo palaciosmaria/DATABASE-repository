@@ -27,8 +27,12 @@ public class Organ implements Serializable {
 	@JoinColumn (name="id_donor")
 	private Donor id_donor;
 	@OneToOne (fetch=FetchType.LAZY)
-	@JoinColumn (name="id_req")
-	private Request id_req;
+	@JoinColumn (name="id_request")
+	private Request id_request;
+	
+
+	
+	
 	@Transient
 	private Doctor id_doctor;
 	
@@ -46,16 +50,26 @@ public class Organ implements Serializable {
 	this.typeorgan = typeorgan;
 	this.lifespan = lifespan;
 	this.id_donor = donor;
-	this.id_req = request;
+	this.id_request = request;
 	this.id_doctor = doctor;
 }
-
-
-	public Organ(String typeorgan, Integer lifespan) {
+	public Organ(String typeorgan, Integer lifespan, Donor donor) {
 		super();
 		
 		this.typeorgan = typeorgan;
 		this.lifespan = lifespan;
+		this.id_donor = donor;
+		
+	}
+
+	public Organ(String typeorgan, Integer lifespan, Donor donor,Request request, Doctor doctor) {
+		super();
+		
+		this.typeorgan = typeorgan;
+		this.lifespan = lifespan;
+		this.id_donor = donor;
+		this.id_request = request;
+		this.id_doctor = doctor;
 	}
 
 
@@ -138,12 +152,12 @@ public Organ(String typeOforgan, Integer lifeSpan2, Integer donorId, Integer doc
 
 
 	public Request getRequest() {
-		return id_req;
+		return id_request;
 	}
 
 
 	public void setRequest(Request request) {
-		this.id_req = request;
+		this.id_request = request;
 	}
 
 
@@ -160,7 +174,7 @@ public Organ(String typeOforgan, Integer lifeSpan2, Integer donorId, Integer doc
 	@Override
 	public String toString() {
 		return "Organ [id=" + id + ", typeorgan=" + typeorgan + ", lifespan=" + lifespan + ", donor=" + id_donor
-				+ ", request=" + id_req + ", doctor=" + id_doctor + "]";
+				+ ", request=" + id_request + ", doctor=" + id_doctor + "]";
 	}
 
 

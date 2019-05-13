@@ -27,7 +27,7 @@ public class Donor implements Serializable{
 	private String bloodtype;
 	private String location;
 
-	@OneToMany(mappedBy= "id_donor")
+	@OneToMany(mappedBy= "id_donor",fetch = FetchType.EAGER)
 
 	private List<Organ> organs;	
 	
