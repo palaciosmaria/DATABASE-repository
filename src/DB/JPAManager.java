@@ -1,11 +1,16 @@
 package DB;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+
 import transplantation.pojo.*;
 
 public class JPAManager {
@@ -21,6 +26,7 @@ public class JPAManager {
 		em.createNativeQuery("PRAGMA foreign_keys=ON").executeUpdate();
 		em.getTransaction().commit();
 	}
+	
 	//insert es lo mismo que create
 	public void insertDonor(Donor dn) {
 		em.getTransaction().begin();
@@ -29,18 +35,26 @@ public class JPAManager {
 		
 
 	}
+	public void insertOrgan(Organ o) {
+		em.getTransaction().begin();
+		em.persist(o);
+		em.getTransaction().commit();
+		
+
+	}
+	
 	public void updateDonor(Donor dn, String loc) {
 	em.getTransaction().begin();
 	dn.setLocation(loc);
 	em.getTransaction().commit();
 	}
 		//read es como si fuese search
+	
 	public List<Donor> readDonorbyName(String name){
 		
 		Query q1 = em.createNativeQuery("SELECT * FROM donor WHERE name LIKE ?", Donor.class);
 		q1.setParameter(1, "%" + name + "%");
 		List<Donor> dns = (List<Donor>) q1.getResultList();
-		// Print the departments
 		
 		return dns;
 		
@@ -56,12 +70,20 @@ public class JPAManager {
 		return dn;
 		
 	}
-	public void getAllDonors() {
-		Query q1 = em.createNativeQuery("SELECT * FROM Donor", Donor.class);
+	public void showAllDonors() {
+		Query q1 = em.createNativeQuery("SELECT * FROM donor", Donor.class);
 		List<Donor> list = (List<Donor>) q1.getResultList();
-		// Print the employees
+		
 		for (Donor donor : list) {
 			System.out.println(donor);
+		}
+	}
+	public void showAllOrgans() {
+		Query q1 = em.createNativeQuery("SELECT * FROM organ", Organ.class);
+		List<Organ> list = (List<Organ>) q1.getResultList();
+		
+		for (Organ organ : list) {
+			System.out.println(organ);
 		}
 	}
 	public void deleteDonor(int id){
