@@ -678,9 +678,7 @@ try{
 			
 			switch(option) {
 			case 1:
-				System.out.println("Sin acabar");
 				insertOrganMenu();				
-				//SIN ACABAR!!!!!!!!!!!!!
 				break;
 			case 2:
 				updateOrgan();
@@ -688,6 +686,7 @@ try{
 			case 3:
 				break;
 			case 4:
+				showAllOrgans();
 				break;
 			case 5:
 				break;
@@ -797,6 +796,7 @@ try{
 				showAllRequestsMenu();
 				break;
 			case 5:
+				deleteRequestMenu();
 				break;
 			case 6:
 				exit=true;
@@ -874,7 +874,11 @@ try{
 			System.out.println("Introduce the donor's id:");
 			String stringdonorid = reader.readLine();
 			Integer donorId= Integer.parseInt(stringdonorid);
+			Donor d =  jpamanager.readDonorbyId(donorId);
 			Integer doctorId;
+			Doctor doc=null;
+			Integer requestId;
+			Request r=null;
 			do{
 			System.out.println("Do you want to insert a doctor?");
 			String yesno = reader.readLine();
@@ -886,15 +890,31 @@ try{
 				System.out.println("Introduce the doctor's id:");
 				String stringdoctorid = reader.readLine();
 				doctorId= Integer.parseInt(stringdoctorid);
+				doc= manager.searchDoctorById(doctorId);
+				
+				break;
 			}else{
 				System.out.println("Caracter introduced is not valid.");
 			}}while(true);
-			//do the same with request!!!!!!!!!
-			System.out.println(manager.getAllRequests());
-			System.out.println("Introduce the request's id:");
-			String stringrequestid = reader.readLine();
-			Integer requestId= Integer.parseInt(stringrequestid);
-			Organ o= new Organ(typeOforgan,lifeSpan,donorId,doctorId,requestId);
+			do{
+				System.out.println("Do you want to insert a request?");
+				String yesno = reader.readLine();
+				if(yesno.equals("no")|| yesno.equals("NO")){
+					requestId= null;
+					break;}
+				if(yesno.equals("yes")|| yesno.equals("YES")){
+					System.out.println(manager.getAllRequests());
+					System.out.println("Introduce the request's id:");
+					String stringrequestid = reader.readLine();
+					requestId= Integer.parseInt(stringrequestid);
+					r= jpamanager.readRequestById(requestId);
+					break;
+				}else{
+					System.out.println("Caracter introduced is not valid.");
+				}}while(true);
+			
+			Organ or= new Organ(typeOforgan,lifeSpan,d,doc,r);
+			jpamanager.insertOrgan(or);
 			System.out.println("Organ inserted correctly");
 		}catch(Exception e){
 			e.printStackTrace();
@@ -904,7 +924,6 @@ try{
 	public static void updateOrgan() {
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			System.out.println("Aqui");
 			jpamanager.showAllOrgans();
 			System.out.println("Choose a donor:");
 			int donor_id=Integer.parseInt(reader.readLine());
@@ -928,7 +947,6 @@ try{
 			System.out.print("Date of Birth: ");
 			String stringdob = reader.readLine();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-			//HAY Q ACABAR LO DE LA DATE ESTÃ� EN EL CHEATSHEET
 			LocalDate ldate = LocalDate.parse(stringdob, formatter);
 			Date date = Date.valueOf(ldate);
 			System.out.print("Blood Type: ");
@@ -964,6 +982,14 @@ try{
 		try {
 			System.out.println("List of all the Donors");
 			jpamanager.showAllDonors();
+			}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	public static void showAllOrgans() {
+		try {
+			System.out.println("List of all the Organs");
+			jpamanager.showAllOrgans();
 			}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -1271,6 +1297,17 @@ try{
 	}
 	
 	
-	
+	public static void deleteRequestMenu(){
+		try{
+			showAllRequestsMenu();
+			System.out.print("Choose a request to delete. Type it's ID:");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			int rq_id = Integer.parseInt(reader.readLine());
+			jpamanager.deleteRequest(rq_id);
+			System.out.print("Request deleted correctly.");
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+		}
 	
 }

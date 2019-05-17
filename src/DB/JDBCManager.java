@@ -325,6 +325,26 @@ public List<Doctor> searchDoctorByName (String dname) throws SQLException{
 	prep.close();
 	return list1;
 	}
+public Doctor searchDoctorById (Integer doctorId) throws SQLException{
+	
+	String sql = "SELECT * FROM doctor WHERE id LIKE ?";
+	PreparedStatement prep = c.prepareStatement(sql);
+	prep.setInt(1, doctorId);
+	ResultSet rs = prep.executeQuery();
+	Doctor d=null;
+	
+	while (rs.next()) {
+		int id = rs.getInt("id");
+		String name = rs.getString("name");
+		String speciality = rs.getString("speciality");
+		d = new Doctor (id, name, speciality);
+		
+	}
+	
+	rs.close();
+	prep.close();
+	return d;
+	}
 
 		
 public List<Hospital> searchHospitalByLoc (String hloc) throws SQLException{

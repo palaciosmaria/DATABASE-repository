@@ -123,6 +123,15 @@ public List<Request> readRequestByName(String name){
 		em.getTransaction().commit();
 
 	}
+	public void deleteRequest (int id){
+		Query q2 = em.createNativeQuery("SELECT * FROM request WHERE id = ?", Request.class);
+		q2.setParameter(1, id);
+		Request request = (Request) q2.getSingleResult();
+		em.getTransaction().begin();
+		em.remove(request);
+		em.getTransaction().commit();
+
+	}
 	
 	
 }

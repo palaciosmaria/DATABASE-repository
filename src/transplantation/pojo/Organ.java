@@ -12,13 +12,9 @@ public class Organ implements Serializable {
 	private static final long serialVersionUID = -6561993325465307742L;
 	
 	@Id
-	@GeneratedValue(generator="organs")
-	@TableGenerator(name="organs",table="sqlite_sequence",pkColumnName="name",
-	valueColumnName="seq", pkColumnValue="organs")
-	
-	
-
-	
+	@GeneratedValue(generator="organ")
+	@TableGenerator(name="organ",table="sqlite_sequence",pkColumnName="name",
+	valueColumnName="seq", pkColumnValue="organ")
 	
 	private Integer id;
 	private String typeorgan;
@@ -30,10 +26,8 @@ public class Organ implements Serializable {
 	@JoinColumn (name="id_request")
 	private Request id_request;
 	
-
-	
-	
-	@Transient
+	@ManyToOne (fetch = FetchType.LAZY)
+	@JoinColumn (name="id_doctor")
 	private Doctor id_doctor;
 	
 	
@@ -44,15 +38,26 @@ public class Organ implements Serializable {
 	}
 
 
-	public Organ(Integer id, String typeorgan, Integer lifespan, Donor donor, Request request, Doctor doctor) {
+	public Organ(Integer id, String typeorgan, Integer lifespan, Donor donor, Doctor doctor, Request request) {
 	super();
 	this.id = id;
 	this.typeorgan = typeorgan;
 	this.lifespan = lifespan;
 	this.id_donor = donor;
-	this.id_request = request;
 	this.id_doctor = doctor;
+	this.id_request = request;
+	
 }
+	
+	public Organ(String typeorgan, Integer lifespan, Donor donor, Doctor doctor, Request request) {
+		super();
+		this.typeorgan = typeorgan;
+		this.lifespan = lifespan;
+		this.id_donor = donor;
+		this.id_doctor = doctor;
+		this.id_request = request;
+		
+	}
 	public Organ(String typeorgan, Integer lifespan, Donor donor) {
 		super();
 		
@@ -79,9 +84,6 @@ public class Organ implements Serializable {
 		this.typeorgan = typeorgan;
 	}
 
-public Organ(String typeOforgan, Integer lifeSpan2, Integer donorId, Integer doctorId, Integer requestId) {
-		// TODO Auto-generated constructor stub
-	}
 
 
 	// Hashcode 
