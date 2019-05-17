@@ -14,12 +14,15 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.xml.bind.JAXBException;
 
 import DB.JDBCManager;
 import DB.JPAManager;
 import DB.ManagerInterface;
+import DB.XMLManager;
 import transplantation.pojo.Doctor;
 import transplantation.pojo.Donor;
+import transplantation.pojo.Donor_List;
 import transplantation.pojo.Hospital;
 import transplantation.pojo.Organ;
 import transplantation.pojo.Request;
@@ -30,7 +33,7 @@ public class UI {
 	
 	private static JDBCManager manager;
 	private static JPAManager jpamanager;
-	
+	private static XMLManager xmlmanager;
 	
 
 	public static void main(String args[]) throws IOException, SQLException {
@@ -39,6 +42,7 @@ public class UI {
 		manager.connect();
 		jpamanager= new JPAManager();
 		jpamanager.connect();
+		xmlmanager=new XMLManager();
 	principalMenu();
 /*
 	int option = 0;		
@@ -499,8 +503,10 @@ try{
 			System.out.println("2. Update the name of a hospital");
 			System.out.println("3. Show all hospitals");
 			System.out.println("4. Delete a hospital"); 
-			System.out.println("5. Search a hospital"); 
-			System.out.println("6. Back to principal menu");
+			System.out.println("5. Search a hospital");
+			System.out.println("6. XML: Marshall");
+			System.out.println("7. XML: Unmarshall");
+			System.out.println("8. Back to principal menu");
 			try {
 				System.out.println("Select option: ");
 				BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
@@ -526,15 +532,62 @@ try{
 				searchHospitalByLoc();
 				break;
 			case 6:
+				marshallMenu();
+				break;
+			case 7:
+				unmarshallMenu();
+				break;
+			case 8:
 				exit=true;
 				break;
+
 			default:
 				System.out.println("Not a valid option");
 				break;
 			}
 		}while(exit==false);	
-		
 	}
+	
+	public static void marshallMenu() {
+		try {
+		System.out.println("Type how do you want to name the XML document (including .xml");
+		BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+			
+		String name = reader.readLine();
+		System.out.println("Marshalling...");
+		List<Donor> list=jpamanager.getAllDonors();
+		Donor_List donors= new Donor_List(list);
+		xmlmanager.Marshall(donors, name);
+		
+		}catch(IOException ex) {
+			System.out.println("ERROR");
+			ex.printStackTrace();
+		}catch(JAXBException ex){
+		System.out.println("ERROR");
+		ex.printStackTrace();
+	}
+	}
+	
+	public static void unmarshallMenu() {
+		try {
+			System.out.println("Type the XML file you want to unmarshall");
+			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+			String name = reader.readLine();
+			Donor_List donors=xmlmanager.Unmarshall(name);
+			for (Donor d: donors.getListDonor()) {
+				jpamanager.insertDonor(d);
+			}
+		}catch(IOException ex) {
+			System.out.println("ERROR");
+			ex.printStackTrace();
+		}catch(JAXBException ex){
+		System.out.println("ERROR");
+		ex.printStackTrace();
+	}
+		}
+	
+	
+	
 	
 	public static void hospitalManagerMenu() {
 		int option=0;
@@ -663,8 +716,8 @@ try{
 			System.out.println("Operations: ");
 			System.out.println("1. Insert an organ");
 			System.out.println("2. Update an organ");
-			System.out.println("3. Search an organ-ABSENT");
-			System.out.println("4. Show all organs-ABSENT"); 
+			System.out.println("3. Search an organ-ABSENT<");
+			System.out.println("4. Show all organs"); 
 			System.out.println("5. Delete an organ-ABSENT");
 			System.out.println("6. Back to principal menu");
 			

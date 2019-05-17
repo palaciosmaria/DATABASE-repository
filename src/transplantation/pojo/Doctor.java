@@ -8,12 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.*;
 
 
 
 
 @Entity	
 @Table(name= "doctors")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="Doctor")
 public class Doctor implements Serializable{
 	
 
@@ -24,12 +29,16 @@ public class Doctor implements Serializable{
 	@TableGenerator(name = "employees", table = "sqlite_sequence",
 		pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "employees")
 	
-	//atributes
-	private Integer id;
-	private String name;
-	private String speciality;
 	
+	@XmlAttribute
+	private Integer id;
+	@XmlAttribute
+	private String name;
+	@XmlAttribute
+	private String speciality;
+	@XmlElementWrapper(name="Organs")
 	private List<Organ> organs;
+	@XmlElementWrapper(name="Hospitals")
 	private List<Hospital>hospitals;
 	
 	

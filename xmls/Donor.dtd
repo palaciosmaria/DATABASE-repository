@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE Donor [
+   <!ELEMENT Donor (datebirth)>
+   <!ELEMENT datebirth (#PCDATA)>
+   <!ATTLIST Donor name CDATA #REQUIRED>
+   <!ATTLIST Donor bloodtype CDATA #REQUIRED>
+   <!ATTLIST Donor location CDATA #REQUIRED>
+]>

@@ -105,6 +105,12 @@ public List<Request> readRequestByName(String name){
 		}
 	}
 	
+	public List<Donor> getAllDonors() {
+		Query q1 = em.createNativeQuery("SELECT * FROM donor", Donor.class);
+		List<Donor> list = (List<Donor>) q1.getResultList();
+		return list;
+	}
+	
 	
 	public void showAllOrgans() {
 		Query q1 = em.createNativeQuery("SELECT * FROM organ", Organ.class);

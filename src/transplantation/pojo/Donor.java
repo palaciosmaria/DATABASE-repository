@@ -4,12 +4,23 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import DB.SQLDateAdapter;
 
 
 
 @Entity
 @Table(name="donor")
-
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="Donor")
 public class Donor implements Serializable{
 	
 	
@@ -20,15 +31,20 @@ public class Donor implements Serializable{
 	@TableGenerator(name = "donor", table = "sqlite_sequence",
 		pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "donor")
 	
-	//Atributes
+	@XmlAttribute
 	private Integer id;
+	@XmlAttribute
 	private String name;
+	@XmlElement
+	@XmlJavaTypeAdapter(SQLDateAdapter.class)
 	private Date datebirth;
+	@XmlAttribute
 	private String bloodtype;
+	@XmlAttribute
 	private String location;
-
 	@OneToMany(mappedBy= "id_donor",fetch = FetchType.EAGER)
-
+	//@XmlElementWrapper(name="Organs")
+	@XmlTransient
 	private List<Organ> organs;	
 	
 	//constructor
