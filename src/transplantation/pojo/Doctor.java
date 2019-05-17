@@ -5,6 +5,9 @@ import java.util.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
@@ -16,7 +19,7 @@ import javax.xml.bind.annotation.*;
 
 
 @Entity	
-@Table(name= "doctors")
+@Table(name= "doctor")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="Doctor")
 public class Doctor implements Serializable{
@@ -25,9 +28,9 @@ public class Doctor implements Serializable{
 	private static final long serialVersionUID = -5979925139596330522L;
 	
 	@Id
-	@GeneratedValue(generator = "employees")
-	@TableGenerator(name = "employees", table = "sqlite_sequence",
-		pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "employees")
+	@GeneratedValue(generator = "doctor")
+	@TableGenerator(name = "doctor", table = "sqlite_sequence",
+		pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "doctor")
 	
 	
 	@XmlAttribute
@@ -37,8 +40,13 @@ public class Doctor implements Serializable{
 	@XmlAttribute
 	private String speciality;
 	@XmlElementWrapper(name="Organs")
+	@OneToMany(mappedBy="id_doctor")
 	private List<Organ> organs;
 	@XmlElementWrapper(name="Hospitals")
+	@ManyToMany
+	@JoinTable(name="relationship",
+			joinColumns={@JoinColumn(name="id_doctor", referencedColumnName="id")},
+		    inverseJoinColumns={@JoinColumn(name="id_hospital", referencedColumnName="id")})
 	private List<Hospital>hospitals;
 	
 	

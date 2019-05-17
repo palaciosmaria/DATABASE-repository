@@ -5,6 +5,7 @@ import java.util.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
@@ -17,16 +18,18 @@ public class Hospital implements Serializable {
 	private static final long serialVersionUID = -4466377494304259897L;
 	
 	@Id
-	@GeneratedValue(generator="hospitals")
-	@TableGenerator(name="hospitals",table="sqlite_sequence",pkColumnName="name",
-	valueColumnName="seq", pkColumnValue="hospitals")
+	@GeneratedValue(generator="hospital")
+	@TableGenerator(name="hospital",table="sqlite_sequence",pkColumnName="name",
+	valueColumnName="seq", pkColumnValue="hospital")
 		//atributes
 		private Integer id;
 		private String name;
 		private String location;
-		private List<Doctor> doctors;
-		@OneToMany(mappedBy="id_hospital")
 		
+		@ManyToMany(mappedBy="hospitals")
+		private List<Doctor> doctors;
+		
+		@OneToMany(mappedBy="id_hospital")
 		private List<Request>requests;
 		
 		//contructors
