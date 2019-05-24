@@ -70,6 +70,16 @@ public class JPAManager {
 		return dns;
 		
 	}
+	public List<Organ> readOrganbyType(String type){
+		
+		Query q1 = em.createNativeQuery("SELECT * FROM organ WHERE typeorgan LIKE ?", Organ.class);
+		q1.setParameter(1,  type );
+		List<Organ> or = (List<Organ>) q1.getResultList();
+		// Print the departments
+		
+		return or;
+		
+	}
 	
 public List<Request> readRequestByName(String name){
 		
@@ -126,6 +136,17 @@ public List<Request> readRequestByName(String name){
 		Donor donor = (Donor) q2.getSingleResult();
 		em.getTransaction().begin();
 		em.remove(donor);
+		em.getTransaction().commit();
+
+	}
+	
+	public void deleteOrgan(int id) {
+		
+		Query q2 = em.createNativeQuery("SELECT * FROM organ WHERE id = ?", Organ.class);
+		q2.setParameter(1, id);
+		Organ organ = (Organ) q2.getSingleResult();
+		em.getTransaction().begin();
+		em.remove(organ);
 		em.getTransaction().commit();
 
 	}
