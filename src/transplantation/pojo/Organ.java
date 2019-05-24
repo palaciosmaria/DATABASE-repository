@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name= "organ")
 
+
 public class Organ implements Serializable {
 	
 	private static final long serialVersionUID = -6561993325465307742L;
@@ -16,18 +17,28 @@ public class Organ implements Serializable {
 	@TableGenerator(name="organ",table="sqlite_sequence",pkColumnName="name",
 	valueColumnName="seq", pkColumnValue="organ")
 	
+	
 	private Integer id;
+	
+	
 	private String typeorgan;
+	
+	
 	private Integer lifespan;
+	
 	@ManyToOne (fetch = FetchType.LAZY)
 	@JoinColumn (name="id_donor")
+	
 	private Donor id_donor;
+	
 	@OneToOne (fetch=FetchType.LAZY)
 	@JoinColumn (name="id_request")
+	
 	private Request id_request;
 	
 	@ManyToOne (fetch = FetchType.LAZY)
 	@JoinColumn (name="id_doctor")
+	
 	private Doctor id_doctor;
 	
 	
@@ -175,8 +186,8 @@ public class Organ implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Organ [id=" + id + ", typeorgan=" + typeorgan + ", lifespan=" + lifespan + ", donor=" + id_donor
-				+ ", request=" + id_request + ", doctor=" + id_doctor + "]";
+		return "Organ [id=" + id + ", typeorgan=" + typeorgan + ", lifespan=" + lifespan + ", donor=" + id_donor.getId()
+				+ ", request=" + id_request.getId() + ", doctor=" + id_doctor.getId() + "]";
 	}
 
 
