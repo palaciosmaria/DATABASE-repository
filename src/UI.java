@@ -715,11 +715,10 @@ try{
 			System.out.println( "\n-----ORGAN INFO MENU------ " );
 			System.out.println("Operations: ");
 			System.out.println("1. Insert an organ");
-			System.out.println("2. Update an organ");
-			System.out.println("3. Search an organ-ABSENT<");
-			System.out.println("4. Show all organs"); 
-			System.out.println("5. Delete an organ-ABSENT");
-			System.out.println("6. Back to principal menu");
+			System.out.println("2. Search an organ-ABSENT<");
+			System.out.println("3. Show all organs"); 
+			System.out.println("4. Delete an organ-ABSENT");
+			System.out.println("5. Back to principal menu");
 			
 			try {
 				System.out.println("Select option: ");
@@ -734,16 +733,15 @@ try{
 				insertOrganMenu();				
 				break;
 			case 2:
-				updateOrgan();
+				searchOrganByType();
 				break;
 			case 3:
-				break;
-			case 4:
 				showAllOrgans();
 				break;
-			case 5:
+			case 4:
+				deleteOrganMenu();
 				break;
-			case 6:
+			case 5:
 				exit=true;
 				break;
 			default:
@@ -966,7 +964,7 @@ try{
 					System.out.println("Caracter introduced is not valid.");
 				}}while(true);
 			
-			Organ or= new Organ(typeOforgan,lifeSpan,d,doc,r);
+			Organ or= new Organ(typeOforgan,lifeSpan,d,r,doc);
 			jpamanager.insertOrgan(or);
 			System.out.println("Organ inserted correctly");
 		}catch(Exception e){
@@ -974,23 +972,7 @@ try{
 		}
 	}
 	
-	public static void updateOrgan() {
-		try {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			jpamanager.showAllOrgans();
-			System.out.println("Choose a donor:");
-			int donor_id=Integer.parseInt(reader.readLine());
-			System.out.println("Type the new location:");
-			String newLocation=reader.readLine();
-			Donor dn=jpamanager.readDonorbyId(donor_id);
-			jpamanager.updateDonor(dn, newLocation);
-			System.out.println(dn);
-			System.out.println("Location updated correctly.");
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-		
-	}
+
 	public static void insertDonorMenu() {
 		try {
 			System.out.println("Introduce the donor's info:");
@@ -1029,7 +1011,22 @@ try{
 			
 		}catch(IOException e){
 			e.printStackTrace();
-		}
+		}}
+	
+		public static void searchOrganByType() {
+			try{
+				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+				System.out.print("Write the organ's type: ");
+				String type = reader.readLine();
+				System.out.println("Matching organs:");
+				List<Organ> or = jpamanager.readOrganbyType(type);
+				for (Organ organ : or) {
+					System.out.println(organ);
+				}
+				
+			}catch(IOException e){
+				e.printStackTrace();
+			}
 	}
 	public static void showAllDonors() {
 		try {
@@ -1077,6 +1074,19 @@ try{
 			e.printStackTrace();
 		}
 	}
+	public static void deleteOrganMenu() {
+		try{
+			System.out.println("Organs:");
+			jpamanager.showAllOrgans();
+			System.out.print("Choose an organ to delete. Type it's ID:");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			int or_id = Integer.parseInt(reader.readLine());
+			jpamanager.deleteOrgan(or_id);
+			System.out.print("Organ deleted correctly.");
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+		}
 	
 	public static void insertDoctorMenu() {
 		try{
