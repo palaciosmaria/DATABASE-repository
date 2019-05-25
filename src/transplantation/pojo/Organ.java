@@ -171,15 +171,16 @@ public Organ(String typeOforgan, Integer lifeSpan2, Integer donorId, Integer doc
 
 	@Override
 	public String toString() {
+		
 		return "Organ [id=" + id + ", typeorgan=" + typeorgan + ", lifespan=" + lifespan + ", donor=" + id_donor.getId()
-				+ ", request=" + id_request.getId() + ", doctor=" + id_doctor.getId() + "]";
+				+ ", request=" + id_request.getId() + ", doctor=" + id_doctor.getId() + "]";}
+	
 	}
 
 
-
 	
 	
 
 
 	
-}
+
