@@ -69,13 +69,11 @@ public class UI {
 		System.out.println("1. DataBase Administrator");
 		System.out.println("2. Hospital Manager");
 		System.out.println("3. Exit");
-		try {
-			System.out.println("Select identity: ");
+
+			
 			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-			option=Integer.parseInt(reader.readLine());	
-		}catch(IOException ex) {
-			System.out.println("ERROR");
-		}
+			option=ReadInt(reader, "Select identity: ");
+
 		
 		switch(option) {
 		case 0: 
@@ -119,13 +117,9 @@ public class UI {
 			System.out.println("9. HTML ");
 			System.out.println("10. Back to principal menu");
 			
-			try {
-				System.out.println("Select option: ");
-				BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-				option=Integer.parseInt(reader.readLine());	
-			}catch(IOException ex) {
-				System.out.println("ERROR");
-			}
+
+			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+			option=ReadInt(reader, "Select option: ");
 			
 			switch(option) {
 			case 1:
@@ -249,13 +243,9 @@ public class UI {
 			System.out.println("1. Boss");
 			System.out.println("2. Doctor");
 			System.out.println("3. Back to principal menu");
-			try {
-				System.out.println("Select identity: ");
-				BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-				option=Integer.parseInt(reader.readLine());	
-			}catch(IOException ex) {
-				System.out.println("ERROR");
-			}
+
+			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+			option=ReadInt(reader, "Select identity: ");
 			
 			switch(option) {
 			case 1:
@@ -285,13 +275,9 @@ public class UI {
 			System.out.println("3. Manage organs information"); 
 			System.out.println("4. Back to principal menu");
 			
-			try {
-				System.out.println("Select option: ");
-				BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-				option=Integer.parseInt(reader.readLine());	
-			}catch(IOException ex) {
-				System.out.println("ERROR");
-			}
+
+			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+			option=ReadInt(reader, "Select option: ");
 			
 			switch(option) {
 			case 1:
@@ -328,13 +314,9 @@ public class UI {
 			System.out.println("4. Manage organs information"); 
 			System.out.println("5. Back to principal menu");
 			
-			try {
-				System.out.println("Select option: ");
-				BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-				option=Integer.parseInt(reader.readLine());	
-			}catch(IOException ex) {
-				System.out.println("ERROR");
-			}
+
+			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+			option=ReadInt(reader, "Select option: ");
 			
 			switch(option) {
 			case 1:
@@ -371,13 +353,9 @@ public class UI {
 			System.out.println("4. Delete an organ");
 			System.out.println("5. Back to principal menu");
 			
-			try {
-				System.out.println("Select option: ");
-				BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-				option=Integer.parseInt(reader.readLine());	
-			}catch(IOException ex) {
-				System.out.println("ERROR");
-			}
+
+			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+			option=ReadInt(reader, "Select option: ");
 			
 			switch(option) {
 			case 1:
@@ -416,13 +394,9 @@ public class UI {
 			System.out.println("5. Delete a donor");
 			System.out.println("6. Back to principal menu");
 			
-			try {
-				System.out.println("Select option: ");
-				BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-				option=Integer.parseInt(reader.readLine());	
-			}catch(IOException ex) {
-				System.out.println("ERROR");
-			}
+
+			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+			option=ReadInt(reader, "Select option: ");
 			
 			switch(option) {
 			case 1:
@@ -463,13 +437,9 @@ public class UI {
 			System.out.println("5. Delete a patient");
 			System.out.println("6. Back to principal menu");
 			
-			try {
-				System.out.println("Select option: ");
-				BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-				option=Integer.parseInt(reader.readLine());	
-			}catch(IOException ex) {
-				System.out.println("ERROR");
-			}
+
+			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+			option=ReadInt(reader, "Select option: ");
 			
 			switch(option) {
 			case 1:
@@ -481,7 +451,7 @@ public class UI {
 			case 3:
 				System.out.println("By id (press 1) o by name(press 2)?");
 				try {
-					BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+					reader=new BufferedReader(new InputStreamReader(System.in));
 					int o =Integer.parseInt(reader.readLine());
 					if (o==1) {
 						searchRequestById();
@@ -530,13 +500,9 @@ public class UI {
 			System.out.println("7. Fire a doctor");
 			System.out.println("8. Back to principal menu");
 			
-			try {
-				System.out.println("Select option: ");
-				BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-				option=Integer.parseInt(reader.readLine());	
-			}catch(IOException ex) {
-				System.out.println("ERROR");
-			}
+
+			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+			option=ReadInt(reader, "Select option: ");
 			
 			switch(option) {
 			case 1:
@@ -627,21 +593,18 @@ public class UI {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			System.out.print("Type of organ: ");
 			String typeOforgan = reader.readLine();
-			System.out.print("Life span (in minutes): ");
-			String stringlifeSpan = reader.readLine();
-			Integer lifeSpan= Integer.parseInt(stringlifeSpan);
+			Integer lifeSpan=ReadInt(reader, "Life span (in minutes): ");
 			jpamanager.showAllDonors();
-			System.out.println("Introduce the donor's id:");
-			String stringdonorid = reader.readLine();
-			Integer donorId= Integer.parseInt(stringdonorid);
+			Integer donorId=ReadInt(reader, "Introduce the donor's id:");
 			Donor d =  jpamanager.readDonorbyId(donorId);
 			Integer doctorId;
 			Doctor doc=null;
 			Integer requestId;
 			Request r=null;
+			String yesno = "";
 			do{
 			System.out.println("Do you want to insert a doctor?");
-			String yesno = reader.readLine();
+			yesno = reader.readLine();
 			if(yesno.equals("no")|| yesno.equals("NO")){
 				doctorId= null;
 				break;}
@@ -656,7 +619,8 @@ public class UI {
 				break;
 			}else{
 				System.out.println("Caracter introduced is not valid.");
-			}}while(true);
+			}
+			}while(!yesno.equals("no")|| !yesno.equals("NO")||!yesno.equals("yes")|| !yesno.equals("YES"));
 		
 			
 			Organ or= new Organ(typeOforgan,lifeSpan,d,doc);
@@ -669,13 +633,12 @@ public class UI {
 					list = manager.checkOrgan(or);
 			
 			if(list.size()!=0) {
-			System.out.println("Choose id of the request you want: ");
-			int id_request= Integer.parseInt(reader.readLine());
-			Request rq = jpamanager.readRequestById(id_request);
-			rq.setOrgan(or);
-			System.out.println("The matching was completed successfully");
-			System.out.println(rq);}
-			else {
+				int id_request=ReadInt(reader, "Choose id of the request you want: ");
+				Request rq = jpamanager.readRequestById(id_request);
+				rq.setOrgan(or);
+				System.out.println("The matching was completed successfully");
+				System.out.println(rq);}
+				else {
 				System.out.println("There aren´t requests for this organ. Thankfully, none needs an organ :)");
 			}
 			
@@ -771,9 +734,9 @@ public class UI {
 	public static void updateDonorMenu() {
 	try {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("\nLIST OF DONORS:");
 		jpamanager.showAllDonors();
-		System.out.println("Choose a Donor to change itÂ´s location. Write the id: ");
-		int donor_id=Integer.parseInt(reader.readLine());
+		int donor_id=ReadInt(reader,"Choose a Donor to change its location. Write the id: ");
 		System.out.println("Type the new location:");
 		String newLocation=reader.readLine();
 		Donor dn=jpamanager.readDonorbyId(donor_id);
@@ -786,30 +749,21 @@ public class UI {
 	}
 	
 	public static void deleteDonorMenu() {
-	try{
 		System.out.println("Hospital's donors:");
 		jpamanager.showAllDonors();
-		System.out.print("Choose a donor to delete. Type it's ID:");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		int dn_id = Integer.parseInt(reader.readLine());
+		int dn_id = ReadInt(reader,"Choose a donor to delete. Type it's ID:");
 		jpamanager.deleteDonor(dn_id);
 		System.out.print("Donor deleted correctly.");
-		}catch(IOException e){
-			e.printStackTrace();
-		}
 	}
+		
 	public static void deleteOrganMenu() {
-		try{
-			System.out.println("Organs:");
+			System.out.println("\nLIST OF ORGANS:");
 			jpamanager.showAllOrgans();
-			System.out.print("Choose an organ to delete. Type it's ID:");
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			int or_id = Integer.parseInt(reader.readLine());
+			int or_id = ReadInt(reader,"Choose an organ to delete. Type it's ID:");
 			jpamanager.deleteOrgan(or_id);
 			System.out.print("Organ deleted correctly.");
-			}catch(IOException e){
-				e.printStackTrace();
-			}
 		}
 	
 	public static void insertDoctorMenu() {
@@ -833,18 +787,12 @@ public class UI {
 		try{
 			
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			System.out.println("\nLIST OF DOCTORS:");
 			List<Doctor> list1= manager.getAllDoctors();
 			System.out.println(list1);
-			System.out.println("Choose a doctor, type its ID: ");
-			int id = Integer.parseInt(reader.readLine());
-			
-			//call a method in manager that returns a doctor by id
-			//print the chosen doctor
-			
+			int id = ReadInt(reader,"Choose a doctor, type its ID: ");
 			System.out.print("Type the new speciality of the doctor: ");
 			String newSpeciality = reader.readLine();
-			//change the speciality of the chosen doctor
-			//calls the updateDoc method
 			Doctor d= new Doctor(id,newSpeciality);
 			manager.updateDoc(d);
 			System.out.println("Update finished.");
@@ -858,25 +806,23 @@ public class UI {
 	public static void deleteDoctorMenu() {
 		try{
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			System.out.println("Choose a doctor to delete, type its ID: ");
+			System.out.println("\nLIST OF DOCTORS:");
 			List<Doctor> list1= manager.getAllDoctors();
 			for (Doctor doctor : list1) {
 				System.out.println(doctor);
 			}
-			int id = Integer.parseInt(reader.readLine());
+			int id = ReadInt(reader,"Choose a doctor to delete, type its ID: ");
 			//call delete method
 			Doctor d= new Doctor(id);
 			manager.deleteDoc(d);
 			System.out.println("Deletion finished.");
-		}catch(IOException e){
-			e.printStackTrace();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
 	}
 	public static void showAllDoctorsMenu() {
 		try {
-			System.out.println("List of all the Doctors");
+			System.out.println("\nLIST OF DOCTORS: ");
 			List<Doctor> list1= manager.getAllDoctors();
 			for (Doctor doctor : list1) {
 				System.out.println(doctor);
@@ -1128,5 +1074,24 @@ public class UI {
 				e.printStackTrace();
 			}
 		}
+	public static int ReadInt(BufferedReader c, String m) {
+
+        Boolean correctInput = false;
+        int result = -1;
+        System.out.println(m);
+
+        while (!correctInput) {
+            try {
+                String leido = c.readLine();
+                result = Integer.parseInt(leido);
+                correctInput = true;
+            } catch (IOException ex) {
+                System.out.println("Error reading the number");
+            } catch (NumberFormatException nfex) {
+                System.out.println("Not a number. Introduce a number please.");
+            }
+        }
+        return result;
+    }
 	
 }
