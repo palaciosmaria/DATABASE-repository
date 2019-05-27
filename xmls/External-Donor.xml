@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE Donor_List [
+   <!ELEMENT Donor (datebirth,organ)>
+   <!ELEMENT datebirth (#PCDATA)>
+   <!ELEMENT organ (#PCDATA)>
+   <!ATTLIST Donor name CDATA #REQUIRED
+   				   bloodtype CDATA #REQUIRED
+   				   location CDATA #REQUIRED>
+    
+]>
+
+
+<Donor_List>
+    <listDonor id="2" name="m" bloodtype="a" location="mad">
+        <datebirth>1111-11-11</datebirth>
+    </listDonor>
+</Donor_List>
+
