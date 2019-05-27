@@ -70,12 +70,28 @@ public class Organ implements Serializable {
 		this.id_request = request;
 		
 	}
+	public Organ(String typeorgan, Integer lifespan, Donor donor, Doctor doctor) {
+		super();
+		this.typeorgan = typeorgan;
+		this.lifespan = lifespan;
+		this.id_donor = donor;
+		this.id_doctor = doctor;
+		
+	}
 	public Organ(String typeorgan, Integer lifespan, Donor donor) {
 		super();
 		
 		this.typeorgan = typeorgan;
 		this.lifespan = lifespan;
 		this.id_donor = donor;
+		
+	}
+	public Organ(Integer id, String typeorgan, Integer lifespan) {
+		super();
+		this.id= id;
+		this.typeorgan = typeorgan;
+		this.lifespan = lifespan;
+	
 		
 	}
 
@@ -190,7 +206,7 @@ public Organ(String typeOforgan, Integer lifeSpan2, Integer donorId, Integer doc
 
 	public String toStringComplete() {
 		return "Organ [id=" + id + ", typeorgan=" + typeorgan + ", lifespan=" + lifespan + ", donor=" + id_donor.getId()
-				+ ", request=" + id_request.getId() + ", doctor=" + id_doctor.getId() + "]";
+				+ ", request=" + id_request.getId() + "]";
 	}
 
 

@@ -175,7 +175,7 @@ public class Donor implements Serializable{
 	@Override
 	public String toString() {
 		return "Donor [id=" + id + ", name=" + name + ", datebirth=" + datebirth + ", bloodtype=" + bloodtype
-				+ ", location=" + location + ", organs=" + organs + "]";
+				+ ", location=" + location + ",\n       organs=" + organs + "]";
 	}
 	
 	

@@ -423,6 +423,52 @@ public List<Hospital> searchHospitalByLoc (String hloc) throws SQLException{
 	prep.close();
 	return list;
 	}
+public List<Organ> checkRequest(Request rq) throws SQLException {
+	String sq1 = "SELECT * FROM organ  WHERE typeorgan LIKE ?";	
+	PreparedStatement prep = c.prepareStatement(sq1);
+	prep.setString(1, rq.getorganneeded());
+	Organ or;
+	List<Organ> list = new ArrayList<Organ>();
+	
+	ResultSet rs = prep.executeQuery();
+	
+	while (rs.next()) {
+		int id = rs.getInt("id");
+		String typeorgan = rs.getString("typeorgan");
+		int lifespan = rs.getInt("lifespan");
+		or = new Organ (id, typeorgan, lifespan);
+		list.add(or);
+	}
+	
+	return list;
+
+	
+	
+}
+
+public List<Request> checkOrgan(Organ or) throws SQLException {
+	String sq1 = "SELECT * FROM request  WHERE organneeded LIKE ?";	
+	PreparedStatement prep = c.prepareStatement(sq1);
+	prep.setString(1, or.getTypeorgan());
+	Request rq = null;
+	List<Request> list = new ArrayList<Request>();
+	
+	ResultSet rs = prep.executeQuery();
+	
+	while (rs.next()) {
+		int id = rs.getInt("id");
+		String name = rs.getString("name");
+		Date datebirth = rs.getDate("datebirth");
+		String bloodtype = rs.getString("bloodtype");
+		String organneeded = rs.getString("organneeded");
+		int priority = rs.getInt("priority");
+		rq = new Request(id,name,datebirth,bloodtype,organneeded,priority);
+		list.add(rq);
+	}
+	return list;
+	
+	
+}
 }
 
 

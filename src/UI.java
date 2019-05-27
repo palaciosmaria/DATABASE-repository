@@ -650,30 +650,34 @@ public class UI {
 				doctorId= Integer.parseInt(stringdoctorid);
 				doc= manager.searchDoctorById(doctorId);
 				
+				
 				break;
 			}else{
 				System.out.println("Caracter introduced is not valid.");
 			}}while(true);
-			do{
-				System.out.println("Do you want to insert a request?");
-				String yesno = reader.readLine();
-				if(yesno.equals("no")|| yesno.equals("NO")){
-					requestId= null;
-					break;}
-				if(yesno.equals("yes")|| yesno.equals("YES")){
-					System.out.println(manager.getAllRequests());
-					System.out.println("Introduce the request's id:");
-					String stringrequestid = reader.readLine();
-					requestId= Integer.parseInt(stringrequestid);
-					r= jpamanager.readRequestById(requestId);
-					break;
-				}else{
-					System.out.println("Caracter introduced is not valid.");
-				}}while(true);
+		
 			
-			Organ or= new Organ(typeOforgan,lifeSpan,d,r,doc);
+			Organ or= new Organ(typeOforgan,lifeSpan,d,doc);
 			jpamanager.insertOrgan(or);
 			System.out.println("Organ inserted correctly");
+			
+			System.out.println("\n Matches of requests:");
+			System.out.println(manager.checkOrgan(or));
+			List <Request> list= new ArrayList<Request>();
+					list = manager.checkOrgan(or);
+			
+			if(list.size()!=0) {
+			System.out.println("Choose id of the request you want: ");
+			int id_request= Integer.parseInt(reader.readLine());
+			Request rq = jpamanager.readRequestById(id_request);
+			rq.setOrgan(or);
+			System.out.println(rq);}
+			else {
+				System.out.println("There aren´t requests for this organ (thankfully, none needs an organ)");
+			}
+			
+			
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -1019,7 +1023,24 @@ public class UI {
 			jpamanager.insertRequest(rq);
 			
 			System.out.println("Patient inserted correctly");
+			System.out.println("\n Matches:");
+			System.out.println(manager.checkRequest(rq));
+			List<Organ> list = new ArrayList<Organ>();
+			list = manager.checkRequest(rq);
+			if(list.size()!=0) {
+			System.out.println("Choose id of the organ you want: ");
+			int id_organ= Integer.parseInt(reader.readLine());
+			Organ or = jpamanager.readOrganById(id_organ);
+			or.setRequest(rq);
+			System.out.println(or.toStringComplete());}
+			else {
+				System.out.println("There aren´t matching organs, sorry");
+			}
+			
 			}catch(IOException e){
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		

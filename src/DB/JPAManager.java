@@ -105,6 +105,13 @@ public List<Request> readRequestByName(String name){
 		Request r=(Request) q1.getSingleResult();
 		return r;
 	}
+	public Organ readOrganById(int id){
+		
+		Query q1 = em.createNativeQuery("SELECT * FROM organ WHERE id LIKE ?", Organ.class);
+		q1.setParameter(1, id);
+		Organ r=(Organ) q1.getSingleResult();
+		return r;
+	}
 	
 	public void showAllDonors() {
 		Query q1 = em.createNativeQuery("SELECT * FROM donor", Donor.class);
