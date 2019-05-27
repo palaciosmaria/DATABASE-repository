@@ -449,20 +449,9 @@ public class UI {
 				updateRequestMenu();
 				break;
 			case 3:
-				System.out.println("By id (press 1) o by name(press 2)?");
-				try {
-					reader=new BufferedReader(new InputStreamReader(System.in));
-					int o =Integer.parseInt(reader.readLine());
-					if (o==1) {
-						searchRequestById();
-					}else if(o==2) {
-						searchRequestsByName();
-					}else {
-						System.out.println("not a valid option");
-					}
-				}catch(IOException ex) {
-					System.out.println("ERROR");
-				}
+
+				findRequest();
+				
 				break;
 			case 4:
 				showAllRequestsMenu();
@@ -995,6 +984,23 @@ public class UI {
 				e.printStackTrace();
 			}
 		
+	}
+	
+	public static void findRequest () {
+		System.out.println("By id (press 1) or by name (press 2)?");
+		try {
+			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+			int o =Integer.parseInt(reader.readLine());
+			if (o==1) {
+				searchRequestById();
+			}else if(o==2) {
+				searchRequestsByName();
+			}else {
+				System.out.println("not a valid option");
+			}
+		}catch(IOException ex) {
+			System.out.println("ERROR");
+		}
 	}
 	
 	public static void showAllRequestsMenu() {
