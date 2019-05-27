@@ -151,9 +151,11 @@ public class UI {
 				break;
 			case 8:	
 				DTDchecker();
+				break;
 				
 			case 9:	
-				xmlmanager.simpleTransform("./xmls/External-Report.xml", "./xmls/Report-Style.xslt", "./xmls/External-Report.html");
+				xmlmanager.simpleTransform("./xmls/External-Donor.xml", "./xmls/donor.xslt", "./xmls/External-Donor.html");
+				break;
 			case 10:
 				exit=true;
 				break;

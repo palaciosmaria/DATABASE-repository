@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="Donor_List")
 public class Donor_List {
-@XmlElement
+@XmlElement(name="Donor")
 private List<Donor> listDonor;
 
 
