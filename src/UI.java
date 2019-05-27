@@ -7,10 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -45,409 +47,7 @@ public class UI {
 		jpamanager.connect();
 		xmlmanager=new XMLManager();
 	principalMenu();
-/*
-	int option = 0;		
-	
-	do {	
-	System.out.println("------MENU------");
-	System.out.println("0. Create the tables");
-	System.out.println("1. Insert doc");
-	System.out.println("2. Insert hospital");
-	System.out.println("3. Update doctor");
-	System.out.println("4. Delete doctor");
-	System.out.println("5. Update hospital");
-	System.out.println("6. Show all Doctors");
-	System.out.println("7. Show all Hospitals");
-	System.out.println("8. Search doctor by name");
-	System.out.println("9. Insert organ");
-	System.out.println("10.Insert Donor");
-	//System.out.println("11.Insert request");
-	System.out.println("11. Read donor");
-	System.out.println("12. Update donor(loc)");
-	System.out.println("13. Delete donor");
-	System.out.println("14. Delete hospital");
-	System.out.println("15. Search hospital by location");
-	System.out.println("16. Show all Donors");
-	System.out.println("17. Update organ");
-	try {
-	System.out.println("Insert the option: ");
-	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	String stringoption=reader.readLine();
-	option=Integer.parseInt(stringoption);
-	}catch(Exception e) {
-		e.printStackTrace();
-		
-	}
-	
-	}while(option<0 || option>100);	
-	
-	switch(option) {
-	
-	case 0: 
-		manager.createTables();
-		break;
-	case 1:
-		try{
-			
-		//manager.getAllDoctors();
-		System.out.println("Introduce the doctor's info:");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print("Name: ");
-		String name = reader.readLine();
-		System.out.print("Speciality: ");
-		String speciality = reader.readLine();
-		Doctor d= new Doctor (name, speciality);
-		manager.insertDoc(d);
-		System.out.println("Doctor inserted correctly");
-		break;
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-		
-	case 2:
-		
-		try{
-		
-		System.out.println("Introduce the hospital's info:");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print("Name: ");
-		String name = reader.readLine();
-		System.out.print("Location: ");
-		String location = reader.readLine();
-		Hospital h= new Hospital (name, location);
-		manager.insertHosp(h);
-		System.out.println("Hospital inserted correctly");
-		break;
-		
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-		
-	case 3:
-		try{
-			
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		List<Doctor> list1= manager.getAllDoctors();
-		System.out.println(list1);
-		System.out.println("Choose a doctor, type its ID: ");
-		int id = Integer.parseInt(reader.readLine());
-		
-		//call a method in manager that returns a doctor by id
-		//print the chosen doctor
-		
-		System.out.print("Type the new speciality of the doctor: ");
-		String newSpeciality = reader.readLine();
-		//change the speciality of the chosen doctor
-		//calls the updateDoc method
-		Doctor d= new Doctor(id,newSpeciality);
-		manager.updateDoc(d);
-		
-		System.out.println("Update finished.");
-		break;
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-		
-	case 4:
-		try{
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Choose a doctor to delete, type its ID: ");
-		List<Doctor> list1= manager.getAllDoctors();
-		for (Doctor doctor : list1) {
-			System.out.println(doctor);
-		}
-		int id = Integer.parseInt(reader.readLine());
-		//call delete method
-		Doctor d= new Doctor(id);
-		manager.deleteDoc(d);
-		System.out.println("Deletion finished.");
-		break;
-	}catch(IOException e){
-		e.printStackTrace();
-	}
-	case 5:
-		try{
-			
-			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			List<Hospital> list1= manager.getAllHospitals();
-			System.out.println(list1);
-			System.out.println("Choose a Hospital, type its ID: ");
-			int id = Integer.parseInt(reader.readLine());
-			//call a method in manager that returns a hospital by id
-			//print the chosen hospital
-			System.out.print("Type the new name of the hospital: ");
-			String newName = reader.readLine();
-			//change the name of the chosen hospital
-			//calls the updateHosp method
-			Hospital h= new Hospital(id,newName);
-			System.out.println(h);
-			manager.updateHosp(h);
-			System.out.println("Update finished.");
-			break;
-			}catch(IOException e){
-				e.printStackTrace();
-			}
-		
-	case 6: 
-		try {
-		System.out.println("List of all the Doctors");
-		List<Doctor> list1= manager.getAllDoctors();
-		for (Doctor doctor : list1) {
-			System.out.println(doctor);
-		}
-		break;
-	}catch(Exception e){
-		e.printStackTrace();
-	}
-	
-	case 7: 
-		try {
-		System.out.println("List of all the Hospitals");
-		List<Hospital> list1= manager.getAllHospitals();
-		for (Hospital hospital : list1) {
-			System.out.println(hospital);
-		}
-		break;
-	}catch(Exception e){
-		e.printStackTrace();
-	}
-	case 8:
-		try{
-		BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print("Name of the doctor to be shown: ");
-		String dname = r.readLine();
-		List<Doctor> list1= manager.searchDoctorByName (dname);
-		for (Doctor doctor : list1) {
-			System.out.println(doctor);
-			
-		}
-		break;
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-	case 9:
-		try{
-			
-			System.out.println("Introduce the organs's info:");
-			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			System.out.print("Type of organ: ");
-			String typeOforgan = reader.readLine();
-			System.out.print("Life span (in minutes): ");
-			String stringlifeSpan = reader.readLine();
-			Integer lifeSpan= Integer.parseInt(stringlifeSpan);
-			jpamanager.showAllDonors();
-			System.out.println("Introduce the donor's id:");
-			String stringdonorid = reader.readLine();
-			int donorId= Integer.parseInt(stringdonorid);
-			Donor d = jpamanager.readDonorbyId(donorId);
-			/*try {
-				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-				jpamanager.showAllDonors();
-				System.out.println("Choose a Donor to change itÂ´s location. Write the id: ");
-				int donor_id=Integer.parseInt(reader.readLine());
-				System.out.println("Type the new location:");
-				String newLocation=reader.readLine();
-				Donor dn=jpamanager.readDonorbyId(donor_id);
-				jpamanager.updateDonor(dn, newLocation);
-				System.out.println(dn);
-				System.out.println("Location updated correctly.");
-				break;
-			}catch(IOException e){
-				e.printStackTrace();
-			}*/
-			
-			
-			//Integer doctorId;
-			/*do{
-			System.out.println("Do you want to insert a doctor?");
-			String yesno = reader.readLine();
-			if(yesno.equals("no")|| yesno.equals("NO")){
-				doctorId= null;
-				
-				break;}
-			if(yesno.equals("yes")|| yesno.equals("YES")){
-				System.out.println(manager.getAllDoctors());
-				System.out.println("Introduce the doctor's id:");
-				String stringdoctorid = reader.readLine();
-				doctorId= Integer.parseInt(stringdoctorid);
-				break;
-			}else{
-				System.out.println("Caracter introduced is not valid.");
-			}}while(true);
-			
-			Integer requestId;
-			do{
-				System.out.println("Do you want to insert a request?");
-				String yesno = reader.readLine();
-				if(yesno.equals("no")|| yesno.equals("NO")){
-					requestId= null;
-					break;}
-				if(yesno.equals("yes")|| yesno.equals("YES")){
-					System.out.println(manager.getAllRequests());
-					System.out.println("Introduce the request's id:");
-					String stringrequestid = reader.readLine();
-					requestId= Integer.parseInt(stringrequestid);
-					break;
-				}else{
-					System.out.println("Caracter introduced is not valid.");
-				}}while(true);
-			
-			
-			Organ o= new Organ(typeOforgan,lifeSpan,d);
-			d.addOrgan(o);
-			System.out.println("Organ inserted correctly");
-			
-			
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		break;
-	case 10:
-		try {
-		System.out.println("Introduce the donor's info:");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print("Name: ");
-		String name = reader.readLine();
-		Date date=null;
-		do{
-			try{
-		System.out.print("Date of Birth (dd-MM-yyyy): ");
-		String stringdob = reader.readLine();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		
-		LocalDate ldate = LocalDate.parse(stringdob, formatter);
-		date = Date.valueOf(ldate);
-		break;
-			}catch(DateTimeException ex){
-				System.out.print("Date of Birth not valid.  ");
-				
-			}
-		}while(true);
-		
-		System.out.print("Blood Type: ");
-		String bt = reader.readLine();
-		System.out.print("Location: ");	
-		String location = reader.readLine();
-		
-		Donor dn = new Donor(name, date , bt, location );
-		
-		jpamanager.insertDonor(dn);
-		
-		
-		System.out.println("Donor inserted correctly");
-		break;
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-		
-	case 11:
-		try{
-			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			System.out.print("Write the donor's name: ");
-			String name = reader.readLine();
-			System.out.println("Matching donors:");
-			List<Donor> dns = jpamanager.readDonorbyName(name);
-			for (Donor donor : dns) {
-				System.out.println(donor);
-			}
-			
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-		break;
-	case 12:
-		try {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			jpamanager.showAllDonors();
-			System.out.println("Choose a Donor to change itÂ´s location. Write the id: ");
-			int donor_id=Integer.parseInt(reader.readLine());
-			System.out.println("Type the new location:");
-			String newLocation=reader.readLine();
-			Donor dn=jpamanager.readDonorbyId(donor_id);
-			jpamanager.updateDonor(dn, newLocation);
-			System.out.println(dn);
-			System.out.println("Location updated correctly.");
-			break;
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-		
-	case 13:
-try{
-		System.out.println("Hospital's donors:");
-		jpamanager.showAllDonors();
-		System.out.print("Choose a donor to delete. Type it's ID:");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		int dn_id = Integer.parseInt(reader.readLine());
-		jpamanager.deleteDonor(dn_id);
-		System.out.print("Donor deleted correctly.");
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-		break;
-	case 14:
-		try{
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Choose a hospital to delete, type its ID: ");
-		List<Hospital> list= manager.getAllHospitals();
-		for (Hospital hospital : list) {
-			System.out.println(hospital);
-		}
-		int id = Integer.parseInt(reader.readLine());
-		//call delete method
-		Hospital h= new Hospital(id);
-		manager.deleteHospital(h);
-		System.out.println("Deletion finished.");
-		
-	}catch(IOException e){
-		e.printStackTrace();
-		
-	}
-		break;
-	case 15:
-		try{
-		BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print("Name of the location of the hospital to be shown: ");
-		String hloc = r.readLine();
-		List<Hospital> list= manager.searchHospitalByLoc (hloc);
-		for (Hospital hospital : list) {
-			System.out.println(hospital);
-			
-		}
-		break;
-		}catch(Exception e){
-			e.printStackTrace();
-		}	
-		
-	case 16: 
-		try {
-		System.out.println("List of all the Donors");
-		jpamanager.showAllDonors();
-		
-		break;
-	}catch(Exception e){
-		e.printStackTrace();
-	}
-	case 17:
-		try {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			System.out.println("Aqui");
-			jpamanager.showAllOrgans();
-			System.out.println("Choose a donor:");
-			int donor_id=Integer.parseInt(reader.readLine());
-			System.out.println("Type the new location:");
-			String newLocation=reader.readLine();
-			Donor dn=jpamanager.readDonorbyId(donor_id);
-			jpamanager.updateDonor(dn, newLocation);
-			System.out.println(dn);
-			System.out.println("Location updated correctly.");
-			break;
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-		
-	
-	}*/
+
 	}
 	
 	public static void principalMenu() {
@@ -511,7 +111,8 @@ try{
 			try {
 				System.out.println("Select option: ");
 				BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-				option=Integer.parseInt(reader.readLine());	
+				option=Integer.parseInt(reader.readLine());
+				
 			}catch(IOException ex) {
 				System.out.println("ERROR");
 			}
@@ -722,11 +323,10 @@ try{
 			System.out.println( "\n-----ORGAN INFO MENU------ " );
 			System.out.println("Operations: ");
 			System.out.println("1. Insert an organ");
-			System.out.println("2. Update an organ");
-			System.out.println("3. Search an organ-ABSENT<");
-			System.out.println("4. Show all organs"); 
-			System.out.println("5. Delete an organ-ABSENT");
-			System.out.println("6. Back to principal menu");
+			System.out.println("2. Search an organ");
+			System.out.println("3. Show all organs"); 
+			System.out.println("4. Delete an organ");
+			System.out.println("5. Back to principal menu");
 			
 			try {
 				System.out.println("Select option: ");
@@ -741,16 +341,15 @@ try{
 				insertOrganMenu();				
 				break;
 			case 2:
-				updateOrgan();
+				searchOrganByType();
 				break;
 			case 3:
-				break;
-			case 4:
 				showAllOrgans();
 				break;
-			case 5:
+			case 4:
+				deleteOrganMenu();
 				break;
-			case 6:
+			case 5:
 				exit=true;
 				break;
 			default:
@@ -818,7 +417,7 @@ try{
 			System.out.println("2. Update a patient");
 			System.out.println("3. Search a patient");
 			System.out.println("4. Show all patients"); 
-			System.out.println("5. Delete a patient-ABSENT");
+			System.out.println("5. Delete a patient");
 			System.out.println("6. Back to principal menu");
 			
 			try {
@@ -870,7 +469,7 @@ try{
 	
 	
 	
-	public static void doctorInfoMenu() {
+	public static void doctorInfoMenu() throws NumberFormatException{
 		
 		int option=0;
 		boolean exit=false;
@@ -884,7 +483,9 @@ try{
 			System.out.println("3. Search a doctor by name");
 			System.out.println("4. Show all doctors"); 
 			System.out.println("5. Delete a doctor");
-			System.out.println("6. Back to principal menu");
+			System.out.println("6. Add hospital to doctor");
+			System.out.println("7. Fire a doctor");
+			System.out.println("8. Back to principal menu");
 			
 			try {
 				System.out.println("Select option: ");
@@ -911,13 +512,70 @@ try{
 				deleteDoctorMenu();
 				break;
 			case 6:
+				addHospitalDoctor();
+				break;
+			case 7:
+				deleteHospitalDoctor();
+				break;
+			case 8:
 				exit=true;
 				break;
+			
 			default:
 				System.out.println("Not a valid option");
 				break;
 			}
 		}while(exit==false);
+		
+	}
+	public static void deleteHospitalDoctor() {
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			System.out.println("Choose the hospital where the doctor works:");
+			List<Hospital> list = manager.getAllHospitals();
+			System.out.println(list);
+			System.out.println("Write the id:");
+			int idhospital = Integer.parseInt(reader.readLine());
+			System.out.println("Choose the doctor:");
+			List<Doctor> list1 = manager.getAllDoctors();
+			System.out.println(list1);
+			System.out.println("Write the id:");
+			int doctorid = Integer.parseInt(reader.readLine());
+			Doctor d = manager.searchDoctorById(doctorid);
+			Hospital h = manager.searchHospitalById(idhospital);
+			manager.deleteRelationship(h,d);
+			
+			}catch(SQLException ex) {
+				System.out.println("Error");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	}
+	public static void addHospitalDoctor() {
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			System.out.println("Choose the hospital where the doctor works:");
+			List<Hospital> list = manager.getAllHospitals();
+			System.out.println(list);
+			System.out.println("Write the id:");
+			int idhospital = Integer.parseInt(reader.readLine());
+			System.out.println("Choose the doctor:");
+			List<Doctor> list1 = manager.getAllDoctors();
+			System.out.println(list1);
+			System.out.println("Write the id:");
+			int doctorid = Integer.parseInt(reader.readLine());
+			Doctor d = manager.searchDoctorById(doctorid);
+			Hospital h = manager.searchHospitalById(idhospital);
+			manager.insertRelationship(h,d);
+			
+			}catch(SQLException ex) {
+				System.out.println("Error");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
 	}
 	
@@ -973,7 +631,7 @@ try{
 					System.out.println("Caracter introduced is not valid.");
 				}}while(true);
 			
-			Organ or= new Organ(typeOforgan,lifeSpan,d,doc,r);
+			Organ or= new Organ(typeOforgan,lifeSpan,d,r,doc);
 			jpamanager.insertOrgan(or);
 			System.out.println("Organ inserted correctly");
 		}catch(Exception e){
@@ -981,34 +639,28 @@ try{
 		}
 	}
 	
-	public static void updateOrgan() {
-		try {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			jpamanager.showAllOrgans();
-			System.out.println("Choose a donor:");
-			int donor_id=Integer.parseInt(reader.readLine());
-			System.out.println("Type the new location:");
-			String newLocation=reader.readLine();
-			Donor dn=jpamanager.readDonorbyId(donor_id);
-			jpamanager.updateDonor(dn, newLocation);
-			System.out.println(dn);
-			System.out.println("Location updated correctly.");
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-		
-	}
+
 	public static void insertDonorMenu() {
 		try {
 			System.out.println("Introduce the donor's info:");
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			System.out.print("Name: ");
 			String name = reader.readLine();
-			System.out.print("Date of Birth: ");
-			String stringdob = reader.readLine();
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-			LocalDate ldate = LocalDate.parse(stringdob, formatter);
-			Date date = Date.valueOf(ldate);
+			Date date = null;
+			do {
+				try {
+				
+				System.out.print("Date of Birth(dd-MM-yyyy): ");
+				String stringdob = reader.readLine();
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");			
+				LocalDate ldate = LocalDate.parse(stringdob, formatter);
+			    date = Date.valueOf(ldate);
+				
+				}catch(DateTimeParseException ex) {
+					System.out.println("Not a valid date");
+					date = null;
+				}
+				}while(date==null);
 			System.out.print("Blood Type: ");
 			String bt = reader.readLine();
 			System.out.print("Location: ");	
@@ -1036,7 +688,22 @@ try{
 			
 		}catch(IOException e){
 			e.printStackTrace();
-		}
+		}}
+	
+		public static void searchOrganByType() {
+			try{
+				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+				System.out.print("Write the organ's type: ");
+				String type = reader.readLine();
+				System.out.println("Matching organs:");
+				List<Organ> or = jpamanager.readOrganbyType(type);
+				for (Organ organ : or) {
+					System.out.println(organ);
+				}
+				
+			}catch(IOException e){
+				e.printStackTrace();
+			}
 	}
 	public static void showAllDonors() {
 		try {
@@ -1084,6 +751,19 @@ try{
 			e.printStackTrace();
 		}
 	}
+	public static void deleteOrganMenu() {
+		try{
+			System.out.println("Organs:");
+			jpamanager.showAllOrgans();
+			System.out.print("Choose an organ to delete. Type it's ID:");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			int or_id = Integer.parseInt(reader.readLine());
+			jpamanager.deleteOrgan(or_id);
+			System.out.print("Organ deleted correctly.");
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+		}
 	
 	public static void insertDoctorMenu() {
 		try{
@@ -1098,6 +778,7 @@ try{
 			Doctor d= new Doctor (name, speciality);
 			manager.insertDoc(d);
 			System.out.println("Doctor inserted correctly");
+			
 		}catch(IOException e){
 				e.printStackTrace();
 			}
@@ -1153,6 +834,7 @@ try{
 			List<Doctor> list1= manager.getAllDoctors();
 			for (Doctor doctor : list1) {
 				System.out.println(doctor);
+				System.out.print("");
 			}
 			
 		}catch(Exception e){
@@ -1224,6 +906,7 @@ try{
 			List<Hospital> list1= manager.getAllHospitals();
 			for (Hospital hospital : list1) {
 				System.out.println(hospital);
+				System.out.print("");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -1270,11 +953,21 @@ try{
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			System.out.print("Name: ");
 			String name = reader.readLine();
-			System.out.print("Date of Birth: ");
+			Date date = null;
+			do {
+			try {
+			
+			System.out.print("Date of Birth(dd-MM-yyyy): ");
 			String stringdob = reader.readLine();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");			
 			LocalDate ldate = LocalDate.parse(stringdob, formatter);
-			Date date = Date.valueOf(ldate);
+		    date = Date.valueOf(ldate);
+			
+			}catch(DateTimeParseException ex) {
+				System.out.println("Not a valid date");
+				date = null;
+			}
+			}while(date==null);
 			System.out.print("Blood Type: ");
 			String bt = reader.readLine();
 			System.out.print("Organ needed: ");	
@@ -1299,6 +992,7 @@ try{
 			List<Request> list1= manager.getAllRequests();
 			for (Request request : list1) {
 				System.out.println(request);
+				System.out.print("");
 			}
 			
 		}catch(Exception e){

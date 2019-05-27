@@ -142,6 +142,11 @@ public class JDBCManager {
 				stmtSeq4.executeUpdate(sqlSeq4);
 				stmtSeq4.close();
 				
+				Statement stmtSeq5 = c.createStatement();
+				String sqlSeq5 = "INSERT INTO sqlite_sequence (name, seq) VALUES ('relationship', 1)";
+				stmtSeq5.executeUpdate(sqlSeq5);
+				stmtSeq5.close();
+				
 				
 				//System.out.println("Database connection closed.");
 			
@@ -188,6 +193,37 @@ public class JDBCManager {
 			}
 		}
 		
+		public void insertRelationship( Hospital h, Doctor d){
+			try{
+				
+				String sql = "INSERT INTO relationship (id_doctor, id_hospital) "
+						+ "VALUES (?,?);";//each question mark will be replaced with a string
+				PreparedStatement prep = c.prepareStatement(sql);
+				prep.setInt(1, d.getId());
+				prep.setInt(2, h.getId());
+				prep.executeUpdate();//without parameters because you already pass the parameters before
+				prep.close();
+				System.out.println("Relationship info processed");
+				
+			}catch (Exception e){
+				System.out.println("This doctor is already linked to this hospital");
+			}
+		}
+		
+		public void deleteRelationship(Hospital h, Doctor d) {
+			try {
+				String sq1 = "DELETE FROM relationship WHERE id_doctor=? AND id_hospital=?;";
+				PreparedStatement prep = c.prepareStatement(sq1);
+				prep.setInt(1, d.getId());
+				prep.setInt(2, h.getId());
+				prep.executeUpdate();
+				prep.close();
+				System.out.println("Relationship deleted");
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		
 
 //this makes you a list with all the doctors
@@ -344,6 +380,26 @@ public Doctor searchDoctorById (Integer doctorId) throws SQLException{
 	rs.close();
 	prep.close();
 	return d;
+	}
+public Hospital searchHospitalById (Integer idhospital) throws SQLException{
+	
+	String sql = "SELECT * FROM hospital WHERE id LIKE ?";
+	PreparedStatement prep = c.prepareStatement(sql);
+	prep.setInt(1, idhospital);
+	ResultSet rs = prep.executeQuery();
+	Hospital h=null;
+	
+	while (rs.next()) {
+		int id = rs.getInt("id");
+		String name = rs.getString("name");
+		String location = rs.getString("location");
+		h = new Hospital (id, name, location);
+		
+	}
+	
+	rs.close();
+	prep.close();
+	return h;
 	}
 
 		

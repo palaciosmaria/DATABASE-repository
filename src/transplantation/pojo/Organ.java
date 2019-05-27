@@ -51,15 +51,14 @@ public class Organ implements Serializable {
 	}
 
 
-	public Organ(Integer id, String typeorgan, Integer lifespan, Donor donor, Doctor doctor, Request request) {
+	public Organ(Integer id, String typeorgan, Integer lifespan, Donor donor, Request request, Doctor doctor) {
 	super();
 	this.id = id;
 	this.typeorgan = typeorgan;
 	this.lifespan = lifespan;
 	this.id_donor = donor;
-	this.id_doctor = doctor;
 	this.id_request = request;
-	
+	this.id_doctor = doctor;
 }
 	
 	public Organ(String typeorgan, Integer lifespan, Donor donor, Doctor doctor, Request request) {
@@ -97,6 +96,9 @@ public class Organ implements Serializable {
 		this.typeorgan = typeorgan;
 	}
 
+public Organ(String typeOforgan, Integer lifeSpan2, Integer donorId, Integer doctorId, Integer requestId) {
+		// TODO Auto-generated constructor stub
+	}
 
 
 	// Hashcode 
@@ -186,10 +188,9 @@ public class Organ implements Serializable {
 	}
 
 
-	@Override
-	public String toString() {
-		return "Organ [id=" + id + ", typeorgan=" + typeorgan + ", lifespan=" + lifespan + ", donor=" + id_donor
-				+ ", request=" + id_request + ", doctor=" + id_doctor + "]";
+	public String toStringComplete() {
+		return "Organ [id=" + id + ", typeorgan=" + typeorgan + ", lifespan=" + lifespan + ", donor=" + id_donor.getId()
+				+ ", request=" + id_request.getId() + ", doctor=" + id_doctor.getId() + "]";
 	}
 
 
@@ -198,5 +199,10 @@ public class Organ implements Serializable {
 	
 
 
+	
+	@Override
+	public String toString() {
+		return "Organ [id=" + id + ", typeorgan=" + typeorgan + ", lifespan=" + lifespan + "]";
+	}
 	
 }

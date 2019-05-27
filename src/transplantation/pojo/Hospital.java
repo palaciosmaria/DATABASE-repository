@@ -33,6 +33,7 @@ public class Hospital implements Serializable {
 		private List<Request>requests;
 		
 		//contructors
+		
 		public Hospital() {
 			super();
 			this.doctors = new ArrayList<Doctor>();
@@ -152,6 +153,6 @@ public class Hospital implements Serializable {
 			this.requests = requests;
 		}
 	
-		//missing relations
+		
 		
 }
