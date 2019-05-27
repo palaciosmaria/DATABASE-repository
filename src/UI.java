@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
@@ -14,12 +15,20 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.persistence.RollbackException;
 import javax.xml.bind.JAXBException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import DB.JDBCManager;
 import DB.JPAManager;
 import DB.ManagerInterface;
 import DB.XMLManager;
+
 import transplantation.pojo.Doctor;
 import transplantation.pojo.Donor;
 import transplantation.pojo.Donor_List;
@@ -506,7 +515,10 @@ try{
 			System.out.println("5. Search a hospital");
 			System.out.println("6. XML: Marshall");
 			System.out.println("7. XML: Unmarshall");
-			System.out.println("8. Back to principal menu");
+			System.out.println("8. DTD checker");
+			System.out.println("9. HTML ");
+			System.out.println("10. Back to principal menu");
+			
 			try {
 				System.out.println("Select option: ");
 				BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
@@ -537,7 +549,12 @@ try{
 			case 7:
 				unmarshallMenu();
 				break;
-			case 8:
+			case 8:	
+				DTDchecker();
+				
+			case 9:	
+				xmlmanager.simpleTransform("./xmls/External-Report.xml", "./xmls/Report-Style.xslt", "./xmls/External-Report.html");
+			case 10:
 				exit=true;
 				break;
 
@@ -548,6 +565,32 @@ try{
 		}while(exit==false);	
 	}
 	
+	public static void DTDchecker(){
+		
+	        File xmlFile = new File("./xmls/External-Donor.xml"); 
+	        try {
+	        	// Create a DocumentBuilderFactory
+	            DocumentBuilderFactory dBF = DocumentBuilderFactory.newInstance();
+	            // Set it up so it validates XML documents
+	            dBF.setValidating(true);
+	            // Create a DocumentBuilder and an ErrorHandler (to check validity)
+	            DocumentBuilder builder = dBF.newDocumentBuilder();
+	            DB.CustomErrorHandler customErrorHandler = new DB.CustomErrorHandler();
+	            builder.setErrorHandler(customErrorHandler);
+	            // Parse the XML file and print out the result
+	            Document doc = builder.parse(xmlFile);
+	            if (customErrorHandler.isValid()) {
+	                System.out.println(xmlFile + " was valid!");
+	            }
+	        } catch (ParserConfigurationException ex) {
+	            System.out.println(xmlFile + " error while parsing!");
+	        } catch (SAXException ex) {
+	            System.out.println(xmlFile + " was not well-formed!");
+	        } catch (IOException ex) {
+	            System.out.println(xmlFile + " was not accesible!");
+	        }
+		
+	}
 	public static void marshallMenu() {
 		try {
 		System.out.println("Type how do you want to name the XML document (including .xml");
@@ -574,16 +617,21 @@ try{
 			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
 			String name = reader.readLine();
 			Donor_List donors=xmlmanager.Unmarshall(name);
+			
+			
 			for (Donor d: donors.getListDonor()) {
 				jpamanager.insertDonor(d);
 			}
+			
 		}catch(IOException ex) {
 			System.out.println("ERROR");
 			ex.printStackTrace();
 		}catch(JAXBException ex){
 		System.out.println("ERROR");
 		ex.printStackTrace();
-	}
+		}catch(RollbackException e){
+		System.out.println("\n\nERROR. DONOR ALREADY EXIST IN THE DATABASE.\n\n");
+		     }
 		}
 	
 	

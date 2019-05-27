@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<!DOCTYPE Donor [
+<!DOCTYPE Donor_List [
    <!ELEMENT Donor (datebirth,organ)>
    <!ELEMENT datebirth (#PCDATA)>
    <!ELEMENT organ (#PCDATA)>
