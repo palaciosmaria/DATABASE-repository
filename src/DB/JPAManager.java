@@ -112,6 +112,7 @@ public List<Request> readRequestByName(String name){
 		
 		for (Donor donor : list) {
 			System.out.println(donor);
+			System.out.print("");
 		}
 	}
 	
@@ -128,6 +129,7 @@ public List<Request> readRequestByName(String name){
 		
 		for (Organ organ : list) {
 			System.out.println(organ);
+			System.out.print("");
 		}
 	}
 	public void deleteDonor(int id){

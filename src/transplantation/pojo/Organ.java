@@ -2,12 +2,18 @@ package transplantation.pojo;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 
 @Entity
 @Table(name= "organ")
-
-
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="Organ")
 public class Organ implements Serializable {
 	
 	private static final long serialVersionUID = -6561993325465307742L;
@@ -17,32 +23,24 @@ public class Organ implements Serializable {
 	@TableGenerator(name="organ",table="sqlite_sequence",pkColumnName="name",
 	valueColumnName="seq", pkColumnValue="organ")
 	
-	
-	
-
-	
-	
+	@XmlAttribute
 	private Integer id;
-	
-	
+	@XmlAttribute
 	private String typeorgan;
-	
-	
+	@XmlAttribute
 	private Integer lifespan;
-	
 	@ManyToOne (fetch = FetchType.LAZY)
 	@JoinColumn (name="id_donor")
-	
+	@XmlElement
 	private Donor id_donor;
-	
 	@OneToOne (fetch=FetchType.LAZY)
 	@JoinColumn (name="id_request")
-	
+	@XmlTransient
 	private Request id_request;
 	
 	@ManyToOne (fetch = FetchType.LAZY)
 	@JoinColumn (name="id_doctor")
-	
+	@XmlTransient
 	private Doctor id_doctor;
 	
 	
@@ -62,6 +60,16 @@ public class Organ implements Serializable {
 	this.id_request = request;
 	this.id_doctor = doctor;
 }
+	
+	public Organ(String typeorgan, Integer lifespan, Donor donor, Doctor doctor, Request request) {
+		super();
+		this.typeorgan = typeorgan;
+		this.lifespan = lifespan;
+		this.id_donor = donor;
+		this.id_doctor = doctor;
+		this.id_request = request;
+		
+	}
 	public Organ(String typeorgan, Integer lifespan, Donor donor) {
 		super();
 		
@@ -186,8 +194,15 @@ public Organ(String typeOforgan, Integer lifeSpan2, Integer donorId, Integer doc
 	}
 
 
+
+	
+	
+
+
+	
 	@Override
 	public String toString() {
 		return "Organ [id=" + id + ", typeorgan=" + typeorgan + ", lifespan=" + lifespan + "]";
 	}
+	
 }

@@ -49,7 +49,6 @@ public class Doctor implements Serializable{
 		    inverseJoinColumns={@JoinColumn(name="id_hospital", referencedColumnName="id")})
 	private List<Hospital>hospitals;
 	
-	
 	//constructors
 	public Doctor() {
 		super();
@@ -175,6 +174,6 @@ public class Doctor implements Serializable{
 	
 	//missing relations
 
-	
+
 	
 }
