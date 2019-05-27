@@ -14,8 +14,34 @@
 
 
 <Donor_List>
-    <Donor id="2" name="m" bloodtype="a" location="mad">
+    <Donor id="2" name="sdfg" bloodtype="a" location="sadf">
+        <datebirth>1900-12-12</datebirth>
+    </Donor>
+    <Donor id="3" name="maria" bloodtype="a" location="madrid">
+        <datebirth>1212-12-12</datebirth>
+    </Donor>
+    <Donor id="4" name="amanda" bloodtype="a" location="madrid">
+        <datebirth>1313-12-13</datebirth>
+    </Donor>
+    <Donor id="5" name="eli" bloodtype="b" location="barcelona">
+        <datebirth>2222-11-14</datebirth>
+    </Donor>
+    <Donor id="6" name="elena" bloodtype="a+" location="murcia">
+        <datebirth>2345-12-15</datebirth>
+    </Donor>
+    <Donor id="53" name="rodrigo" bloodtype="a" location="madrid">
+        <datebirth>1212-12-12</datebirth>
+    </Donor>
+    <Donor id="54" name="lalo" bloodtype="0" location="vitoria">
+        <datebirth>1211-11-12</datebirth>
+    </Donor>
+    <Donor id="55" name="sofia" bloodtype="o" location="murcia">
+        <datebirth>1222-12-12</datebirth>
+    </Donor>
+    <Donor id="56" name="alejandra" bloodtype="ab" location="jerez">
         <datebirth>1111-11-11</datebirth>
     </Donor>
+    <Donor id="57" name="gabi" bloodtype="a" location="navarra">
+        <datebirth>1211-12-11</datebirth>
+    </Donor>
 </Donor_List>
-
