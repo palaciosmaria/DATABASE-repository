@@ -671,9 +671,10 @@ public class UI {
 			int id_request= Integer.parseInt(reader.readLine());
 			Request rq = jpamanager.readRequestById(id_request);
 			rq.setOrgan(or);
+			System.out.println("The matching was completed successfully");
 			System.out.println(rq);}
 			else {
-				System.out.println("There aren´t requests for this organ (thankfully, none needs an organ)");
+				System.out.println("There aren´t requests for this organ. Thankfully, none needs an organ :)");
 			}
 			
 			
@@ -1032,7 +1033,9 @@ public class UI {
 			int id_organ= Integer.parseInt(reader.readLine());
 			Organ or = jpamanager.readOrganById(id_organ);
 			or.setRequest(rq);
-			System.out.println(or.toStringComplete());}
+			System.out.println("The matching was completed successfully");
+			System.out.println(or.toStringComplete());
+			}
 			else {
 				System.out.println("There aren´t matching organs, sorry");
 			}
