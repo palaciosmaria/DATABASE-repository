@@ -2,11 +2,18 @@ package transplantation.pojo;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 
 @Entity
 @Table(name= "organ")
-
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="Organ")
 public class Organ implements Serializable {
 	
 	private static final long serialVersionUID = -6561993325465307742L;
@@ -16,18 +23,24 @@ public class Organ implements Serializable {
 	@TableGenerator(name="organ",table="sqlite_sequence",pkColumnName="name",
 	valueColumnName="seq", pkColumnValue="organ")
 	
+	@XmlAttribute
 	private Integer id;
+	@XmlAttribute
 	private String typeorgan;
+	@XmlAttribute
 	private Integer lifespan;
 	@ManyToOne (fetch = FetchType.LAZY)
 	@JoinColumn (name="id_donor")
+	@XmlElement
 	private Donor id_donor;
 	@OneToOne (fetch=FetchType.LAZY)
 	@JoinColumn (name="id_request")
+	@XmlTransient
 	private Request id_request;
 	
 	@ManyToOne (fetch = FetchType.LAZY)
 	@JoinColumn (name="id_doctor")
+	@XmlTransient
 	private Doctor id_doctor;
 	
 	

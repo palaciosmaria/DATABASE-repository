@@ -14,6 +14,7 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.persistence.RollbackException;
 import javax.xml.bind.JAXBException;
 
 import DB.JDBCManager;
@@ -574,7 +575,9 @@ try{
 			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
 			String name = reader.readLine();
 			Donor_List donors=xmlmanager.Unmarshall(name);
+			
 			for (Donor d: donors.getListDonor()) {
+				
 				jpamanager.insertDonor(d);
 			}
 		}catch(IOException ex) {
@@ -583,7 +586,11 @@ try{
 		}catch(JAXBException ex){
 		System.out.println("ERROR");
 		ex.printStackTrace();
+	}catch(RollbackException e) {
+		System.out.println("Donor already exists in the data base");
+		
 	}
+
 		}
 	
 	
