@@ -2,10 +2,11 @@
 
 
 <!DOCTYPE Donor_List [
-   <!ELEMENT Donor (datebirth,organ)>
+<!ELEMENT Donor_List (Donor+)>
+   <!ELEMENT Donor (datebirth)>
    <!ELEMENT datebirth (#PCDATA)>
-   <!ELEMENT organ (#PCDATA)>
-   <!ATTLIST Donor name CDATA #REQUIRED
+   <!ATTLIST Donor id CDATA #REQUIRED
+   				   name CDATA #REQUIRED
    				   bloodtype CDATA #REQUIRED
    				   location CDATA #REQUIRED>
     
@@ -13,8 +14,8 @@
 
 
 <Donor_List>
-    <listDonor id="2" name="m" bloodtype="a" location="mad">
+    <Donor id="2" name="m" bloodtype="a" location="mad">
         <datebirth>1111-11-11</datebirth>
-    </listDonor>
+    </Donor>
 </Donor_List>
 
