@@ -884,8 +884,7 @@ public class UI {
 				System.out.println(hospital);
 			}
 			//System.out.println(list1);
-			System.out.println("Choose a Hospital, type its ID: ");
-			int id = Integer.parseInt(reader.readLine());
+			int id = ReadInt(reader,"Choose a Hospital, type its ID: ");
 			//call a method in manager that returns a hospital by id
 			//print the chosen hospital
 			System.out.print("Type the new name of the hospital: ");
@@ -918,19 +917,17 @@ public class UI {
 	public static void deleteHospital() {
 	try{
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			System.out.println("Choose a hospital to delete, type its ID: ");
 			List<Hospital> list= manager.getAllHospitals();
+			System.out.println("LIST OF HOSPITALS: ");
 			for (Hospital hospital : list) {
 				System.out.println(hospital);
 			}
-			int id = Integer.parseInt(reader.readLine());
-			//call delete method
+			int id = ReadInt(reader,"Choose a hospital to delete, type its ID: ");
 			Hospital h= new Hospital(id);
 			manager.deleteHospital(h);
 			System.out.println("Deletion finished.");
 			
-		}catch(IOException e){
-			e.printStackTrace();
+
 			
 		}catch(SQLException ex) {
 			ex.printStackTrace();
@@ -975,9 +972,7 @@ public class UI {
 			String bt = reader.readLine();
 			System.out.print("Organ needed: ");	
 			String organneeded = reader.readLine();
-			System.out.print("Priority: ");	
-			int priority=Integer.parseInt(reader.readLine());
-			
+			int priority = ReadInt(reader,"Priority: ");
 			Request rq=new Request(name, date, bt, organneeded,priority);
 		
 			jpamanager.insertRequest(rq);
@@ -988,15 +983,14 @@ public class UI {
 			List<Organ> list = new ArrayList<Organ>();
 			list = manager.checkRequest(rq);
 			if(list.size()!=0) {
-			System.out.println("Choose id of the organ you want: ");
-			int id_organ= Integer.parseInt(reader.readLine());
+			int id_organ = ReadInt(reader,"Choose the ID of the organ you want: ");
 			Organ or = jpamanager.readOrganById(id_organ);
 			or.setRequest(rq);
 			System.out.println("The matching was completed successfully");
 			System.out.println(or.toStringComplete());
 			}
 			else {
-				System.out.println("There aren´t matching organs, sorry");
+				System.out.println("There aren't matching organs, sorry");
 			}
 			
 			}catch(IOException e){
@@ -1009,20 +1003,16 @@ public class UI {
 	}
 	
 	public static void findRequest () {
-		System.out.println("By id (press 1) or by name (press 2)?");
-		try {
 			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-			int o =Integer.parseInt(reader.readLine());
+			int o = ReadInt(reader,"By id (press 1) or by name (press 2)?");
 			if (o==1) {
 				searchRequestById();
 			}else if(o==2) {
 				searchRequestsByName();
 			}else {
-				System.out.println("not a valid option");
+				System.out.println("Not a valid option");
 			}
-		}catch(IOException ex) {
-			System.out.println("ERROR");
-		}
+		
 	}
 	
 	public static void showAllRequestsMenu() {
@@ -1046,32 +1036,24 @@ public class UI {
 			for (Request request : list1) {
 				System.out.println(request);
 			}
-			System.out.println("Choose a request to change itÂ´s priority. Write the id: ");
-			int request_id=Integer.parseInt(reader.readLine());
-			System.out.println("Type the new priority:");
-			Integer priority=Integer.parseInt(reader.readLine());
+			int request_id = ReadInt(reader,"Choose a request to change it's priority. Write the id: ");
+			Integer priority = ReadInt(reader,"Type the new priority: ");
 			Request r=jpamanager.readRequestById(request_id);
 			jpamanager.updateRequest(r, priority);
 			System.out.println(r);
 			System.out.println("Priority updated correctly.");
-		}catch(IOException e){
-			e.printStackTrace();
+			
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
 	}
 	
 	public static void searchRequestById() {
-		try{
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			System.out.print("Write the request's id: ");
-			Integer id = Integer.parseInt(reader.readLine());
+			int id = ReadInt(reader,"Write the request's id: ");
 			System.out.println(jpamanager.readRequestById(id));
-			
-		}catch(IOException e){
-			e.printStackTrace();
-		}
 	}
+	
 	
 	public static void searchRequestsByName() {
 		try{
@@ -1090,18 +1072,15 @@ public class UI {
 	}
 	
 	
-	public static void deleteRequestMenu(){
-		try{
+	public static void deleteRequestMenu(){	
+			System.out.println("LIST OF REQUESTS: ");
 			showAllRequestsMenu();
-			System.out.print("Choose a request to delete. Type it's ID:");
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			int rq_id = Integer.parseInt(reader.readLine());
+			int rq_id = ReadInt(reader,"Choose a request to delete. Type it's ID:");
 			jpamanager.deleteRequest(rq_id);
 			System.out.print("Request deleted correctly.");
-			}catch(IOException e){
-				e.printStackTrace();
-			}
 		}
+	
 	public static int ReadInt(BufferedReader c, String m) {
 
         Boolean correctInput = false;
