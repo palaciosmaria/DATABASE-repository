@@ -530,7 +530,9 @@ public class UI {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("Choose the hospital where the doctor works:");
 			List<Hospital> list = manager.getAllHospitals();
-			System.out.println(list);
+			for (Hospital h : list){
+			System.out.println(h);
+			}
 			System.out.println("Write the id:");
 			int idhospital = Integer.parseInt(reader.readLine());
 			System.out.println("Choose the doctor:");
@@ -555,17 +557,37 @@ public class UI {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("Choose the hospital where the doctor works:");
 			List<Hospital> list = manager.getAllHospitals();
-			System.out.println(list);
+			for (Hospital hospital : list) {
+				System.out.println(hospital);
+				System.out.print("");
+			}
+			//System.out.println(list);
 			System.out.println("Write the id:");
 			int idhospital = Integer.parseInt(reader.readLine());
 			System.out.println("Choose the doctor:");
 			List<Doctor> list1 = manager.getAllDoctors();
-			System.out.println(list1);
+			//System.out.println(list1);
+			for (Doctor doctor : list1) {
+				System.out.println(doctor);
+				System.out.print("");
+			}
 			System.out.println("Write the id:");
 			int doctorid = Integer.parseInt(reader.readLine());
 			Doctor d = manager.searchDoctorById(doctorid);
 			Hospital h = manager.searchHospitalById(idhospital);
 			manager.insertRelationship(h,d);
+			
+			List <Hospital> list2= new ArrayList<Hospital>();
+			list2.add(h);
+			d.setHospitals(list2);
+			List <Doctor> list3 = new ArrayList<Doctor>();
+			list3.add(d);
+			h.setDoctors(list3);
+			System.out.println("This doctor works in:");
+			System.out.println(d.getHospitals());
+			System.out.println("Doctors in this hospital:");
+			System.out.println(h.getDoctors());
+			
 			
 			}catch(SQLException ex) {
 				System.out.println("Error");
