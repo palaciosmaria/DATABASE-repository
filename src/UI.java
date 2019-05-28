@@ -530,9 +530,7 @@ public class UI {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("Choose the hospital where the doctor works:");
 			List<Hospital> list = manager.getAllHospitals();
-			for (Hospital h : list){
-			System.out.println(h);
-			}
+			System.out.println(list);
 			System.out.println("Write the id:");
 			int idhospital = Integer.parseInt(reader.readLine());
 			System.out.println("Choose the doctor:");

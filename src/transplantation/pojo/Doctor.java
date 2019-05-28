@@ -141,6 +141,10 @@ public class Doctor implements Serializable{
 	public void setSpeciality(String speciality) {
 		this.speciality = speciality;
 	}
+	
+	public void removeHospital(Hospital h){
+        hospitals.remove(h);
+    }
 
 
 	@Override
